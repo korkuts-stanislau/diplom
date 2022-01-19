@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "USlnwLeOQ9r5onrUiT5EfFQafnCTaPTFo4CUqth3O/fitK3QWcEyBIWCNOHv+9TLAfP32ixuPDEsz/MtKBKRNg==",
+  "dgSpecHash": "rg11p/UpGRUr7mmxPrTIQfQPUZ8ZihhChyjtbo/JuWllnBGQdKbSPCq45cQplZc2HDi+QUT7t2s39KfkaK+YMQ==",
   "success": true,
-  "projectFilePath": "D:\\university\\diplom\\Magik2.0\\common\\Common.csproj",
+  "projectFilePath": "d:\\university\\diplom\\Magik2.0\\common\\common.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.identitymodel.logging\\6.15.0\\microsoft.identitymodel.logging.6.15.0.nupkg.sha512",
