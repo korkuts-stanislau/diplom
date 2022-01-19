@@ -1,0 +1,12 @@
+D:\university\diplom\Magik2.0\common\bin\Debug\net6.0\Common.deps.json
+D:\university\diplom\Magik2.0\common\bin\Debug\net6.0\Common.dll
+D:\university\diplom\Magik2.0\common\bin\Debug\net6.0\ref\Common.dll
+D:\university\diplom\Magik2.0\common\bin\Debug\net6.0\Common.pdb
+D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.csproj.AssemblyReference.cache
+D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.AssemblyInfoInputs.cache
+D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.AssemblyInfo.cs
+D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.csproj.CoreCompileInputs.cache
+D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.dll
+D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\ref\Common.dll
+D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.pdb

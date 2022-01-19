@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\university\\diplom\\Magik2.0\\resource\\resource.csproj": {}
+    "d:\\university\\diplom\\Magik2.0\\resource\\resource.csproj": {}
   },
   "projects": {
-    "D:\\university\\diplom\\Magik2.0\\resource\\resource.csproj": {
+    "d:\\university\\diplom\\Magik2.0\\resource\\resource.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\university\\diplom\\Magik2.0\\resource\\resource.csproj",
+        "projectUniqueName": "d:\\university\\diplom\\Magik2.0\\resource\\resource.csproj",
         "projectName": "resource",
-        "projectPath": "D:\\university\\diplom\\Magik2.0\\resource\\resource.csproj",
+        "projectPath": "d:\\university\\diplom\\Magik2.0\\resource\\resource.csproj",
         "packagesPath": "C:\\Users\\stani\\.nuget\\packages\\",
-        "outputPath": "D:\\university\\diplom\\Magik2.0\\resource\\obj\\",
+        "outputPath": "d:\\university\\diplom\\Magik2.0\\resource\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\stani\\AppData\\Roaming\\NuGet\\NuGet.Config"

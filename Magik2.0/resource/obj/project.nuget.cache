@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fhq0l2eSdoNrqMwpOAa+IYpXGmRdmgWv74uqKShoEnRSQphFjKL++SflCK+EpSpR0weQE2tESAbBUmBIdsMEZw==",
+  "dgSpecHash": "YkiL2GB4wQgpayVNtFK2s2oGDW9uAwAvkBEyhve19B0KHgczTIbQAmTlxL+dPPeYKXSOt/QbdgxKIPD3lrUJlg==",
   "success": true,
-  "projectFilePath": "D:\\university\\diplom\\Magik2.0\\resource\\resource.csproj",
+  "projectFilePath": "d:\\university\\diplom\\Magik2.0\\resource\\resource.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
