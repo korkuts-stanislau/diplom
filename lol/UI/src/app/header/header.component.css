@@ -1,0 +1,27 @@
+.header-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav {
+  width: 50%;
+}
+
+#logo {
+  font-size: 1.9rem;
+  font-weight: normal;
+  color: #000000;
+  margin: auto 0;
+  cursor: default;
+}
+
+@media (max-width: 700px) {
+  nav {
+    display: none;
+  }
+
+  #logo {
+    margin: auto;
+  }
+}

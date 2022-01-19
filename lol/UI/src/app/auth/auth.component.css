@@ -1,0 +1,55 @@
+form {
+  width: 50%;
+  max-width: 400px;
+  min-height: 300px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background-color: #fafafa;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  cursor: default;
+}
+
+.form-field > input {
+  width: calc(100% - 10px);
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-buttons > * {
+  width: 48%;
+  font-size: 1.1rem;
+}
+
+.error-message {
+  border-radius: 5px;
+  background-color: rgba(255, 150, 150, 0.5);
+  padding: 5px;
+  margin: 10px 0;
+}
+
+@media (max-width: 700px) {
+  form {
+    width: 80%;
+  }
+}

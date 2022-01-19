@@ -1,0 +1,22 @@
+#main-container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template:
+    "areas profile"
+    "projects projects";
+  grid-template-columns: auto 10rem;
+  grid-template-rows: auto auto;
+}
+
+app-project-areas {
+  grid-area: areas;
+}
+
+app-profile {
+  grid-area: profile;
+}
+
+app-projects {
+  grid-area: projects;
+}

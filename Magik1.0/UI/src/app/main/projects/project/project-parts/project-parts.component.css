@@ -1,0 +1,134 @@
+#project-parts-container {
+  padding: 0.5rem;
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+  max-height: 32rem;
+  background: var(--element-default-color);
+  border-radius: 3px;
+  box-shadow: var(--input-box-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+/*Hide scrollbars for chrome, safari and opera*/
+#project-parts-container::-webkit-scrollbar {
+  display: none;
+}
+
+/*Hide scrollbars for mozilla, ie and edge*/
+#project-parts-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /*mozilla*/
+}
+
+#project-parts > * {
+  list-style: none;
+  margin: 0.2rem;
+}
+
+.project-part > * {
+  padding: 0.1rem;
+}
+
+.project-part-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.project-part-head > h3 {
+  cursor: pointer;
+  align-self: center;
+}
+
+.project-part-head > input {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  box-shadow: var(--input-box-shadow);
+  border-radius: 5px;
+  padding: 0.15rem;
+  width: calc(100% - 5rem);
+}
+
+.project-part-head > * {
+  margin: 0.1rem;
+  padding: 0.1rem;
+}
+
+.project-part-head:hover {
+  background: var(--element-default-color);
+  border-radius: 3px;
+}
+
+.project-part-manage button {
+  border: none;
+  background: none;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.project-part-manage button:hover {
+  background: var(--element-alt-color);
+}
+
+.project-part-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-part-details textarea {
+  border: none;
+  margin: 0.2rem;
+  padding: 0.2rem;
+  height: 20rem;
+  width: calc(100% - 0.8rem);
+  font-size: 1rem;
+  resize: none;
+  border-radius: 5px;
+  box-shadow: var(--input-box-shadow);
+}
+
+#project-part-progress {
+  display: flex;
+  flex-direction: row;
+}
+
+#project-part-progress progress {
+  width: calc(100% - 0.4rem);
+  height: 1.2rem;
+  margin: 0.2rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#project-part-progress input {
+  border: none;
+  padding: 0 0.1rem;
+  box-shadow: var(--input-box-shadow);
+  border-radius: 5px;
+  text-align: center;
+}
+
+#project-part-add-button {
+  width: 2.5rem;
+  align-self: center;
+  font-size: 2rem;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  background: var(--element-default-color);
+  cursor: pointer;
+}
+
+#project-part-add-button:hover {
+  background: var(--element-alt-color);
+}
+
+.no-parts-add-button {
+  border-radius: 5px !important;
+  width: 100% !important;
+}

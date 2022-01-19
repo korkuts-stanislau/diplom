@@ -1,0 +1,15 @@
+#homepage-image {
+  width: 100%;
+}
+
+#homepage-intro {
+  padding: 10px;
+}
+
+#homepage-intro > * {
+  margin-bottom: 10px;
+}
+
+#homepage-intro > p {
+  font-size: 1.2rem;
+}

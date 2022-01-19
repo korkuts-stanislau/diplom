@@ -1,0 +1,45 @@
+<div id="project-areas-container">
+  <div id="project-areas-left">
+    <button [disabled]="!pagingService!.hasPreviousPage"
+            (click)="pagingService!.previousPage();">←</button>
+  </div>
+  <div id="project-areas-list">
+    <div class="project-area"
+         *ngFor="let area of pagingService!.currentPageElements"
+         title="{{area.name}}"
+         [class.current-project-area]="area == currentProjectArea"
+         (click)="selectProjectArea(area)">
+      <img src="{{getIconForArea(area)}}">
+      <p *ngIf="!(isEditProjectArea && currentProjectArea == area)">{{area.name}}</p>
+      <input *ngIf="isEditProjectArea && currentProjectArea == area"
+             [(ngModel)]="area.name"
+             id="edit-project-area-input"/>
+      <div id="edit-project-area" *ngIf="area == currentProjectArea">
+        <button (click)="editProjectArea(area)">✎</button>
+        <button (click)="deleteProjectArea(area)">✖</button>
+      </div>
+    </div>
+  </div>
+  <div id="project-areas-right">
+    <button id="add-area-button" (click)="isCreateProjectArea = true">+</button>
+    <button [disabled]="!pagingService!.hasNextPage"
+            (click)="pagingService!.nextPage();">→</button>
+  </div>
+</div>
+
+<div id="create-project-area" *ngIf="isCreateProjectArea">
+  <h2>Создание категории проектов</h2>
+  <hr>
+  <div id="create-project-area-name">
+    <label for="project-area-name">Название</label>
+    <input id="project-area-name" [(ngModel)]="createProjectAreaName"/>
+  </div>
+  <div id="project-area-pictures">
+    <img *ngFor="let icon of projectAreaIcons"
+         src="{{icon.base64Icon}}"
+         (click)="selectedCreateProjectAreaIcon = icon"
+        [class.selected-picture]="icon == selectedCreateProjectAreaIcon">
+  </div>
+  <button (click)="createProjectArea()">Добавить</button>
+  <button (click)="isCreateProjectArea = false">Закрыть</button>
+</div>

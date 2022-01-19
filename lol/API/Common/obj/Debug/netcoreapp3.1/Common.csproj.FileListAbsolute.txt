@@ -1,0 +1,9 @@
+D:\university\diplom\Magik2.0\API\Common\bin\Debug\netcoreapp3.1\Common.deps.json
+D:\university\diplom\Magik2.0\API\Common\bin\Debug\netcoreapp3.1\Common.dll
+D:\university\diplom\Magik2.0\API\Common\bin\Debug\netcoreapp3.1\Common.pdb
+D:\university\diplom\Magik2.0\API\Common\obj\Debug\netcoreapp3.1\Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\university\diplom\Magik2.0\API\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfoInputs.cache
+D:\university\diplom\Magik2.0\API\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfo.cs
+D:\university\diplom\Magik2.0\API\Common\obj\Debug\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
+D:\university\diplom\Magik2.0\API\Common\obj\Debug\netcoreapp3.1\Common.dll
+D:\university\diplom\Magik2.0\API\Common\obj\Debug\netcoreapp3.1\Common.pdb

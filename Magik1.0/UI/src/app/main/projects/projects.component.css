@@ -1,0 +1,143 @@
+#projects-container {
+  height: 45rem;
+  width: calc(100% - 5rem);
+  background: var(--element-default-color);
+  border-radius: 5px;
+  margin: 0.5rem 2rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
+#projects-background {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 45rem;
+  width: 15rem;
+}
+
+#projects-list {
+  background-color: var(--element-alt-color);
+  border-radius: 5px;
+  list-style: none;
+  text-align: center;
+  margin: 0.5rem;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+/*Hide scrollbars for chrome, safari and opera*/
+#projects-list::-webkit-scrollbar {
+  display: none;
+}
+
+/*Hide scrollbars for mozilla, ie and edge*/
+#projects-list {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /*mozilla*/
+}
+
+.project {
+  margin: 0.5rem;
+  padding: 0.3rem;
+  min-height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: var(--element-default-color);
+  border-radius: 5px;
+}
+
+#edit-project-container button {
+  background: var(--main-button-background);
+  box-shadow: var(--button-box-shadow);
+  width: calc(100% - 2rem);
+  border: none;
+  cursor: pointer;
+  height: 3rem;
+  border-radius: 5px;
+  margin: 0.5rem 1rem;
+}
+
+#edit-project-container button:hover {
+  background: var(--hover-button-background);
+}
+
+#edit-project-container button:active {
+  background: var(--active-button-background);
+}
+
+.project:hover {
+  cursor: pointer;
+  background: var(--element-hover-color);
+}
+
+.current-project {
+  background: var(--element-selected-color);
+}
+
+.project-name {
+  font-weight: bold;
+}
+
+#create-project {
+  text-align: center;
+  position: absolute;
+  width: 20rem;
+  height: 15rem;
+  background-color: var(--element-alt-color);
+  box-shadow: var(--window-box-shadow);
+  border-radius: 5px;
+  padding: 2rem;
+  left: calc(50% - 12rem);
+  top: calc(50% - 17rem);
+}
+
+#create-project > * {
+  margin: 1rem;
+}
+
+#create-project-fields input {
+  border: none;
+  border-radius: 10px;
+  height: 1.5rem;
+  box-shadow: var(--input-box-shadow);
+  padding: 0.3rem;
+  text-align: center;
+}
+
+#create-project-fields label {
+  display: inline-block;
+  width: 4.5rem;
+}
+
+#create-project button {
+  height: 2rem;
+  width: 5rem;
+  border: none;
+  box-shadow: var(--button-box-shadow);
+  border-radius: 5px;
+  background: var(--main-button-background);
+}
+
+#create-project button:hover {
+  background: var(--hover-button-background);
+  cursor: pointer;
+}
+
+#create-project button:active {
+  background: var(--active-button-background);
+}
+
+#create-project-fields > * {
+  margin: 0.5rem;
+}
+
+hr {
+  border: solid 1px rgba(255, 255, 255, 0.4);
+}
+
+app-project {
+  width: 100%;
+}

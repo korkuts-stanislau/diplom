@@ -1,0 +1,78 @@
+#profile-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#profile-container {
+  margin: 0.5rem 1rem;
+  padding: 0.5rem 0;
+  width: calc(100% - 2rem);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#profile-container p {
+  max-width: 5rem;
+  overflow: hidden;
+}
+
+#profile-container:hover {
+  background: rgba(214, 233, 245, 0.8);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#profile-container:active {
+  background: rgba(60, 84, 100, 0.8);
+  box-shadow: 0 0 6rem rgba(0, 0, 0, 1);
+}
+
+#profile-container.active-profile {
+  background: rgb(255, 255, 255);
+}
+
+img {
+   width: 5rem;
+   height: 5rem;
+   border-radius: 1rem;
+   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+ }
+
+p {
+  padding: 0.3rem 0 0.1rem 0;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+#profile-menu {
+  position: absolute;
+  top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#profile-menu button{
+  width: calc(100% - 0.5rem);
+  min-height: 2rem;
+  margin: 0.3rem 0.5rem;
+  padding: 0.2rem;
+  border-radius: 1rem;
+  border: none;
+  box-shadow: var(--button-box-shadow);
+  background: var(--main-button-background);
+}
+
+#profile-menu button:hover {
+  cursor: pointer;
+  background: var(--hover-button-background)
+}
+
+#profile-menu button:active {
+  cursor: pointer;
+  background: var(--active-button-background)
+}

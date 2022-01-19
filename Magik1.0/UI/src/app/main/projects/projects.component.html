@@ -1,0 +1,38 @@
+<div id="projects-container">
+  <div id="projects-background">
+    <ul id="projects-list">
+      <li *ngFor="let project of projects">
+        <div class="project"
+             [class.current-project]="project == currentProject"
+             (click)="currentProject = project">
+          <p class="project-name">{{project.name}}</p>
+        </div>
+      </li>
+    </ul>
+    <div id="edit-project-container"
+         *ngIf="this.projects!.length != 0">
+      <button (click)="isCreateProject = true">Новый проект</button>
+      <button (click)="editProject()">
+        {{isEditProject ? "Сохранить проект" : "Изменить проект"}}
+      </button>
+      <button (click)="deleteProject()">Удалить проект</button>
+    </div>
+  </div>
+  <app-project *ngIf="currentProject"
+    [currentProject]="currentProject"
+    [isEditProject]="isEditProject"></app-project>
+</div>
+
+<div id="create-project" *ngIf="isCreateProject">
+  <h2>Создание проекта</h2>
+  <hr>
+  <div id="create-project-fields">
+    <label for="project-name">Название</label>
+    <input id="project-name" [(ngModel)]="createProjectName"/>
+    <label for="project-description">Описание</label>
+    <input id="project-description" [(ngModel)]="createProjectDescription"/>
+  </div>
+  <button (click)="createProject()">Добавить</button>
+  <button *ngIf="projects!.length != 0"
+    (click)="isCreateProject = false">Закрыть</button>
+</div>

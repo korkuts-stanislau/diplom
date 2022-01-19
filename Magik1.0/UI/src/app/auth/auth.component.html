@@ -1,0 +1,33 @@
+<div id="container">
+  <div id="auth">
+    <h1>{{action}}</h1>
+    <hr>
+    <div id="auth-error" *ngIf="error != ''">
+      <p>{{error}}</p>
+    </div>
+    <div id="auth-message" *ngIf="message != ''">
+      <p>{{message}}</p>
+    </div>
+    <div>
+      <label for="email">Почта</label>
+      <input [(ngModel)]="emailText" id="email">
+    </div>
+    <div>
+      <label for="password">Пароль</label>
+      <input [(ngModel)]="passwordText" id="password" type="password">
+    </div>
+    <div id="remember-div" *ngIf="action == 'Авторизация'">
+      <input [(ngModel)]="rememberMe" id="remember-me" type="checkbox">
+      <label for="remember-me">Запомнить меня</label>
+    </div>
+    <div *ngIf="action == 'Регистрация'">
+      <label for="password">Подтверждение пароля</label>
+      <input [(ngModel)]="confirmationPasswordText" id="password-confirmation" type="password">
+    </div>
+    <button id="sign-in" *ngIf="action == 'Авторизация'" (click)="signin()">Войти</button>
+    <button id="sign-up" *ngIf="action == 'Регистрация'" (click)="signup()">Зарегистрироваться</button>
+
+    <button id="showSignUp" *ngIf="action == 'Авторизация'" (click)="showRegistration()">Перейти к регистрации</button>
+    <button id="showSignIn" *ngIf="action == 'Регистрация'" (click)="showAuthorization()">Перейти ко входу</button>
+  </div>
+</div>

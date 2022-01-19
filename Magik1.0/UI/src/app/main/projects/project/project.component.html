@@ -1,0 +1,16 @@
+<div id="project-container">
+  <div id="project" *ngIf="!isEditProject">
+    <h1>{{currentProject!.name}}</h1>
+    <p>{{currentProject!.description}}</p>
+  </div>
+  <div id="editable-project" *ngIf="isEditProject">
+    <input id="editable-project-name" [(ngModel)]="currentProject!.name"/>
+    <input id="editable-project-description" [(ngModel)]="currentProject!.description"/>
+  </div>
+  <app-project-parts [currentProject]="currentProject"
+    (progressChangeEmitter)="getProgress()"></app-project-parts>
+  <div id="project-progress">
+    <label>Прогресс проекта</label>
+    <progress max="100" value="{{progress}}"></progress>
+  </div>
+</div>

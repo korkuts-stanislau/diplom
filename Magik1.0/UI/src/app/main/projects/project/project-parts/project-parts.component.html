@@ -1,0 +1,44 @@
+<div id="project-parts-container">
+  <ul id="project-parts">
+    <li *ngFor="let part of projectParts">
+      <div class="project-part">
+        <div class="project-part-head">
+          <h3 *ngIf="!(currentProjectPart == part && isEditProjectPart)"
+              (click)="currentProjectPart != part ? currentProjectPart = part : currentProjectPart = undefined">{{part.name}}
+            <span *ngIf="currentProjectPart == part">▾</span>
+            <span *ngIf="currentProjectPart != part">▸</span>
+          </h3>
+          <input *ngIf="currentProjectPart == part && isEditProjectPart"
+            [(ngModel)] = "currentProjectPart.name">
+          <span class="project-part-manage">
+            <button (click)="editProjectPart(part)">✎</button>
+            <button (click)="deleteProjectPart(part)">✖</button>
+          </span>
+        </div>
+        <div class="project-part-details"
+             *ngIf="currentProjectPart == part">
+          <textarea [(ngModel)]="part.description"
+            (blur)="editProjectPartDetails(part)"></textarea>
+          <label>Прогресс выполнения</label>
+          <div id="project-part-progress">
+            <progress value="{{part.progress}}" max="100"></progress>
+            <input type="number" min="0" max="100"
+                   [(ngModel)]="part.progress"
+                   (blur)="editProjectPartDetails(part)">
+          </div>
+          <label>Дата создания</label>
+          <input class="part-creation-date" type="date"
+                 [ngModel]="part.creationDate | date:'yyyy-MM-dd'"
+                 disabled/>
+          <label>Последний срок выполнения</label>
+          <input class="part-deadLine" type="date"
+                 [ngModel]="part.deadLine | date:'yyyy-MM-dd'"
+                 min="{{part.creationDate | date:'yyyy-MM-dd'}}"/>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <button id="project-part-add-button"
+    [class.no-parts-add-button]="projectParts!.length == 0"
+    (click)="addProjectPart()">+</button>
+</div>

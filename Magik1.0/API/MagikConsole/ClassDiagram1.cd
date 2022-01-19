@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MagikAPI.Controllers.AccountController">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Controllers.AuthController">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Controllers.ProfileController">
+    <Position X="15.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Controllers.ProjectAreasController">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Controllers.ProjectPartsController">
+    <Position X="13.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Controllers.ProjectsController">
+    <Position X="15.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Controllers.ReportsController">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Data.MagikContext">
+    <Position X="11.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.Authentication.AuthOptions">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.Authentication.SignIn">
+    <Position X="4.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.Authentication.SignUp">
+    <Position X="6.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.HelperModels.Profile.ProfileName">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.HelperModels.Profile.ProfilePhoto">
+    <Position X="4.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.HelperModels.MessageWrapper&lt;T&gt;">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.Account">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.Profile">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.Project">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.ProjectArea">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Models.ProjectPart">
+    <Position X="3" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Services.AccessCheckerService">
+    <Position X="3" Y="9.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Services.PhotoService">
+    <Position X="4.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Services.ReportsService">
+    <Position X="6.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Startup">
+    <Position X="13.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="MagikAPI.Program">
+    <Position X="15.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,9 @@
+<div id="main-container">
+  <app-project-areas (currentProjectAreaChange)="changeProjectArea($event)"></app-project-areas>
+
+  <app-profile></app-profile>
+
+  <app-projects *ngIf="currentProjectArea"
+                [currentProjectArea]="currentProjectArea">
+  </app-projects>
+</div>
