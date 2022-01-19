@@ -1,0 +1,8 @@
+<ul>
+  <li (click)="routing.routeToHomepage()"
+    [class.selected-item]="routing.isHomepage()">Home</li>
+  <li (click)="routing.routeToProjects()"
+      [class.selected-item]="routing.isProjects()">Projects</li>
+  <li (click)="routing.routeToProfile()"
+      [class.selected-item]="routing.isProfile()">Profile</li>
+</ul>

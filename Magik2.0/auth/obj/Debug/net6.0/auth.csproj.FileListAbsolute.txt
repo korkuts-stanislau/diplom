@@ -31,3 +31,6 @@ D:\university\diplom\Magik2.0\auth\obj\Debug\net6.0\auth.dll
 D:\university\diplom\Magik2.0\auth\obj\Debug\net6.0\ref\auth.dll
 D:\university\diplom\Magik2.0\auth\obj\Debug\net6.0\auth.pdb
 D:\university\diplom\Magik2.0\auth\obj\Debug\net6.0\auth.genruntimeconfig.cache
+D:\university\diplom\Magik2.0\auth\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\university\diplom\Magik2.0\auth\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\university\diplom\Magik2.0\auth\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

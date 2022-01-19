@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "e4CY9yxmQAXRRrtBW/A3ocyJyrSx4OLwg1+uUY5NrVoZOlpSkg4Mp/IepIR0RZh8ILu0PHtC3B7bDwxZsxsw6w==",
+  "dgSpecHash": "7g0+cRbCxlj5j4Xi4uA9ZNaFfJxPN29DkxnYEvYMawGifER2YKFckZBpHwi5E071AiuaAja1mOY9rsuTjVxy8g==",
   "success": true,
-  "projectFilePath": "d:\\university\\diplom\\Magik2.0\\auth\\auth.csproj",
+  "projectFilePath": "D:\\university\\diplom\\Magik2.0\\auth\\auth.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.1\\microsoft.aspnetcore.authentication.jwtbearer.6.0.1.nupkg.sha512",
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

@@ -1,0 +1,5 @@
+ng n {name}
+ng g component(service...) {name}
+ng serve --host 192.168.100.77
+
+npm install @auth0/angular-jwt --save-dev
