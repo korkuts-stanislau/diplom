@@ -4,6 +4,11 @@
       Authorization
     </legend>
     <div class="form-field">
+      <div class="error-message" *ngIf="error != ''">
+        {{error}}
+      </div>
+    </div>
+    <div class="form-field">
       <div class="error-message" *ngIf="authGroup.controls['email'].invalid && authGroup.controls['email'].touched">
         Invalid email address
       </div>

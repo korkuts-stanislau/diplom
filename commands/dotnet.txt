@@ -1,5 +1,9 @@
+//Среда
 dotnet new webapi -f net6.0
 dotnet new classlib -f net6.0
-dotnet add package Microsoft.EntityFrameworkCore --version 6.0.1
-
 dotnet run
+
+//Модули
+dotnet add package Microsoft.EntityFrameworkCore --version 6.0.1
+dotnet add package MongoDB.Driver
+dotnet add package MongoDB.Driver.GridFS

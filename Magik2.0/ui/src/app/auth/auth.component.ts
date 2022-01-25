@@ -13,6 +13,7 @@ export class AuthComponent implements OnInit {
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.minLength(5), Validators.required])
   });
+  public error = "";
 
   constructor(private authService: AuthService) {}
 
@@ -23,9 +24,9 @@ export class AuthComponent implements OnInit {
     if(this.authGroup.valid) {
       this.authService.signIn(new Auth(this.authGroup.value.email, this.authGroup.value.password))
         .subscribe(res => {
-
+          
         }, err => {
-          alert(err);
+          this.error = err.error;
         });
     }
   }
@@ -36,7 +37,7 @@ export class AuthComponent implements OnInit {
         .subscribe(res => {
 
         }, err => {
-          alert(err);
+          this.error = err.error;
         });
     }
   }

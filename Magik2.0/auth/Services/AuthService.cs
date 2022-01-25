@@ -3,6 +3,7 @@ using Auth.Models;
 using Common;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,11 +16,11 @@ namespace Auth.Services
     public class AuthService
     {
         private readonly IOptions<AuthOptions> authOptions;
-        private readonly InMemoryRepository rep;
+        private readonly AuthRepository rep;
         private readonly PasswordHasherService passwordHasher;
 
         public AuthService(IOptions<AuthOptions> authOptions,
-            InMemoryRepository rep,
+            AuthRepository rep,
             PasswordHasherService passwordHasher)
         {
             this.authOptions = authOptions;
@@ -29,8 +30,7 @@ namespace Auth.Services
 
         public async Task<Account> SignIn(UIModels.Auth auth)
         {
-            var account = rep.Accounts
-                .FirstOrDefault(acc => acc.Email == auth.Email);
+            var account = await rep.GetAccountByEmail(auth.Email);
 
             if (account == null)
             {
@@ -47,8 +47,7 @@ namespace Auth.Services
 
         public async Task<Account> SignUp(UIModels.Auth auth)
         {
-            var account = rep.Accounts
-                .FirstOrDefault(acc => acc.Email == auth.Email);
+            var account = await rep.GetAccountByEmail(auth.Email);
 
             if (account != null)
             {
@@ -57,12 +56,12 @@ namespace Auth.Services
 
             account = new Account
             {
-                Id = Guid.NewGuid(),
+                Id = new BsonObjectId(ObjectId.GenerateNewId()).ToString(),
                 Email = auth.Email,
                 PasswordHash = passwordHasher.Hash(auth.Password),
                 Roles = new Role[] { Role.User }
             };
-            rep.Accounts.Add(account);
+            await rep.Create(account);
 
             return account;
         }
