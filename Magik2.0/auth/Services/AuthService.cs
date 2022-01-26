@@ -34,12 +34,12 @@ namespace Auth.Services
 
             if (account == null)
             {
-                throw new Exception("There is no account with this email");
+                throw new Exception("Неверный почтовый адрес");
             }
 
             if (!passwordHasher.Verify(auth.Password, account.PasswordHash))
             {
-                throw new Exception("Incorrect password");
+                throw new Exception("Неверный пароль");
             }
 
             return account;
@@ -51,7 +51,7 @@ namespace Auth.Services
 
             if (account != null)
             {
-                throw new Exception("Account with this email exists");
+                throw new Exception("Пользователь с такой почтой уже зарегистрирован");
             }
 
             account = new Account
