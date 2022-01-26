@@ -18,8 +18,7 @@ ul > * {
 
 ul > *:not(.selected-item):hover {
   transition: background-color 0.2s ease;
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  background-color: rgba(196, 196, 196, 0.1);
 }
 
 .selected-item {

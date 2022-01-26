@@ -1,7 +1,7 @@
 <form [formGroup]="authGroup">
   <fieldset>
     <legend>
-      Authorization
+      Авторизация
     </legend>
     <div class="form-field">
       <div class="error-message" *ngIf="error != ''">
@@ -10,25 +10,25 @@
     </div>
     <div class="form-field">
       <div class="error-message" *ngIf="authGroup.controls['email'].invalid && authGroup.controls['email'].touched">
-        Invalid email address
+        Некоректный почтовый адрес
       </div>
-      <label>Email</label>
+      <label>Почтовый адрес</label>
       <input class="input" name="email" formControlName="email">
     </div>
     <div class="form-field">
       <div class="error-message" *ngIf="authGroup.controls['password'].invalid && authGroup.controls['password'].touched">
-        Password should contain at least 5 symbols
+        Пароль должен содержать хотя бы 5 символов
       </div>
-      <label>Password</label>
+      <label>Пароль</label>
       <input class="input" name="password" type="password" formControlName="password">
     </div>
   </fieldset>
   <div class="form-buttons">
     <button class="button" (click)="signIn()">
-      Sign in
+      Войти
     </button>
     <button class="button" (click)="signUp()">
-      Sign up
+      Регистрация
     </button>
   </div>
 </form>
