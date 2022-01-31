@@ -8,12 +8,11 @@ namespace Resource.Models
 {
     public class Profile
     {
-        [Key]
         public int Id { get; set; }
         [StringLength(50)]
-        [Required]
         public string Username { get; set; }
-        public Guid AccountId { get; set; }
+        [StringLength(24)]
+        public string AccountId { get; set; }
         public byte[] Icon { get; set; }
         public byte[] Photo { get; set; }
     }

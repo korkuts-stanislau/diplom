@@ -14,9 +14,13 @@ namespace Resource.Data
             Database.EnsureCreated();
         }
 
-        public Profile Profile { get; set; }
-        public ProjectArea ProjectArea { get; set; }
-        public Project Project { get; set; }
-        public ProjectPart ProjectPart { get; set; }
+        public DbSet<AccountFile> AccountFiles { get; set; }
+        public DbSet<FileType> FileTypes { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectArea> ProjectAreas { get; set; }
+        public DbSet<ProjectData> ProjectsData { get; set; }
+        public DbSet<ProjectPart> ProjectParts { get; set; }
+        public DbSet<ProjectPartData> ProjectPartsData { get; set; }
     }
 }

@@ -233,11 +233,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\university\\diplom\\Magik2.0\\common\\common.csproj",
+      "projectUniqueName": "D:\\university\\diplom\\Magik2.0\\common\\common.csproj",
       "projectName": "common",
-      "projectPath": "d:\\university\\diplom\\Magik2.0\\common\\common.csproj",
+      "projectPath": "D:\\university\\diplom\\Magik2.0\\common\\common.csproj",
       "packagesPath": "C:\\Users\\stani\\.nuget\\packages\\",
-      "outputPath": "d:\\university\\diplom\\Magik2.0\\common\\obj\\",
+      "outputPath": "D:\\university\\diplom\\Magik2.0\\common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\stani\\AppData\\Roaming\\NuGet\\NuGet.Config"

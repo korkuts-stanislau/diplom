@@ -8,7 +8,6 @@ namespace Resource.Models
 {
     public class ProjectPart
     {
-        [Key]
         public int Id { get; set; }
         public int ProjectId { get; set; }
         [StringLength(50)]
