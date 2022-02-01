@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   authApi: 'https://localhost:7012/',
-  resourceApi: 'https://localhost:49156/',
-  allowedDomains: ['localhost:7012']
+  resourceApi: 'https://localhost:7295/',
+  allowedDomains: ['localhost:7012', "localhost:7295"]
 };
 
 /*

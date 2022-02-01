@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Auth.UIModels;
 
 namespace Auth.Controllers
 {
@@ -30,9 +31,9 @@ namespace Auth.Controllers
                 {
                     var account = await authService.SignIn(request);
 
-                    return Ok(new
+                    return Ok(new Token
                     {
-                        Token = authService.GenerateJWT(account)
+                        AccessToken = authService.GenerateJWT(account)
                     });
                 }
                 catch (Exception exc)
@@ -56,9 +57,9 @@ namespace Auth.Controllers
                 {
                     var account = await authService.SignUp(request);
 
-                    return Ok(new
+                    return Ok(new Token
                     {
-                        Token = authService.GenerateJWT(account)
+                        AccessToken = authService.GenerateJWT(account)
                     });
                 }
                 catch(Exception exc)

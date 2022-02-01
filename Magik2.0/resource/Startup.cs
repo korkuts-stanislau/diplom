@@ -14,6 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Resource.Services;
+using Resource.Tools;
 
 namespace Resource
 {
@@ -31,22 +33,17 @@ namespace Resource
         {
             services.AddControllers();
 
-            services.AddDbContext<AppDbContext>(opts =>
-            {
-                opts.UseSqlServer(Configuration.GetConnectionString("Default"));
-            });
+            var authOptions = Configuration.GetSection("Auth").Get<AuthOptions>();
 
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
                 {
                     builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader();
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
                 });
             });
-
-            var authOptions = Configuration.GetSection("Auth").Get<AuthOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -66,6 +63,14 @@ namespace Resource
                         ValidateIssuerSigningKey = true
                     };
                 });
+
+            services.AddDbContext<AppDbContext>(opts =>
+            {
+                opts.UseSqlServer(Configuration.GetConnectionString("Default"));
+            });
+
+            services.AddScoped<ProfileService>();
+            services.AddSingleton<PictureConverter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,12 +84,9 @@ namespace Resource
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseCors();
 
             app.UseAuthentication();
-            app.UseAuthorization();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

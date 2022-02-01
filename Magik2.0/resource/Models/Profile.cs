@@ -14,6 +14,6 @@ namespace Resource.Models
         [StringLength(24)]
         public string AccountId { get; set; }
         public byte[] Icon { get; set; }
-        public byte[] Photo { get; set; }
+        public byte[] Picture { get; set; }
     }
 }

@@ -5,7 +5,6 @@ import {tap} from "rxjs/operators";
 import {Token} from "../../models/auth/token";
 import {HttpClient} from "@angular/common/http";
 import {
-  ACCESS_TOKEN_KEY,
   AUTH_API_URL,
   tokenGetter,
   tokenKiller,
@@ -31,7 +30,7 @@ export class AuthService {
     return this.http.post<Token>(`${this.url}api/auth/signIn`, auth)
       .pipe(
         tap(token => {
-          tokenSetter(token.token);
+          tokenSetter(token.accessToken);
         })
       )
   }
@@ -40,7 +39,7 @@ export class AuthService {
     return this.http.post<Token>(`${this.url}api/auth/signUp`, auth)
       .pipe(
         tap(token => {
-          tokenSetter(token.token);
+          tokenSetter(token.accessToken);
         })
       )
   }
