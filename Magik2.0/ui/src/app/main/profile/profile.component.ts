@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfileService} from "../../../services/profile/profile.service";
 import {Profile} from "../../../models/profile/profile";
+import {DomSanitizer} from "@angular/platform-browser";
+import {ProfileRoutingService} from "../../../services/profile/routing/profile-routing.service";
 
 @Component({
   selector: 'app-profile',
@@ -10,9 +12,15 @@ import {Profile} from "../../../models/profile/profile";
 export class ProfileComponent implements OnInit {
   currentProfile?: Profile;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService,
+              private sanitizer: DomSanitizer,
+              public profileRoutingService: ProfileRoutingService) { }
 
   ngOnInit(): void {
+    this.getProfile();
+  }
+
+  getProfile() {
     this.profileService.getProfile()
       .subscribe(res => {
         this.currentProfile = res
@@ -21,4 +29,8 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  getPictureSource() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      `data:image/png;base64, ${this.currentProfile?.picture}`);
+  }
 }

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class RoutingService {
-  private currentPage:string = "homepage";
+  private currentPage:string = "profile";
 
   constructor() {}
 

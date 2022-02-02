@@ -1,1 +1,20 @@
-<p>profile works!</p>
+<section id="profile-info">
+  <img *ngIf="currentProfile?.picture == ''" src="assets/empty-profile.png" alt="profile image">
+  <img *ngIf="currentProfile && currentProfile?.picture != ''" [src]="getPictureSource()" alt="profile image">
+  <div id="profile-desc">
+    <h1>{{currentProfile?.username}}</h1>
+    <p>{{currentProfile?.description}}</p>
+  </div>
+  <div id="profile-opts">
+    <button class="button" (click)="profileRoutingService.routeToEdit()">Редактировать</button>
+    <button class="button" (click)="profileRoutingService.routeToFriends()">Друзья</button>
+    <button class="button" (click)="profileRoutingService.routeToStatistic()">Статистика</button>
+    <button class="button" (click)="profileRoutingService.routeToTests()">Тесты</button>
+  </div>
+</section>
+<section id="profile-window">
+  <app-profile-edit *ngIf="profileRoutingService.isEdit()"></app-profile-edit>
+  <app-profile-friends *ngIf="profileRoutingService.isFriends()"></app-profile-friends>
+  <app-profile-statistic *ngIf="profileRoutingService.isStatistic()"></app-profile-statistic>
+  <app-profile-tests *ngIf="profileRoutingService.isTests()"></app-profile-tests>
+</section>

@@ -15,6 +15,10 @@ import {AUTH_API_URL, RESOURCE_API_URL, tokenGetter} from "./config/app-injectio
 import {environment} from "../environments/environment";
 import {HttpClientModule} from "@angular/common/http";
 import {JwtModule} from "@auth0/angular-jwt";
+import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.component';
+import { ProfileFriendsComponent } from './main/profile/profile-friends/profile-friends.component';
+import { ProfileStatisticComponent } from './main/profile/profile-statistic/profile-statistic.component';
+import { ProfileTestsComponent } from './main/profile/profile-tests/profile-tests.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import {JwtModule} from "@auth0/angular-jwt";
     ProjectsComponent,
     ProfileComponent,
     AuthComponent,
+    ProfileEditComponent,
+    ProfileFriendsComponent,
+    ProfileStatisticComponent,
+    ProfileTestsComponent,
   ],
   imports: [
     BrowserModule,

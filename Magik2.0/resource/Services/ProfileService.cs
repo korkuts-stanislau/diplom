@@ -22,8 +22,8 @@ public class ProfileService
         if (profile == null) return null;
         return new Profile
         {
-            Id = profile.Id,
             Username = profile.Username,
+            Description = profile.Description,
             Picture = profile.Picture.Length  != 0 ? Convert.ToBase64String(profile.Picture) : ""
         };
     }
@@ -36,6 +36,7 @@ public class ProfileService
         {
             AccountId = accountId,
             Username = email,
+            Description = "Мой профиль",
             Icon = new byte[0],
             Picture = new byte[0]
         };
@@ -43,8 +44,8 @@ public class ProfileService
         await _context.SaveChangesAsync();
         return new Profile
         {
-            Id = profile.Id,
             Username = profile.Username,
+            Description = profile.Description,
             Picture = profile.Picture.Length != 0 ? Convert.ToBase64String(profile.Picture) : ""
         };
     }

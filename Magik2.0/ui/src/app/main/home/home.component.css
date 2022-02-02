@@ -67,4 +67,12 @@
   #homepage-intro h1 {
     font-size: 2rem;
   }
+
+  #homepage-info > article > h2 {
+    font-size: 1.3rem;
+  }
+
+  #homepage-info > article > p {
+    font-size: 1rem;
+  }
 }
