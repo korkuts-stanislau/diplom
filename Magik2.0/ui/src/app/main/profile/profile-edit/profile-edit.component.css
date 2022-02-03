@@ -1,0 +1,59 @@
+#profile-edit-container {
+  background: rgba(241, 241, 241, 0.3);
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#profile-edit-container h2 {
+  text-align: center;
+  margin: 10px 0 25px 0;
+}
+
+#profile-edit-button {
+  margin: 20px;
+  border-radius: 20px;
+  height: 50px;
+  width: 100px;
+  background: rgba(166, 255, 181, 0.5);
+}
+
+.profile-edit-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.profile-edit-item > * {
+  margin: 0 10px 10px 10px;
+}
+
+.profile-edit-item > p {
+  transform: translateY(6px);
+  overflow: hidden;
+  width: 30%;
+}
+
+.profile-edit-item > input, textarea {
+  width: 60%;
+  font-size: 1.1rem;
+}
+
+.profile-edit-item > textarea {
+  resize: none;
+  overflow: auto;
+  height: 150px;
+}
+
+.profile-edit-item > button {
+  width: calc(60% + 10px);
+}
+
+@media (max-width: 700px) {
+  .profile-edit-item {
+    width: 100%;
+  }
+}

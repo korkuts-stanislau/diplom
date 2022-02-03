@@ -12,8 +12,8 @@
     <button class="button" (click)="profileRoutingService.routeToTests()">Тесты</button>
   </div>
 </section>
-<section id="profile-window">
-  <app-profile-edit *ngIf="profileRoutingService.isEdit()"></app-profile-edit>
+<section id="profile-funcs">
+  <app-profile-edit *ngIf="profileRoutingService.isEdit()" [currentProfile]="currentProfile"></app-profile-edit>
   <app-profile-friends *ngIf="profileRoutingService.isFriends()"></app-profile-friends>
   <app-profile-statistic *ngIf="profileRoutingService.isStatistic()"></app-profile-statistic>
   <app-profile-tests *ngIf="profileRoutingService.isTests()"></app-profile-tests>

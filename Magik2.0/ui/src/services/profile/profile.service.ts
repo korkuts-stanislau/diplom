@@ -14,4 +14,8 @@ export class ProfileService {
   getProfile(): Observable<Profile> {
     return this.http.get<Profile>(`${this.url}api/profile/`);
   }
+
+  editProfile(profile: Profile): Observable<any> {
+    return this.http.post(`${this.url}api/profile/`, profile);
+  }
 }
