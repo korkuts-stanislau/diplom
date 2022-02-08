@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace Common
+namespace Auth.Options
 {
     public class AuthOptions
     {
