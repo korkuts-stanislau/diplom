@@ -337,17 +337,17 @@
           }
         }
       },
-      "common/1.0.0": {
+      "Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "6.15.0"
         },
         "compile": {
-          "bin/placeholder/common.dll": {}
+          "bin/placeholder/Common.dll": {}
         },
         "runtime": {
-          "bin/placeholder/common.dll": {}
+          "bin/placeholder/Common.dll": {}
         }
       }
     }
@@ -964,17 +964,17 @@
         "version.txt"
       ]
     },
-    "common/1.0.0": {
+    "Common/1.0.0": {
       "type": "project",
-      "path": "../common/common.csproj",
-      "msbuildProject": "../common/common.csproj"
+      "path": "../common/Common.csproj",
+      "msbuildProject": "../common/Common.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Common >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.1",
       "Swashbuckle.AspNetCore >= 6.2.3",
-      "common >= 1.0.0",
       "mongodb.driver >= 2.14.1"
     ]
   },
