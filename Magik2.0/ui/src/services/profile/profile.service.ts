@@ -18,4 +18,11 @@ export class ProfileService {
   editProfile(profile: Profile): Observable<any> {
     return this.http.post(`${this.url}api/profile/`, profile);
   }
+
+  validateProfile(profile?: Profile): string | undefined {
+    if(!profile) return "Профиль пользователя должен присутствовать";
+    if(profile.username.length > 50 ) return "Максимальная длина имени 50 символов";
+    if(profile.description.length > 200 ) return "Максимальная длина описания 200 символов";
+    return undefined;
+  }
 }

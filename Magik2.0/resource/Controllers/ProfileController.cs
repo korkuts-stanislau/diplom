@@ -34,4 +34,23 @@ public class ProfileController : ControllerBase
 
         return Ok(profile);
     }
+
+    [Route("")]
+    [HttpPost]
+    public async Task<IActionResult> EditCurrentAccountProfile([FromBody]UIModels.Profile profile)
+    {
+        if(ModelState.IsValid) {
+            var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            try {
+                await _profileService.EditAccountProfile(accountId, profile);
+                return Ok();
+            }
+            catch(Exception exc) {
+                return BadRequest(exc.Message);
+            }
+        }
+        else {
+            return BadRequest();
+        }
+    }
 }

@@ -49,4 +49,17 @@ public class ProfileService
             Picture = profile.Picture.Length != 0 ? Convert.ToBase64String(profile.Picture) : ""
         };
     }
+
+    public async Task EditAccountProfile(string accountId, UIModels.Profile editedProfile) {
+        var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.AccountId == accountId);
+        if(profile == null) throw new Exception("У этого пользователя нет профиля");
+        profile.Username = editedProfile.Username;
+        profile.Description = editedProfile.Description;
+        if(!string.IsNullOrEmpty(editedProfile.Picture)) {
+            profile.Picture = Convert.FromBase64String(editedProfile.Picture);
+            profile.Icon = _converter.CreateIconFromImage(profile.Picture);
+        }
+        _context.Profiles.Update(profile);
+        await _context.SaveChangesAsync();
+    }
 }

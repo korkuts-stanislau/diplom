@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pYC/zaJ1+dS/VbFG2O5tF3Mz0r52WOiPO/ts9dYLaeZ/MMGZJNhcR5xqGwIKRwziHQLo0dnvXFlAP5K+Bd36gw==",
+  "dgSpecHash": "ILj6aCHEaCxFbCwHqd1JaPmU8kr7TanPrnXJHEoCM77fz4Owkmov0QXTHIN7oLH8i1c48po6MTn4A9/aVDUmrQ==",
   "success": true,
-  "projectFilePath": "D:\\university\\diplom\\Magik2.0\\auth\\auth.csproj",
+  "projectFilePath": "d:\\university\\diplom\\Magik2.0\\auth\\auth.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\stani\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.1\\microsoft.aspnetcore.authentication.jwtbearer.6.0.1.nupkg.sha512",

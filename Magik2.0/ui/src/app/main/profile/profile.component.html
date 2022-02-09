@@ -1,5 +1,5 @@
 <section id="profile-info">
-  <img *ngIf="currentProfile?.picture == ''" src="assets/empty-profile.png" alt="profile image">
+  <img *ngIf="!currentProfile || currentProfile?.picture == ''" src="assets/empty-profile.png" alt="profile image">
   <img *ngIf="currentProfile && currentProfile?.picture != ''" [src]="getPictureSource()" alt="profile image">
   <div id="profile-desc">
     <h1>{{currentProfile?.username}}</h1>

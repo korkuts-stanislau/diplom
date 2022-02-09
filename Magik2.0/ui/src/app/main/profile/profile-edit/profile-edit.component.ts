@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Profile} from "../../../../models/profile/profile";
 import {ProfileService} from "../../../../services/profile/profile.service";
 
@@ -7,12 +7,16 @@ import {ProfileService} from "../../../../services/profile/profile.service";
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.css']
 })
-export class ProfileEditComponent implements OnInit {
+export class ProfileEditComponent implements OnInit, OnDestroy {
   @Input()public currentProfile?: Profile;
 
   constructor(private profileService: ProfileService) { }
-
+  
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.editProfile();
   }
 
   editPhotoEvent(event: Event) {
@@ -30,11 +34,17 @@ export class ProfileEditComponent implements OnInit {
   }
 
   editProfile() {
-    this.profileService.editProfile(this.currentProfile!)
+    let message: string | undefined = this.profileService.validateProfile(this.currentProfile)
+    if(message) {
+      alert(message);
+    }
+    else {
+      this.profileService.editProfile(this.currentProfile!)
       .subscribe(res => {
-        alert("Профиль успешно изменён");
+
       }, err => {
-        alert(err.message);
-      })
+        console.log(err);
+      });
+    }
   }
 }
