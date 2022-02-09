@@ -15,7 +15,11 @@ export class ProfileService {
     return this.http.get<Profile>(`${this.url}api/profile/`);
   }
 
-  editProfile(profile: Profile): Observable<any> {
+  editProfile(profile: Profile, isPictureEdited: boolean): Observable<any> {
+    if(!isPictureEdited) {
+      profile = {...profile};
+      profile.picture = "";
+    }
     return this.http.post(`${this.url}api/profile/`, profile);
   }
 

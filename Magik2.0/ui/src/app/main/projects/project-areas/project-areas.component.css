@@ -1,0 +1,46 @@
+#project-areas-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow: auto;
+    margin: 15px auto;
+    padding: 10px 0;
+    width: 95%;
+    border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.project-area {
+    flex: 0 0 100px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.project-area img{
+    height: 100px;
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 7px rgba(61, 61, 61, 0.575);
+}
+
+.project-area img:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.575);
+    filter: brightness(0.9);
+}
+
+#add-project-area img:hover {
+    filter: brightness(0.5);
+}
+
+@media (max-width: 700px) {
+    .project-area {
+        flex: 0 0 70px;
+    }
+
+    .project-area img {
+        height: 70px;
+    }
+}

@@ -13,6 +13,8 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   public error = "";
   public info = "";
 
+  private isPictureEdited: boolean = false;
+
   constructor(private profileService: ProfileService) { }
   
   ngOnInit(): void {
@@ -32,6 +34,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
       reader.onload = function () {
          // get only data part from base64
         me.currentProfile!.picture = reader.result!.toString().split(',')[1];
+        me.isPictureEdited = true;
       };
     }
   }
@@ -43,7 +46,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
       this.info = "";
     }
     else {
-      this.profileService.editProfile(this.currentProfile!)
+      this.profileService.editProfile(this.currentProfile!, this.isPictureEdited)
       .subscribe(res => {
         this.info = "Профиль успешно изменён";
         this.error = "";
@@ -51,6 +54,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
         this.error = err.message;
         this.info = "";
       });
+      this.isPictureEdited = false;
     }
   }
 }

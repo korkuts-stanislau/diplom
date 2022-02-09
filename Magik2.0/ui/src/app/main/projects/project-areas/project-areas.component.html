@@ -1,0 +1,11 @@
+<div id="project-areas-container">
+    <div class="project-area" 
+        *ngFor="let area of projectAreas">
+        <img [src]="getUrlFromIcon(area.icon)">
+        <p>{{area.name}}</p>
+    </div>
+    <div id="add-project-area" class="project-area">
+        <img src="assets/create.png">
+        <p>Создать</p>
+    </div>
+</div>

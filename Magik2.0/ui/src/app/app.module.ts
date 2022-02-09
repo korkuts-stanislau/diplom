@@ -19,6 +19,9 @@ import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.c
 import { ProfileFriendsComponent } from './main/profile/profile-friends/profile-friends.component';
 import { ProfileStatisticComponent } from './main/profile/profile-statistic/profile-statistic.component';
 import { ProfileTestsComponent } from './main/profile/profile-tests/profile-tests.component';
+import { ProjectAreasComponent } from './main/projects/project-areas/project-areas.component';
+import { AreaProjectsComponent } from './main/projects/area-projects/area-projects.component';
+import { ProjectStepsComponent } from './main/projects/project-steps/project-steps.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import { ProfileTestsComponent } from './main/profile/profile-tests/profile-test
     ProfileFriendsComponent,
     ProfileStatisticComponent,
     ProfileTestsComponent,
+    ProjectAreasComponent,
+    AreaProjectsComponent,
+    ProjectStepsComponent,
   ],
   imports: [
     BrowserModule,

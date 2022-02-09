@@ -56,7 +56,7 @@ public class ProfileService
         profile.Username = editedProfile.Username;
         profile.Description = editedProfile.Description;
         if(!string.IsNullOrEmpty(editedProfile.Picture)) {
-            profile.Picture = Convert.FromBase64String(editedProfile.Picture);
+            profile.Picture = _converter.RestrictImage(Convert.FromBase64String(editedProfile.Picture));
             profile.Icon = _converter.CreateIconFromImage(profile.Picture);
         }
         _context.Profiles.Update(profile);

@@ -14,6 +14,23 @@ public class PictureConverter
         return ImageToByte(bmp);
     }
 
+    public byte[] RestrictImage(byte[] image, int maxWidth = 512, int maxHeight = 512) {
+        Bitmap bmp;
+        using var ms = new MemoryStream(image);
+        bmp = new Bitmap(ms);
+        if(bmp.Width > maxWidth) {
+            double ratio = (double)maxWidth / bmp.Width;
+            int newHeight = (int)(bmp.Height * ratio);
+            bmp = ResizeImage(bmp, maxWidth, newHeight);
+        }
+        if(bmp.Height > maxHeight) {
+            double ratio = (double)maxHeight / bmp.Height;
+            int newWidth = (int)(bmp.Width * ratio);
+            bmp = ResizeImage(bmp, newWidth, maxHeight);
+        }
+        return ImageToByte(bmp);
+    }
+
     private Bitmap CropImage(Image orgImg)
         {
             var width = orgImg.Width;

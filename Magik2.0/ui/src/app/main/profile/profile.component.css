@@ -60,10 +60,11 @@
   #profile-desc {
     width: calc(95% - 20px);
     padding: 10px;
+    margin-bottom: 12px;
+    text-align: center;
   }
 
   #profile-desc h1 {
-    text-align: center;
     margin-bottom: 0.7rem;
   }
 
