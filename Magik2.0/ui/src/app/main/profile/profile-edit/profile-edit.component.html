@@ -1,5 +1,11 @@
 <div id="profile-edit-container">
   <h2>Редактировать профиль</h2>
+  <div class="message error" *ngIf="error != ''">
+    {{error}}
+  </div>
+  <div class="message success" *ngIf="info != ''">
+    {{info}}
+  </div>
   <div class="profile-edit-item">
     <p>Имя пользователя</p>
     <input title="Имя пользователя (50 символов макс.)" class="input" [(ngModel)]="currentProfile!.username">
@@ -17,6 +23,12 @@
            (change)="editPhotoEvent($event)">
     <button class="button" (click)="choosePhoto.click()">
       Изменить
+    </button>
+  </div>
+  <div class="profile-edit-item">
+    <p>Сохранить изменения</p>
+    <button class="button" (click)="editProfile()">
+      Применить
     </button>
   </div>
 </div>

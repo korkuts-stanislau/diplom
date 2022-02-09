@@ -16,10 +16,10 @@ public class ProfileService
         _converter = converter;
     }
 
-    public async Task<Profile> GetAccountProfile(string accountId)
+    public async Task<Profile> GetAccountProfileOrDefault(string accountId)
     {
         var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.AccountId == accountId);
-        if (profile == null) return null;
+        if (profile == null) return default;
         return new Profile
         {
             Username = profile.Username,

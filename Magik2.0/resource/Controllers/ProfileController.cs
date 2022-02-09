@@ -24,9 +24,9 @@ public class ProfileController : ControllerBase
     public async Task<IActionResult> GetCurrentAccountProfile()
     {
         var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        var profile = await _profileService.GetAccountProfile(accountId);
+        var profile = await _profileService.GetAccountProfileOrDefault(accountId);
         
-        if (profile == null)
+        if (profile == default)
         {
             var email = User.Claims.Single(c => c.Type == ClaimTypes.Email).Value;
             profile = await _profileService.CreateNewAccountProfile(accountId, email);

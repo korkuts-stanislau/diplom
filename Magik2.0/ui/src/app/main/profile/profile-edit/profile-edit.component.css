@@ -12,12 +12,11 @@
   margin: 10px 0 25px 0;
 }
 
-#profile-edit-button {
-  margin: 20px;
-  border-radius: 20px;
-  height: 50px;
-  width: 100px;
-  background: rgba(166, 255, 181, 0.5);
+.message {
+  width: calc(90% - 10px);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px 0;
 }
 
 .profile-edit-item {
@@ -55,5 +54,9 @@
 @media (max-width: 700px) {
   .profile-edit-item {
     width: 100%;
+  }
+
+  .message {
+    width: 95%;
   }
 }

@@ -10,6 +10,9 @@ import {ProfileService} from "../../../../services/profile/profile.service";
 export class ProfileEditComponent implements OnInit, OnDestroy {
   @Input()public currentProfile?: Profile;
 
+  public error = "";
+  public info = "";
+
   constructor(private profileService: ProfileService) { }
   
   ngOnInit(): void {
@@ -36,14 +39,17 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
   editProfile() {
     let message: string | undefined = this.profileService.validateProfile(this.currentProfile)
     if(message) {
-      alert(message);
+      this.error = message;
+      this.info = "";
     }
     else {
       this.profileService.editProfile(this.currentProfile!)
       .subscribe(res => {
-
+        this.info = "Профиль успешно изменён";
+        this.error = "";
       }, err => {
-        console.log(err);
+        this.error = err.message;
+        this.info = "";
       });
     }
   }
