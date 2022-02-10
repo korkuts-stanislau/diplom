@@ -1,10 +1,23 @@
 <div id="project-areas-container">
-    <div class="project-area" 
+    <div class="project-area"
+        [class.active-project-area]="currentProjectArea === area"
         *ngFor="let area of projectAreas">
-        <img [src]="getUrlFromIcon(area.icon)">
-        <p>{{area.name}}</p>
+        <div class="project-area-icon">
+            <img [src]="getUrlFromIcon(area.icon)"
+                (click)="currentProjectArea === area ? currentProjectArea = undefined : currentProjectArea = area">
+            <p>{{area.name}}</p>
+        </div>
+        <div class="project-area-edit" 
+            *ngIf="currentProjectArea === area">
+            <button class="button"
+                (click)="editProjectArea(area)">✎</button>
+            <button class="button"
+                (click)="deleteProjectArea(area)">🞪</button>
+        </div>
     </div>
-    <div id="add-project-area" class="project-area" (click)="modalService.openModal('add-project-area')">
+    <div id="add-project-area" 
+        class="project-area project-area-icon" 
+        (click)="addProjectArea()">
         <img src="assets/create.png">
         <p>Создать</p>
     </div>

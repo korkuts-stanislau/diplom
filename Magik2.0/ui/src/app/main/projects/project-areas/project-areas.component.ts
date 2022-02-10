@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ProjectArea } from 'src/models/projects/projectArea';
 import { ModalService } from 'src/services/modal/modal.service';
@@ -17,15 +17,28 @@ export class ProjectAreasComponent implements OnInit {
     new ProjectArea(4, "Четвертая", "")
   ]
 
+  public currentProjectArea?: ProjectArea;
+
   constructor(private sanitizer: DomSanitizer,
     public modalService: ModalService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   getUrlFromIcon(icon:string) {
     if(icon == "") return "assets/doge.jpg";
     return  this.sanitizer.bypassSecurityTrustResourceUrl(
         `data:image/png;base64, ${icon}`);
+  }
+
+  addProjectArea() {
+    this.modalService.openModal('add-project-area');
+  }
+
+  editProjectArea(area: ProjectArea) {
+    this.modalService.openModal('edit-project-area');
+  }
+
+  deleteProjectArea(area: ProjectArea) {
+    this.projectAreas = this.projectAreas.filter(a => a !== area);
   }
 }

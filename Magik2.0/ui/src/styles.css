@@ -10,9 +10,8 @@
   font-family: Raleway, sans-serif;
 }
 
-html {
-  height: 100%;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .base-container {
   max-width: 1000px;
@@ -60,6 +59,7 @@ html {
   width: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.2);
+  animation: slow-show .5s;
 }
 
 .modal-content {
@@ -67,9 +67,9 @@ html {
   margin: 100px auto;
   padding: 20px;
   width: 500px;
-  height: 500px;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  animation: slow-show .5s;
 }
 
 @media (max-width: 700px) {
@@ -78,10 +78,19 @@ html {
   }
 
   .modal-content {
-    width: 80%;
-    height: 600px;
+    width: calc(100% - 40px - 20px);
+    margin: 60px 10px;
+    border-radius: 5px;
   }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@keyframes slow-show{
+  0%{
+      opacity:0;
+  }
+  100% {
+      opacity:1;
+  }
+}
+
+
