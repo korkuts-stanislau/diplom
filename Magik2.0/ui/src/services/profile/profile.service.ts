@@ -20,7 +20,7 @@ export class ProfileService {
       profile = {...profile};
       profile.picture = "";
     }
-    return this.http.post(`${this.url}api/profile/`, profile);
+    return this.http.put(`${this.url}api/profile/`, profile);
   }
 
   validateProfile(profile?: Profile): string | undefined {

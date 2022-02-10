@@ -1,7 +1,7 @@
 #project-areas-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: start;
     overflow: auto;
     margin: 15px auto;
     padding: 10px 0;

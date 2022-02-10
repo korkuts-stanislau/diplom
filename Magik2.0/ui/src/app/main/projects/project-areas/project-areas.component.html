@@ -4,8 +4,9 @@
         <img [src]="getUrlFromIcon(area.icon)">
         <p>{{area.name}}</p>
     </div>
-    <div id="add-project-area" class="project-area">
+    <div id="add-project-area" class="project-area" (click)="modalService.openModal('add-project-area')">
         <img src="assets/create.png">
         <p>Создать</p>
     </div>
 </div>
+<app-add-project-area *ngIf="modalService.isModalOpened('add-project-area')"></app-add-project-area>

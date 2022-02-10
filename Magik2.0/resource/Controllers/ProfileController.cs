@@ -36,7 +36,7 @@ public class ProfileController : ControllerBase
     }
 
     [Route("")]
-    [HttpPost]
+    [HttpPut]
     public async Task<IActionResult> EditCurrentAccountProfile([FromBody]UIModels.Profile profile)
     {
         if(ModelState.IsValid) {

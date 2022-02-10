@@ -22,6 +22,8 @@ import { ProfileTestsComponent } from './main/profile/profile-tests/profile-test
 import { ProjectAreasComponent } from './main/projects/project-areas/project-areas.component';
 import { AreaProjectsComponent } from './main/projects/area-projects/area-projects.component';
 import { ProjectStepsComponent } from './main/projects/project-steps/project-steps.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddProjectAreaComponent } from './main/projects/project-areas/add-project-area/add-project-area.component';
 
 @NgModule({
   declarations: [
@@ -41,19 +43,20 @@ import { ProjectStepsComponent } from './main/projects/project-steps/project-ste
     ProjectAreasComponent,
     AreaProjectsComponent,
     ProjectStepsComponent,
+    AddProjectAreaComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-
     JwtModule.forRoot({
       config: {
         tokenGetter,
         allowedDomains: environment.allowedDomains
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     {

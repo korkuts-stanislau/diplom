@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ProjectArea } from 'src/models/projects/projectArea';
+import { ModalService } from 'src/services/modal/modal.service';
 
 @Component({
   selector: 'app-project-areas',
@@ -16,7 +17,8 @@ export class ProjectAreasComponent implements OnInit {
     new ProjectArea(4, "Четвертая", "")
   ]
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer,
+    public modalService: ModalService) { }
 
   ngOnInit(): void {
   }
@@ -26,5 +28,4 @@ export class ProjectAreasComponent implements OnInit {
     return  this.sanitizer.bypassSecurityTrustResourceUrl(
         `data:image/png;base64, ${icon}`);
   }
-
 }
