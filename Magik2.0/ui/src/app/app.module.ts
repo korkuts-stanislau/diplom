@@ -24,6 +24,7 @@ import { AreaProjectsComponent } from './main/projects/area-projects/area-projec
 import { ProjectStepsComponent } from './main/projects/project-steps/project-steps.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddProjectAreaComponent } from './main/projects/project-areas/add-project-area/add-project-area.component';
+import { EditProjectAreaComponent } from './main/projects/project-areas/edit-project-area/edit-project-area.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AddProjectAreaComponent } from './main/projects/project-areas/add-proje
     ProjectAreasComponent,
     AreaProjectsComponent,
     ProjectStepsComponent,
-    AddProjectAreaComponent
+    AddProjectAreaComponent,
+    EditProjectAreaComponent
   ],
   imports: [
     BrowserModule,

@@ -10,16 +10,21 @@
         <div class="project-area-edit" 
             *ngIf="currentProjectArea === area">
             <button class="button"
-                (click)="editProjectArea(area)">✎</button>
+                (click)="editProjectAreaModal()">✎</button>
             <button class="button"
                 (click)="deleteProjectArea(area)">🞪</button>
         </div>
     </div>
     <div id="add-project-area" 
         class="project-area project-area-icon" 
-        (click)="addProjectArea()">
+        (click)="addProjectAreaModal()">
         <img src="assets/create.png">
         <p>Создать</p>
     </div>
 </div>
-<app-add-project-area *ngIf="modalService.isModalOpened('add-project-area')"></app-add-project-area>
+<app-add-project-area 
+    *ngIf="modalService.isModalOpened('add-project-area')"
+    [parent]="this"></app-add-project-area>
+<app-edit-project-area 
+    *ngIf="modalService.isModalOpened('edit-project-area')"
+    [parent]="this"></app-edit-project-area>

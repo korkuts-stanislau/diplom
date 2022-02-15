@@ -23,6 +23,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .project-area-icon > img{
@@ -33,7 +34,7 @@
 }
 
 .project-area-icon > img:hover{
-    filter: brightness(0.9);
+    filter: brightness(0.95);
 }
 
 .project-area-edit {
@@ -52,6 +53,12 @@
     border-radius: 50%;
     font-size: 18px;
     margin: 6px;
+    color: white;
+    background: black;
+}
+
+.project-area-edit > button:hover {
+    filter: brightness(0.8);
 }
 
 #add-project-area img:hover {

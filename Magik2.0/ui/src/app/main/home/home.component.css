@@ -68,6 +68,18 @@
     font-size: 1.7rem;
   }
 
+  #homepage-intro {
+    margin-bottom: 5px;
+  }
+
+  #homepage-info {
+    gap: 5px;
+  }
+
+  #homepage-info > * {
+    border-radius: 0;
+  }
+
   #homepage-info > article > h2 {
     font-size: 1.3rem;
   }

@@ -1,0 +1,45 @@
+using Microsoft.EntityFrameworkCore;
+using Resource.Data;
+using Resource.Tools;
+using Resource.UIModels;
+
+namespace Resource.Services;
+
+public class ProjectAreaService
+{
+    private readonly AppDbContext context;
+    private readonly PictureConverter converter;
+
+    public ProjectAreaService(AppDbContext context,
+        PictureConverter converter)
+    {
+        this.context = context;
+        this.converter = converter;
+    }
+
+    public async Task<int> CreateNewProjectArea(UIModels.ProjectArea area, string accountId) {
+        Models.ProjectArea newArea = new Models.ProjectArea {
+            Name = area.Name,
+            AccountId = accountId,
+            Icon = string.IsNullOrEmpty(area.Icon) ? new byte[0] : converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128)            
+        };
+        await context.ProjectAreas.AddAsync(newArea);
+        await context.SaveChangesAsync();
+        return newArea.Id;
+    }
+
+    public async Task<IEnumerable<ProjectArea>> GetProjectAreas(string accountId) {
+        return await context.ProjectAreas
+            .Where(area => area.AccountId == accountId)
+            .Select(area => new ProjectArea {
+                Id = area.Id,
+                Name = area.Name,
+                Icon = area.Icon.Length != 0 ? Convert.ToBase64String(area.Icon) : ""
+            })
+            .ToListAsync();
+    }
+
+    public async Task<Models.ProjectArea> ValidateAndGetProjectAreaAsync(int areaId, string accountId) {
+        throw new NotImplementedException();
+    }
+}

@@ -233,9 +233,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\university\\diplom\\Magik2.0\\common\\common.csproj",
-      "projectName": "common",
-      "projectPath": "D:\\university\\diplom\\Magik2.0\\common\\common.csproj",
+      "projectUniqueName": "D:\\university\\diplom\\Magik2.0\\common\\Common.csproj",
+      "projectName": "Common",
+      "projectPath": "D:\\university\\diplom\\Magik2.0\\common\\Common.csproj",
       "packagesPath": "C:\\Users\\stani\\.nuget\\packages\\",
       "outputPath": "D:\\university\\diplom\\Magik2.0\\common\\obj\\",
       "projectStyle": "PackageReference",
@@ -284,7 +284,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

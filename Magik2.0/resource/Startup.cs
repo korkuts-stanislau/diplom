@@ -70,6 +70,7 @@ namespace Resource
             });
 
             services.AddScoped<ProfileService>();
+            services.AddScoped<ProjectAreaService>();
             services.AddSingleton<PictureConverter>();
         }
 
@@ -80,8 +81,6 @@ namespace Resource
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseCors();
