@@ -1,4 +1,6 @@
 using Auth.Data;
+using Auth.Data.Implementations;
+using Auth.Data.Interfaces;
 using Auth.Services;
 using Common;
 
@@ -29,7 +31,7 @@ namespace Auth
             });
 
             services.AddSingleton<PasswordHasherService>();
-            services.AddScoped(f => new AuthRepository(Configuration.GetConnectionString("Default")));
+            services.AddScoped<IAccountRepository>(f => new MongoAccountRepository(Configuration.GetConnectionString("Default")));
 
             var authOptionsConfiguration = Configuration.GetSection("Auth");
             services.Configure<AuthOptions>(authOptionsConfiguration);

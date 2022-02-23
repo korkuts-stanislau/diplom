@@ -24,7 +24,7 @@ public class ProfileService
         {
             Username = profile.Username,
             Description = profile.Description,
-            Picture = profile.Picture.Length  != 0 ? Convert.ToBase64String(profile.Picture) : ""
+            Picture = profile.Picture.Length != 0 ? Convert.ToBase64String(profile.Picture) : ""
         };
     }
 

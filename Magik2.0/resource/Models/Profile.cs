@@ -9,14 +9,18 @@ namespace Resource.Models
     public class Profile
     {
         public int Id { get; set; }
+
         [StringLength(24)]
         public string AccountId { get; set; }
+
         [StringLength(50)]
         public string Username { get; set; }
-        [StringLength(200)]
 
+        [StringLength(250)]
         public string Description { get; set; }
+
         public byte[] Icon { get; set; }
+        
         public byte[] Picture { get; set; }
     }
 }

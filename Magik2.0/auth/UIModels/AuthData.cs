@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Auth.UIModels
 {
-    public class Auth
+    public class AuthData
     {
         [EmailAddress]
         public string Email { get; set; }

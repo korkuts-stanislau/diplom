@@ -16,7 +16,6 @@ namespace Auth.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        [StringLength(20, MinimumLength = 20)]
         public string PasswordHash { get; set; }
 
         public Role[] Roles { get; set; }

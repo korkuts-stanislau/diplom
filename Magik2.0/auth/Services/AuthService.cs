@@ -1,4 +1,5 @@
 ﻿using Auth.Data;
+using Auth.Data.Interfaces;
 using Auth.Models;
 using Common;
 using Microsoft.Extensions.Options;
@@ -16,11 +17,11 @@ namespace Auth.Services
     public class AuthService
     {
         private readonly IOptions<AuthOptions> authOptions;
-        private readonly AuthRepository rep;
+        private readonly IAccountRepository rep;
         private readonly PasswordHasherService passwordHasher;
 
         public AuthService(IOptions<AuthOptions> authOptions,
-            AuthRepository rep,
+            IAccountRepository rep,
             PasswordHasherService passwordHasher)
         {
             this.authOptions = authOptions;
@@ -28,9 +29,9 @@ namespace Auth.Services
             this.passwordHasher = passwordHasher;
         }
 
-        public async Task<Account> SignIn(UIModels.Auth auth)
+        public async Task<Account> SignIn(UIModels.AuthData auth)
         {
-            var account = await rep.GetAccountByEmail(auth.Email);
+            var account = await rep.GetByEmailAsync(auth.Email);
 
             if (account == null)
             {
@@ -45,9 +46,9 @@ namespace Auth.Services
             return account;
         }
 
-        public async Task<Account> SignUp(UIModels.Auth auth)
+        public async Task<Account> SignUp(UIModels.AuthData auth)
         {
-            var account = await rep.GetAccountByEmail(auth.Email);
+            var account = await rep.GetByEmailAsync(auth.Email);
 
             if (account != null)
             {
@@ -61,7 +62,7 @@ namespace Auth.Services
                 PasswordHash = passwordHasher.Hash(auth.Password),
                 Roles = new Role[] { Role.User }
             };
-            await rep.Create(account);
+            await rep.CreateAsync(account);
 
             return account;
         }

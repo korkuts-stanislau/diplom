@@ -9,15 +9,22 @@ namespace Resource.Models
     public class ProjectPart
     {
         public int Id { get; set; }
+
         public int ProjectId { get; set; }
+
         [StringLength(50)]
         public string Name { get; set; }
-        [StringLength(150)]
+
+        [StringLength(250)]
         public string Description { get; set; }
+
         public DateTime CreationDate { get; set; }
+
         public DateTime Deadline { get; set; }
-        [Range(100, 0)]
+
+        [Range(0, 100)]
         public int Progress { get; set; }
+        
 
         public Project Project { get; set; }
     }

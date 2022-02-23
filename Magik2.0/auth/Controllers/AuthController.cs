@@ -23,7 +23,7 @@ namespace Auth.Controllers
 
         [Route("signIn")]
         [HttpPost]
-        public async Task<IActionResult> SignIn([FromBody] UIModels.Auth request)
+        public async Task<IActionResult> SignIn([FromBody]UIModels.AuthData request)
         {
             if(ModelState.IsValid)
             {
@@ -49,7 +49,7 @@ namespace Auth.Controllers
 
         [Route("signUp")]
         [HttpPost]
-        public async Task<IActionResult> SignUp([FromBody] UIModels.Auth request)
+        public async Task<IActionResult> SignUp([FromBody] UIModels.AuthData request)
         {
             if(ModelState.IsValid)
             {

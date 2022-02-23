@@ -683,17 +683,17 @@
           }
         }
       },
-      "Common/1.0.0": {
+      "common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "6.15.0"
         },
         "compile": {
-          "bin/placeholder/Common.dll": {}
+          "bin/placeholder/common.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Common.dll": {}
+          "bin/placeholder/common.dll": {}
         }
       }
     }
@@ -2012,21 +2012,21 @@
         "version.txt"
       ]
     },
-    "Common/1.0.0": {
+    "common/1.0.0": {
       "type": "project",
-      "path": "../common/Common.csproj",
-      "msbuildProject": "../common/Common.csproj"
+      "path": "../common/common.csproj",
+      "msbuildProject": "../common/common.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Common >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.1",
       "Microsoft.EntityFrameworkCore >= 6.0.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.1",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "System.Drawing.Common >= 6.0.0",
-      "System.IdentityModel.Tokens.Jwt >= 6.15.1"
+      "System.IdentityModel.Tokens.Jwt >= 6.15.1",
+      "common >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2054,8 +2054,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\university\\diplom\\Magik2.0\\common\\Common.csproj": {
-              "projectPath": "D:\\university\\diplom\\Magik2.0\\common\\Common.csproj"
+            "D:\\university\\diplom\\Magik2.0\\common\\common.csproj": {
+              "projectPath": "D:\\university\\diplom\\Magik2.0\\common\\common.csproj"
             }
           }
         }
