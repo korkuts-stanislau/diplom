@@ -8,6 +8,10 @@ export class ProfileRoutingService {
 
   constructor() {}
 
+  default() {
+    this.currentWindow = "";
+  }
+
   routeToEdit() {
     this.currentWindow = "edit";
   }

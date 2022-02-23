@@ -23,4 +23,18 @@ export class AddProjectAreaComponent implements OnInit {
     this.parent!.addProjectArea(this.newArea);
     this.modalService.closeModal();
   }
+
+  editPhotoEvent(event: Event) {
+    let me = this;
+    let input = event.target as HTMLInputElement;
+    if(input.files) {
+      const file = input.files[0];
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = function () {
+         // get only data part from base64
+        me.newArea!.icon = reader.result!.toString().split(',')[1];
+      };
+    }
+  }
 }

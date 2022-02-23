@@ -39,7 +39,23 @@ public class ProjectAreaService
             .ToListAsync();
     }
 
-    public async Task<Models.ProjectArea> ValidateAndGetProjectAreaAsync(int areaId, string accountId) {
-        throw new NotImplementedException();
+    public async Task EditProjectArea(UIModels.ProjectArea area, string accountId) {
+        var areaToEdit = await ValidateAndGetProjectAreaAsync(area.Id, accountId);
+        areaToEdit.Name = area.Name;
+        if(!string.IsNullOrEmpty(area.Icon)) areaToEdit.Icon = converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128);
+        context.ProjectAreas.Update(areaToEdit);
+        await context.SaveChangesAsync();
     }
+
+    public async Task DeleteProjectArea(int areaId, string accountId) {
+        var area = await ValidateAndGetProjectAreaAsync(areaId, accountId);
+        context.ProjectAreas.Remove(area);
+        await context.SaveChangesAsync();
+    }
+
+    private async Task<Models.ProjectArea> ValidateAndGetProjectAreaAsync(int areaId, string accountId) {
+        var area = await context.ProjectAreas.FirstOrDefaultAsync(a => a.Id == areaId);
+        if(area.AccountId != accountId) throw new Exception("Эта область проектов принадлежит другому пользователю");
+        return area;
+    }    
 }

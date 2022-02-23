@@ -24,7 +24,7 @@ export class ProjectAreasComponent implements OnInit {
   }
 
   getUrlFromIcon(icon:string) {
-    if(icon == "") return "assets/doge.jpg";
+    if(icon == "") return "assets/puzzle.jpg";
     return  this.sanitizer.bypassSecurityTrustResourceUrl(
         `data:image/png;base64, ${icon}`);
   }

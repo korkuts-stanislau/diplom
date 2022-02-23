@@ -1,4 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import { ProfileRoutingService } from 'src/services/profile/routing/profile-routing.service';
 import {Profile} from "../../../../models/profile/profile";
 import {ProfileService} from "../../../../services/profile/profile.service";
 
@@ -15,13 +16,14 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
 
   private isPictureEdited: boolean = false;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService,
+              private profileRoutingService: ProfileRoutingService) { }
   
   ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
-    this.editProfile();
+    this.profileRoutingService.default();
   }
 
   editPhotoEvent(event: Event) {
