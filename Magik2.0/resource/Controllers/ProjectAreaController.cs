@@ -20,18 +20,18 @@ public class ProjectAreaController : ControllerBase {
 
     [HttpGet]
     [Route("")]
-    public async Task<IActionResult> GetProjectAreas() {
+    public async Task<IActionResult> Get() {
         var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
         return Ok(await projectAreaService.GetProjectAreas(accountId));
     }
 
     [HttpPost]
     [Route("")]
-    public async Task<IActionResult> AddProjectArea([FromBody]ProjectArea area) {
+    public async Task<IActionResult> Create([FromBody]ProjectArea area) {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
-                int newAreaId = await projectAreaService.CreateNewProjectArea(area, accountId);
+                int newAreaId = await projectAreaService.CreateProjectArea(area, accountId);
                 return Ok(newAreaId);
             }
             catch(Exception exc) {
@@ -45,11 +45,11 @@ public class ProjectAreaController : ControllerBase {
 
     [HttpPut]
     [Route("")]
-    public async Task<IActionResult> EditProjectArea([FromBody]ProjectArea area) {
+    public async Task<IActionResult> Update([FromBody]ProjectArea area) {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
-                await projectAreaService.EditProjectArea(area, accountId);
+                await projectAreaService.UpdateProjectArea(area, accountId);
                 return Ok();
             }
             catch(Exception exc) {
@@ -63,7 +63,7 @@ public class ProjectAreaController : ControllerBase {
 
     [HttpDelete("{id}")]
     [Route("")]
-    public async Task<IActionResult> DeleteProjectArea(int id) {
+    public async Task<IActionResult> Delete(int id) {
         var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
         try {
             await projectAreaService.DeleteProjectArea(id, accountId);

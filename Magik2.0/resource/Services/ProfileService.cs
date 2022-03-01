@@ -10,49 +10,75 @@ public class ProfileService
     private readonly AppDbContext _context;
     private readonly PictureConverter _converter;
 
+    /// <summary>
+    /// Service for accounts' profiles management
+    /// </summary>
+    /// <param name="context">Data context</param>
+    /// <param name="converter">Pictures converter</param>
     public ProfileService(AppDbContext context, PictureConverter converter)
     {
         _context = context;
         _converter = converter;
     }
 
-    public async Task<Profile> GetAccountProfileOrDefault(string accountId)
+    /// <summary>
+    /// Get account profile
+    /// </summary>
+    /// <param name="accountId">Account ID</param>
+    /// <returns>Account profile</returns>
+    public async Task<Profile?> GetProfileOrDefault(string accountId)
     {
         var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.AccountId == accountId);
-        if (profile == null) return default;
+        if (profile == null) return null;
+        
         return new Profile
         {
             Username = profile.Username,
             Description = profile.Description,
-            Picture = profile.Picture.Length != 0 ? Convert.ToBase64String(profile.Picture) : ""
+            Picture = profile.Picture != null ? Convert.ToBase64String(profile.Picture) : ""
         };
     }
 
-    public async Task<Profile> CreateNewAccountProfile(string accountId, string email)
+    /// <summary>
+    /// Create profile for account
+    /// </summary>
+    /// <param name="accountId">Account ID</param>
+    /// <param name="email">User email</param>
+    /// <returns>Created profile</returns>
+    public async Task<Profile> CreateProfile(string accountId, string email)
     {
         var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.AccountId == accountId);
         if (profile != null) throw new Exception("У этого пользователя уже есть профиль");
+
         profile = new Models.Profile
         {
             AccountId = accountId,
             Username = email,
             Description = "Мой профиль",
-            Icon = new byte[0],
-            Picture = new byte[0]
+            Icon = null,
+            Picture = null
         };
+
         await _context.Profiles.AddAsync(profile);
         await _context.SaveChangesAsync();
+
         return new Profile
         {
             Username = profile.Username,
             Description = profile.Description,
-            Picture = profile.Picture.Length != 0 ? Convert.ToBase64String(profile.Picture) : ""
+            Picture = profile.Picture != null ? Convert.ToBase64String(profile.Picture) : ""
         };
     }
 
-    public async Task EditAccountProfile(string accountId, UIModels.Profile editedProfile) {
+    /// <summary>
+    /// Update account profile
+    /// </summary>
+    /// <param name="accountId">Account ID</param>
+    /// <param name="editedProfile">Profile update data</param>
+    public async Task UpdateProfile(string accountId, UIModels.Profile editedProfile) {
         var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.AccountId == accountId);
         if(profile == null) throw new Exception("У этого пользователя нет профиля");
+
         profile.Username = editedProfile.Username;
         profile.Description = editedProfile.Description;
         if(!string.IsNullOrEmpty(editedProfile.Picture)) {

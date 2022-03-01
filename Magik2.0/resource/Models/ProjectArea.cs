@@ -11,14 +11,14 @@ namespace Resource.Models
         public int Id { get; set; }
 
         [StringLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [StringLength(24)]
-        public string AccountId { get; set; }
+        public string AccountId { get; set; } = null!;
 
-        public byte[] Icon { get; set; }
+        public byte[]? Icon { get; set; }
         
 
-        public IEnumerable<Project> Projects { get; set; }
+        public IEnumerable<Project>? Projects { get; set; }
     }
 }

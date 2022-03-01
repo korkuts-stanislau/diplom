@@ -14,14 +14,14 @@ namespace Resource.Models
         public int ProjectAreaId { get; set; }
 
         [StringLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [StringLength(250)]
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
 
-        public ProjectArea ProjectArea { get; set; }
+        public ProjectArea? ProjectArea { get; set; }
         
-        public IEnumerable<ProjectPart> ProjectParts { get; set; }
+        public IEnumerable<ProjectPart>? ProjectParts { get; set; }
     }
 }

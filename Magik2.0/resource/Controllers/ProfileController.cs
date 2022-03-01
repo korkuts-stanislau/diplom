@@ -21,15 +21,20 @@ public class ProfileController : ControllerBase
     
     [Route("")]
     [HttpGet]
-    public async Task<IActionResult> GetCurrentAccountProfile()
+    public async Task<IActionResult> Get()
     {
         var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        var profile = await _profileService.GetAccountProfileOrDefault(accountId);
+        var profile = await _profileService.GetProfileOrDefault(accountId);
         
-        if (profile == default)
+        if (profile == null)
         {
-            var email = User.Claims.Single(c => c.Type == ClaimTypes.Email).Value;
-            profile = await _profileService.CreateNewAccountProfile(accountId, email);
+            try {
+                var email = User.Claims.Single(c => c.Type == ClaimTypes.Email).Value;
+                profile = await _profileService.CreateProfile(accountId, email);
+            }
+            catch(Exception exc) {
+                return BadRequest(exc.Message);
+            }
         }
 
         return Ok(profile);
@@ -37,12 +42,12 @@ public class ProfileController : ControllerBase
 
     [Route("")]
     [HttpPut]
-    public async Task<IActionResult> EditCurrentAccountProfile([FromBody]UIModels.Profile profile)
+    public async Task<IActionResult> Update([FromBody]UIModels.Profile profile)
     {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
-                await _profileService.EditAccountProfile(accountId, profile);
+                await _profileService.UpdateProfile(accountId, profile);
                 return Ok();
             }
             catch(Exception exc) {

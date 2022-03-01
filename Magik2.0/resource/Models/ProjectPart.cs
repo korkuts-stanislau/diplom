@@ -13,10 +13,10 @@ namespace Resource.Models
         public int ProjectId { get; set; }
 
         [StringLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [StringLength(250)]
-        public string Description { get; set; }
+        public string Description { get; set; } = null!;
 
         public DateTime CreationDate { get; set; }
 
@@ -26,6 +26,6 @@ namespace Resource.Models
         public int Progress { get; set; }
         
 
-        public Project Project { get; set; }
+        public Project? Project { get; set; }
     }
 }

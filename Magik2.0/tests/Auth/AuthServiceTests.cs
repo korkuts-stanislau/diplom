@@ -37,7 +37,7 @@ public class AuthServiceTests
         };
 
         _accRepoMock.Setup(x => x.GetByEmailAsync(email))
-            .ReturnsAsync((Account)null);
+            .ReturnsAsync((Account)null!);
 
         //Act
         var account = await _as.SignUp(data);
@@ -49,7 +49,7 @@ public class AuthServiceTests
     }
 
     [Fact]
-    public async Task SignUp_UserCanNotSignUp()
+    public async Task SignUp_UserCanNotSignUp_UserWithSameEmailExists()
     {
         //Arrange
         var email = "newuser@gmail.com";
@@ -145,7 +145,7 @@ public class AuthServiceTests
         };
 
         _accRepoMock.Setup(x => x.GetByEmailAsync(wrongEmail))
-            .ReturnsAsync(default(Account));
+            .ReturnsAsync((Account)null!);
 
         //Act
         Func<Task> signIn = async() => await _as.SignIn(data);

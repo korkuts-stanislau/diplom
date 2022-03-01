@@ -9,7 +9,7 @@ public class ProjectData
     public int AccountFileId { get; set; }
 
 
-    public Project Project { get; set; }
+    public Project? Project { get; set; }
     
-    public AccountFile AccountFile { get; set; }
+    public AccountFile? AccountFile { get; set; }
 }

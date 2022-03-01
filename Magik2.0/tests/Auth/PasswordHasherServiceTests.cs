@@ -14,7 +14,7 @@ public class PasswordHasherServiceTests
     }
 
     [Fact]
-    public async Task Hash_Verify()
+    public void Hash_Verify()
     {
         //Arrange
         var password = "VeryStrongPassword123";

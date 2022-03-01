@@ -7,6 +7,6 @@ public class ProjectArea
     public int Id { get; set; }
     [StringLength(50)]
     [Required]
-    public string Name { get; set; }
-    public string Icon { get; set; }
+    public string Name { get; set; } = null!;
+    public string Icon { get; set; } = null!;
 }

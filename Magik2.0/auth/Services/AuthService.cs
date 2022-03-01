@@ -22,7 +22,7 @@ namespace Auth.Services
         private readonly PasswordHasherService passwordHasher;
 
         /// <summary>
-        /// Create user authentication service
+        /// User authentication service
         /// </summary>
         /// <param name="authOptions">Authentication options</param>
         /// <param name="rep">Repository with accounts data</param>
