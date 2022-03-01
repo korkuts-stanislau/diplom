@@ -73,10 +73,11 @@ namespace Resource
 
             services.AddTransient<IProfileRepository, MSProfileRepository>();
             services.AddTransient<IProjectAreaRepository, MSProjectAreaRepository>();
+            
+            services.AddSingleton<PictureConverter>();
 
             services.AddScoped<ProfileService>();
             services.AddScoped<ProjectAreaService>();
-            services.AddSingleton<PictureConverter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

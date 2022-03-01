@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "common/1.0.0": {
+      "Common/1.0.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "6.15.0"
         },
         "runtime": {
-          "common.dll": {}
+          "Common.dll": {}
         }
       },
       "Microsoft.CSharp/4.5.0": {},
@@ -40,7 +40,7 @@
     }
   },
   "libraries": {
-    "common/1.0.0": {
+    "Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

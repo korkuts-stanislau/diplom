@@ -8,13 +8,13 @@
     ".NETCoreApp,Version=v6.0": {
       "resource/1.0.0": {
         "dependencies": {
+          "Common": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.1",
           "Microsoft.EntityFrameworkCore": "6.0.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.1",
           "Swashbuckle.AspNetCore": "6.2.3",
           "System.Drawing.Common": "6.0.0",
-          "System.IdentityModel.Tokens.Jwt": "6.15.1",
-          "common": "1.0.0"
+          "System.IdentityModel.Tokens.Jwt": "6.15.1"
         },
         "runtime": {
           "resource.dll": {}
@@ -460,12 +460,12 @@
           }
         }
       },
-      "common/1.0.0": {
+      "Common/1.0.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "6.15.1"
         },
         "runtime": {
-          "common.dll": {}
+          "Common.dll": {}
         }
       }
     }
@@ -805,7 +805,7 @@
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
     },
-    "common/1.0.0": {
+    "Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
