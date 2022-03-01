@@ -11,7 +11,7 @@ namespace Auth.Services
         /// <summary>
         /// Size of salt.
         /// </summary>
-        private const int SaltSize = 16;
+        private const int saltSize = 16;
 
         /// <summary>
         /// Size of hash.
@@ -27,17 +27,16 @@ namespace Auth.Services
         public string Hash(string password, int iterations)
         {
             // Create salt
-            byte[] salt;
-            new RNGCryptoServiceProvider().GetBytes(salt = new byte[SaltSize]);
+            byte[] salt = RandomNumberGenerator.GetBytes(saltSize);
 
             // Create hash
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations);
             var hash = pbkdf2.GetBytes(HashSize);
 
             // Combine salt and hash
-            var hashBytes = new byte[SaltSize + HashSize];
-            Array.Copy(salt, 0, hashBytes, 0, SaltSize);
-            Array.Copy(hash, 0, hashBytes, SaltSize, HashSize);
+            var hashBytes = new byte[saltSize + HashSize];
+            Array.Copy(salt, 0, hashBytes, 0, saltSize);
+            Array.Copy(hash, 0, hashBytes, saltSize, HashSize);
 
             // Convert to base64
             var base64Hash = Convert.ToBase64String(hashBytes);
@@ -89,8 +88,8 @@ namespace Auth.Services
             var hashBytes = Convert.FromBase64String(base64Hash);
 
             // Get salt
-            var salt = new byte[SaltSize];
-            Array.Copy(hashBytes, 0, salt, 0, SaltSize);
+            var salt = new byte[saltSize];
+            Array.Copy(hashBytes, 0, salt, 0, saltSize);
 
             // Create hash with given salt
             var pbkdf2 = new Rfc2898DeriveBytes(password, salt, iterations);
@@ -99,7 +98,7 @@ namespace Auth.Services
             // Get result
             for (var i = 0; i < HashSize; i++)
             {
-                if (hashBytes[i + SaltSize] != hash[i])
+                if (hashBytes[i + saltSize] != hash[i])
                 {
                     return false;
                 }
