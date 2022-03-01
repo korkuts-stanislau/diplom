@@ -9,21 +9,21 @@ namespace Auth.Services
     public class PasswordHasherService
     {
         /// <summary>
-        /// Size of salt.
+        /// Size of salt
         /// </summary>
         private const int saltSize = 16;
 
         /// <summary>
-        /// Size of hash.
+        /// Size of hash
         /// </summary>
         private const int HashSize = 20;
 
         /// <summary>
-        /// Creates a hash from a password.
+        /// Creates a hash from a password
         /// </summary>
-        /// <param name="password">The password.</param>
-        /// <param name="iterations">Number of iterations.</param>
-        /// <returns>The hash.</returns>
+        /// <param name="password">The password</param>
+        /// <param name="iterations">Number of iterations</param>
+        /// <returns>The hash</returns>
         public string Hash(string password, int iterations)
         {
             // Create salt
@@ -48,36 +48,33 @@ namespace Auth.Services
         /// <summary>
         /// Creates a hash from a password with 10000 iterations
         /// </summary>
-        /// <param name="password">The password.</param>
-        /// <returns>The hash.</returns>
+        /// <param name="password">The password</param>
+        /// <returns>The hash</returns>
         public string Hash(string password)
         {
             return Hash(password, 10000);
         }
 
         /// <summary>
-        /// Checks if hash is supported.
+        /// Checks if hash is supported
         /// </summary>
-        /// <param name="hashString">The hash.</param>
-        /// <returns>Is supported?</returns>
+        /// <param name="hashString">The hash</param>
+        /// <returns>Is it hash supported</returns>
         public bool IsHashSupported(string hashString)
         {
             return hashString.Contains("$MAGIK$V1$");
         }
 
         /// <summary>
-        /// Verifies a password against a hash.
+        /// Verifies a password against a hash
         /// </summary>
-        /// <param name="password">The password.</param>
-        /// <param name="hashedPassword">The hash.</param>
-        /// <returns>Could be verified?</returns>
+        /// <param name="password">The password</param>
+        /// <param name="hashedPassword">The hash</param>
+        /// <returns>Is it password verified</returns>
         public bool Verify(string password, string hashedPassword)
         {
             // Check hash
-            if (!IsHashSupported(hashedPassword))
-            {
-                throw new NotSupportedException("The hashtype is not supported");
-            }
+            if (!IsHashSupported(hashedPassword)) throw new NotSupportedException("The hashtype is not supported");
 
             // Extract iteration and Base64 string
             var splittedHashString = hashedPassword.Replace("$MAGIK$V1$", "").Split('$');

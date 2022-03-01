@@ -11,14 +11,14 @@ namespace Auth.Models
     public class Account
     {
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
-        public string PasswordHash { get; set; }
+        public string PasswordHash { get; set; } = null!;
 
-        public Role[] Roles { get; set; }
+        public Role[] Roles { get; set; } = null!;
     }
 
     public enum Role

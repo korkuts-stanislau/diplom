@@ -1,6 +1,7 @@
 ﻿using Auth.Data;
 using Auth.Data.Interfaces;
 using Auth.Models;
+using Auth.UIModels;
 using Common;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -20,6 +21,12 @@ namespace Auth.Services
         private readonly IAccountRepository rep;
         private readonly PasswordHasherService passwordHasher;
 
+        /// <summary>
+        /// Create user authentication service
+        /// </summary>
+        /// <param name="authOptions">Authentication options</param>
+        /// <param name="rep">Repository with accounts data</param>
+        /// <param name="passwordHasher">Password hasher</param>
         public AuthService(IOptions<AuthOptions> authOptions,
             IAccountRepository rep,
             PasswordHasherService passwordHasher)
@@ -29,31 +36,31 @@ namespace Auth.Services
             this.passwordHasher = passwordHasher;
         }
 
+        /// <summary>
+        /// Get user account by authentication data
+        /// </summary>
+        /// <param name="auth">Authentication data</param>
+        /// <returns>User account</returns>
         public async Task<Account> SignIn(UIModels.AuthData auth)
         {
             var account = await rep.GetByEmailAsync(auth.Email);
 
-            if (account == null)
-            {
-                throw new Exception("Неверный почтовый адрес");
-            }
-
-            if (!passwordHasher.Verify(auth.Password, account.PasswordHash))
-            {
-                throw new Exception("Неверный пароль");
-            }
+            if (account == null) throw new ArgumentException("Неверный почтовый адрес");
+            if (!passwordHasher.Verify(auth.Password, account.PasswordHash)) throw new ArgumentException("Неверный пароль");
 
             return account;
         }
 
+        /// <summary>
+        /// Create and get user account by authentication data
+        /// </summary>
+        /// <param name="auth">Authentication data</param>
+        /// <returns>New user's account</returns>
         public async Task<Account> SignUp(UIModels.AuthData auth)
         {
             var account = await rep.GetByEmailAsync(auth.Email);
 
-            if (account != null)
-            {
-                throw new Exception("Пользователь с такой почтой уже зарегистрирован");
-            }
+            if (account != null) throw new ArgumentException("Пользователь с такой почтой уже зарегистрирован");
 
             account = new Account
             {
@@ -67,8 +74,15 @@ namespace Auth.Services
             return account;
         }
 
-        public string GenerateJWT(Account account)
+        /// <summary>
+        /// Generate JSON Web Token for user's account
+        /// </summary>
+        /// <param name="account">User's account</param>
+        /// <returns>JSON Web Token</returns>
+        public Token GenerateJWT(Account account)
         {
+            if(string.IsNullOrWhiteSpace(account.Id)) throw new ArgumentException("Токен можно сгенерировать только для аккаунта с идентификатором.");
+
             var authParams = authOptions.Value;
 
             var securityKey = authParams.GetSymmetricSecurityKey();
@@ -91,7 +105,9 @@ namespace Auth.Services
                 expires: DateTime.Now.AddSeconds(authParams.TokenLifetime),
                 signingCredentials: credentials);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new Token {
+                AccessToken = new JwtSecurityTokenHandler().WriteToken(token)
+            };
         }
     }
 }

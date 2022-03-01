@@ -30,11 +30,7 @@ namespace Auth.Controllers
                 try
                 {
                     var account = await authService.SignIn(request);
-
-                    return Ok(new Token
-                    {
-                        AccessToken = authService.GenerateJWT(account)
-                    });
+                    return Ok(authService.GenerateJWT(account));
                 }
                 catch (Exception exc)
                 {
@@ -56,11 +52,7 @@ namespace Auth.Controllers
                 try
                 {
                     var account = await authService.SignUp(request);
-
-                    return Ok(new Token
-                    {
-                        AccessToken = authService.GenerateJWT(account)
-                    });
+                    return Ok(authService.GenerateJWT(account));
                 }
                 catch(Exception exc)
                 {

@@ -37,7 +37,7 @@ public class AuthServiceTests
         };
 
         _accRepoMock.Setup(x => x.GetByEmailAsync(email))
-            .ReturnsAsync(default(Account));
+            .ReturnsAsync((Account)null);
 
         //Act
         var account = await _as.SignUp(data);

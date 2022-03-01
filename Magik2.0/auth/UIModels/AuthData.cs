@@ -9,9 +9,9 @@ namespace Auth.UIModels
     public class AuthData
     {
         [EmailAddress]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
         [MinLength(5)]
-        public string Password { get; set; }
+        public string Password { get; set; } = null!;
     }
 }
