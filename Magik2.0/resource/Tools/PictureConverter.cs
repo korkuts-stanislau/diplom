@@ -6,6 +6,12 @@ namespace Resource.Tools;
 
 public class PictureConverter
 {
+    /// <summary>
+    /// Create icon from image
+    /// </summary>
+    /// <param name="image">Binary image that should be converted</param>
+    /// <param name="iconSize">Size of the resulting icon</param>
+    /// <returns>Icon</returns>
     public byte[] CreateIconFromImage(byte[] image, int iconSize=128) {
         Bitmap bmp;
         using var ms = new MemoryStream(image);
@@ -14,6 +20,13 @@ public class PictureConverter
         return ImageToByte(bmp);
     }
 
+    /// <summary>
+    /// Restrict image height and width
+    /// </summary>
+    /// <param name="image">Binary image that should be restricted</param>
+    /// <param name="maxWidth">New max width for image</param>
+    /// <param name="maxHeight">New max height for image</param>
+    /// <returns>Restricted image</returns>
     public byte[] RestrictImage(byte[] image, int maxWidth = 512, int maxHeight = 512) {
         Bitmap bmp;
         using var ms = new MemoryStream(image);

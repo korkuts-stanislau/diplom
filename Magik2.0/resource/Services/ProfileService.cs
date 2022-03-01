@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Resource.Data;
+using Resource.Data.Interfaces;
 using Resource.Tools;
 using Resource.UIModels;
 
@@ -7,18 +8,18 @@ namespace Resource.Services;
 
 public class ProfileService
 {
-    private readonly AppDbContext _context;
-    private readonly PictureConverter _converter;
+    private readonly IProfileRepository rep;
+    private readonly PictureConverter converter;
 
     /// <summary>
     /// Service for accounts' profiles management
     /// </summary>
-    /// <param name="context">Data context</param>
+    /// <param name="rep">Profile repository</param>
     /// <param name="converter">Pictures converter</param>
-    public ProfileService(AppDbContext context, PictureConverter converter)
+    public ProfileService(IProfileRepository rep, PictureConverter converter)
     {
-        _context = context;
-        _converter = converter;
+        this.rep = rep;
+        this.converter = converter;
     }
 
     /// <summary>
@@ -28,7 +29,7 @@ public class ProfileService
     /// <returns>Account profile</returns>
     public async Task<Profile?> GetProfileOrDefault(string accountId)
     {
-        var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.AccountId == accountId);
+        var profile = await rep.FirstOrDefaultAsync(accountId);
         if (profile == null) return null;
         
         return new Profile
@@ -47,7 +48,7 @@ public class ProfileService
     /// <returns>Created profile</returns>
     public async Task<Profile> CreateProfile(string accountId, string email)
     {
-        var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.AccountId == accountId);
+        var profile = await rep.FirstOrDefaultAsync(accountId);
         if (profile != null) throw new Exception("У этого пользователя уже есть профиль");
 
         profile = new Models.Profile
@@ -59,8 +60,7 @@ public class ProfileService
             Picture = null
         };
 
-        await _context.Profiles.AddAsync(profile);
-        await _context.SaveChangesAsync();
+        await rep.CreateAsync(profile);
 
         return new Profile
         {
@@ -76,16 +76,16 @@ public class ProfileService
     /// <param name="accountId">Account ID</param>
     /// <param name="editedProfile">Profile update data</param>
     public async Task UpdateProfile(string accountId, UIModels.Profile editedProfile) {
-        var profile = await _context.Profiles.FirstOrDefaultAsync(p => p.AccountId == accountId);
+        var profile = await rep.FirstOrDefaultAsync(accountId);
         if(profile == null) throw new Exception("У этого пользователя нет профиля");
 
         profile.Username = editedProfile.Username;
         profile.Description = editedProfile.Description;
         if(!string.IsNullOrEmpty(editedProfile.Picture)) {
-            profile.Picture = _converter.RestrictImage(Convert.FromBase64String(editedProfile.Picture));
-            profile.Icon = _converter.CreateIconFromImage(profile.Picture);
+            profile.Picture = converter.RestrictImage(Convert.FromBase64String(editedProfile.Picture));
+            profile.Icon = converter.CreateIconFromImage(profile.Picture);
         }
-        _context.Profiles.Update(profile);
-        await _context.SaveChangesAsync();
+
+        await rep.UpdateAsync(profile);
     }
 }

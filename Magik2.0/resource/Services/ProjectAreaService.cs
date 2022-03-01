@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Resource.Data;
+using Resource.Data.Interfaces;
 using Resource.Tools;
 using Resource.UIModels;
 
@@ -7,18 +8,17 @@ namespace Resource.Services;
 
 public class ProjectAreaService
 {
-    private readonly AppDbContext context;
+    private readonly IProjectAreaRepository rep;
     private readonly PictureConverter converter;
 
     /// <summary>
     /// Service for project areas management
     /// </summary>
-    /// <param name="context">Data context</param>
+    /// <param name="rep">Project area repository</param>
     /// <param name="converter">Pictures converter</param>
-    public ProjectAreaService(AppDbContext context,
-        PictureConverter converter)
+    public ProjectAreaService(IProjectAreaRepository rep, PictureConverter converter)
     {
-        this.context = context;
+        this.rep = rep;
         this.converter = converter;
     }
 
@@ -32,10 +32,9 @@ public class ProjectAreaService
         Models.ProjectArea newArea = new Models.ProjectArea {
             Name = area.Name,
             AccountId = accountId,
-            Icon = string.IsNullOrEmpty(area.Icon) ? new byte[0] : converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128)            
+            Icon = string.IsNullOrEmpty(area.Icon) ? null : converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128)            
         };
-        await context.ProjectAreas.AddAsync(newArea);
-        await context.SaveChangesAsync();
+        await rep.CreateAsync(newArea);
         return newArea.Id;
     }
 
@@ -45,14 +44,12 @@ public class ProjectAreaService
     /// <param name="accountId">Account ID</param>
     /// <returns>List of project areas of passed account</returns>
     public async Task<IEnumerable<ProjectArea>> GetProjectAreas(string accountId) {
-        return await context.ProjectAreas
-            .Where(area => area.AccountId == accountId)
+        return (await rep.GetAsync(accountId))
             .Select(area => new ProjectArea {
                 Id = area.Id,
                 Name = area.Name,
                 Icon = area.Icon != null ? Convert.ToBase64String(area.Icon) : ""
-            })
-            .ToListAsync();
+            });
     }
 
     /// <summary>
@@ -64,8 +61,7 @@ public class ProjectAreaService
         var areaToEdit = await ValidateAndGetProjectAreaAsync(area.Id, accountId);
         areaToEdit.Name = area.Name;
         if(!string.IsNullOrEmpty(area.Icon)) areaToEdit.Icon = converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128);
-        context.ProjectAreas.Update(areaToEdit);
-        await context.SaveChangesAsync();
+        await rep.UpdateAsync(areaToEdit);
     }
 
     /// <summary>
@@ -75,12 +71,11 @@ public class ProjectAreaService
     /// <param name="accountId">Account ID</param>
     public async Task DeleteProjectArea(int areaId, string accountId) {
         var area = await ValidateAndGetProjectAreaAsync(areaId, accountId);
-        context.ProjectAreas.Remove(area);
-        await context.SaveChangesAsync();
+        await rep.DeleteAsync(area);
     }
 
     private async Task<Models.ProjectArea> ValidateAndGetProjectAreaAsync(int areaId, string accountId) {
-        var area = await context.ProjectAreas.FirstOrDefaultAsync(a => a.Id == areaId);
+        var area = await rep.FirstOrDefaultAsync(areaId);
         if(area == null) throw new Exception("Нет такой области проектов");
         if(area.AccountId != accountId) throw new Exception("Эта область проектов принадлежит другому пользователю");
         return area;

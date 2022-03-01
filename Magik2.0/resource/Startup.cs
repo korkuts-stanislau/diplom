@@ -16,6 +16,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Resource.Services;
 using Resource.Tools;
+using Resource.Data.Interfaces;
+using Resource.Data.Implementations;
 
 namespace Resource
 {
@@ -68,6 +70,9 @@ namespace Resource
             {
                 opts.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
+
+            services.AddTransient<IProfileRepository, MSProfileRepository>();
+            services.AddTransient<IProjectAreaRepository, MSProjectAreaRepository>();
 
             services.AddScoped<ProfileService>();
             services.AddScoped<ProjectAreaService>();
