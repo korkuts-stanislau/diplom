@@ -42,7 +42,7 @@ public class ProfileController : ControllerBase
 
     [Route("")]
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody]UIModels.Profile profile)
+    public async Task<IActionResult> Update([FromBody]UIModels.ProfileUI profile)
     {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;

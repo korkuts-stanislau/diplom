@@ -40,6 +40,11 @@ public class PictureConverter
         return ImageToByte(bmp);
     }
 
+    /// <summary>
+    /// Convert image to byte array
+    /// </summary>
+    /// <param name="img">Image</param>
+    /// <returns>Byte array representing image</returns>
     public byte[] ImageToByte(Image img)
     {
         using var stream = new MemoryStream();
@@ -47,6 +52,11 @@ public class PictureConverter
         return stream.ToArray();
     }
 
+    /// <summary>
+    /// Convert byte array to image
+    /// </summary>
+    /// <param name="img">Byte array representing image</param>
+    /// <returns>Image</returns>
     public Image ByteToImage(byte[] img) {
         using var stream = new MemoryStream(img);
         return Image.FromStream(stream);

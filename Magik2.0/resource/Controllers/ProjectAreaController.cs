@@ -27,7 +27,7 @@ public class ProjectAreaController : ControllerBase {
 
     [HttpPost]
     [Route("")]
-    public async Task<IActionResult> Create([FromBody]ProjectArea area) {
+    public async Task<IActionResult> Create([FromBody]ProjectAreaUI area) {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
@@ -45,7 +45,7 @@ public class ProjectAreaController : ControllerBase {
 
     [HttpPut]
     [Route("")]
-    public async Task<IActionResult> Update([FromBody]ProjectArea area) {
+    public async Task<IActionResult> Update([FromBody]ProjectAreaUI area) {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {

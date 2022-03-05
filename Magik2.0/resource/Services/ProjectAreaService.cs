@@ -10,16 +10,18 @@ public class ProjectAreaService
 {
     private readonly IProjectAreaRepository rep;
     private readonly PictureConverter converter;
+    private readonly UserAccessValidator accessValidator;
 
     /// <summary>
     /// Service for project areas management
     /// </summary>
     /// <param name="rep">Project area repository</param>
     /// <param name="converter">Pictures converter</param>
-    public ProjectAreaService(IProjectAreaRepository rep, PictureConverter converter)
+    public ProjectAreaService(IProjectAreaRepository rep, PictureConverter converter, UserAccessValidator accessValidator)
     {
         this.rep = rep;
         this.converter = converter;
+        this.accessValidator = accessValidator;
     }
 
     /// <summary>
@@ -28,7 +30,7 @@ public class ProjectAreaService
     /// <param name="area">Project area to create</param>
     /// <param name="accountId">Account ID</param>
     /// <returns>Created project area ID</returns>
-    public async Task<int> CreateProjectAreaAsync(UIModels.ProjectArea area, string accountId) {
+    public async Task<int> CreateProjectAreaAsync(UIModels.ProjectAreaUI area, string accountId) {
         Models.ProjectArea newArea = new Models.ProjectArea {
             Name = area.Name,
             AccountId = accountId,
@@ -43,9 +45,9 @@ public class ProjectAreaService
     /// </summary>
     /// <param name="accountId">Account ID</param>
     /// <returns>List of project areas of passed account</returns>
-    public async Task<IEnumerable<ProjectArea>> GetProjectAreasAsync(string accountId) {
+    public async Task<IEnumerable<ProjectAreaUI>> GetProjectAreasAsync(string accountId) {
         return (await rep.GetAsync(accountId))
-            .Select(area => new ProjectArea {
+            .Select(area => new ProjectAreaUI {
                 Id = area.Id,
                 Name = area.Name,
                 Icon = area.Icon != null ? Convert.ToBase64String(area.Icon) : ""
@@ -57,8 +59,8 @@ public class ProjectAreaService
     /// </summary>
     /// <param name="area">Update project area info</param>
     /// <param name="accountId">Account ID</param>
-    public async Task UpdateProjectAreaAsync(UIModels.ProjectArea area, string accountId) {
-        var areaToEdit = await ValidateAndGetProjectAreaAsync(area.Id, accountId);
+    public async Task UpdateProjectAreaAsync(UIModels.ProjectAreaUI area, string accountId) {
+        var areaToEdit = await accessValidator.ValidateAndGetProjectAreaAsync(area.Id, accountId, rep);
         areaToEdit.Name = area.Name;
         if(!string.IsNullOrEmpty(area.Icon)) areaToEdit.Icon = converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128);
         await rep.UpdateAsync(areaToEdit);
@@ -70,14 +72,7 @@ public class ProjectAreaService
     /// <param name="areaId">Project area ID</param>
     /// <param name="accountId">Account ID</param>
     public async Task DeleteProjectAreaAsync(int areaId, string accountId) {
-        var area = await ValidateAndGetProjectAreaAsync(areaId, accountId);
+        var area = await accessValidator.ValidateAndGetProjectAreaAsync(areaId, accountId, rep);
         await rep.DeleteAsync(area);
-    }
-
-    private async Task<Models.ProjectArea> ValidateAndGetProjectAreaAsync(int areaId, string accountId) {
-        var area = await rep.FirstOrDefaultAsync(areaId);
-        if(area == null) throw new Exception("Нет такой области проектов");
-        if(area.AccountId != accountId) throw new Exception("Эта область проектов принадлежит другому пользователю");
-        return area;
-    }    
+    }  
 }

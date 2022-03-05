@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Resource.UIModels;
 
-public class ProjectArea
+public class ProjectAreaUI
 {
     public int Id { get; set; }
     [StringLength(50)]

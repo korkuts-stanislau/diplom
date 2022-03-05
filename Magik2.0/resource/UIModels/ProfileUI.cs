@@ -2,7 +2,7 @@
 
 namespace Resource.UIModels;
 
-public class Profile
+public class ProfileUI
 {
     [Required]
     [StringLength(50)]

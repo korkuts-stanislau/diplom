@@ -14,10 +14,11 @@ public class ProjectAreaServiceTests {
     private readonly ProjectAreaService projectAreaService;
     private readonly Mock<IProjectAreaRepository> projectAreaRepoMock = new Mock<IProjectAreaRepository>();
     private readonly PictureConverter pictureConverter = new PictureConverter();
+    private readonly UserAccessValidator accessValidator = new UserAccessValidator();
     
     public ProjectAreaServiceTests()
     {
-        projectAreaService = new ProjectAreaService(projectAreaRepoMock.Object, pictureConverter);
+        projectAreaService = new ProjectAreaService(projectAreaRepoMock.Object, pictureConverter, accessValidator);
     }
 
     [Fact]
