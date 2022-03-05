@@ -2,15 +2,15 @@ using Xunit;
 using Auth.Services;
 using System.Threading.Tasks;
 
-namespace Tests.Auth;
+namespace Tests.AuthTests.Services;
 
 public class PasswordHasherServiceTests
 {
-    private readonly PasswordHasherService _phs;
+    private readonly PasswordHasherService passHasherService;
 
     public PasswordHasherServiceTests()
     {
-        _phs = new PasswordHasherService();
+        passHasherService = new PasswordHasherService();
     }
 
     [Fact]
@@ -21,10 +21,10 @@ public class PasswordHasherServiceTests
         var wrongPassword = "WrongPassword";
 
         //Act
-        var hash = _phs.Hash(password);
+        var hash = passHasherService.Hash(password);
 
         //Assert
-        Assert.True(_phs.Verify(password, hash));
-        Assert.False(_phs.Verify(wrongPassword, hash));
+        Assert.True(passHasherService.Verify(password, hash));
+        Assert.False(passHasherService.Verify(wrongPassword, hash));
     }
 }

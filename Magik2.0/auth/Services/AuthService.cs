@@ -41,7 +41,7 @@ namespace Auth.Services
         /// </summary>
         /// <param name="auth">Authentication data</param>
         /// <returns>User account</returns>
-        public async Task<Account> SignIn(UIModels.AuthData auth)
+        public async Task<Account> SignInAsync(UIModels.AuthData auth)
         {
             var account = await rep.GetByEmailAsync(auth.Email);
 
@@ -56,7 +56,7 @@ namespace Auth.Services
         /// </summary>
         /// <param name="auth">Authentication data</param>
         /// <returns>New user's account</returns>
-        public async Task<Account> SignUp(UIModels.AuthData auth)
+        public async Task<Account> SignUpAsync(UIModels.AuthData auth)
         {
             var account = await rep.GetByEmailAsync(auth.Email);
 

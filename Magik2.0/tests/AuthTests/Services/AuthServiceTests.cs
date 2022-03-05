@@ -9,19 +9,19 @@ using Auth.UIModels;
 using Auth.Models;
 using System;
 
-namespace Tests.Auth;
+namespace Tests.AuthTests.Services;
 
 public class AuthServiceTests
 {
-    private readonly AuthService _as;
-    private readonly Mock<IOptions<AuthOptions>> _authOptionsMock = new Mock<IOptions<AuthOptions>>();
-    private readonly Mock<IAccountRepository> _accRepoMock = new Mock<IAccountRepository>();
-    private readonly PasswordHasherService _phs = new PasswordHasherService();
+    private readonly AuthService authService;
+    private readonly Mock<IOptions<AuthOptions>> authOptionsMock = new Mock<IOptions<AuthOptions>>();
+    private readonly Mock<IAccountRepository> accRepoMock = new Mock<IAccountRepository>();
+    private readonly PasswordHasherService passHasherService = new PasswordHasherService();
     
 
     public AuthServiceTests()
     {
-        _as = new AuthService(_authOptionsMock.Object, _accRepoMock.Object, _phs);
+        authService = new AuthService(authOptionsMock.Object, accRepoMock.Object, passHasherService);
     }
 
     [Fact]
@@ -36,16 +36,16 @@ public class AuthServiceTests
             Password = password
         };
 
-        _accRepoMock.Setup(x => x.GetByEmailAsync(email))
+        accRepoMock.Setup(x => x.GetByEmailAsync(email))
             .ReturnsAsync((Account)null!);
 
         //Act
-        var account = await _as.SignUp(data);
+        var account = await authService.SignUpAsync(data);
         
         //Assert
         Assert.Equal(data.Email, account.Email);
         Assert.Equal(Role.User, account.Roles[0]);
-        Assert.Equal(1, account.Roles.Length);
+        Assert.Single(account.Roles);
     }
 
     [Fact]
@@ -61,18 +61,18 @@ public class AuthServiceTests
         };
         Account userAccount = new Account {
             Email = email,
-            PasswordHash = _phs.Hash(password),
+            PasswordHash = passHasherService.Hash(password),
             Roles = new Role[] {Role.User}
         };
 
-        _accRepoMock.Setup(x => x.GetByEmailAsync(email))
+        accRepoMock.Setup(x => x.GetByEmailAsync(email))
             .ReturnsAsync(userAccount);
 
         //Act
-        Func<Task> signUp = async () => await _as.SignUp(data);
+        Func<Task> signUp = async () => await authService.SignUpAsync(data);
 
         //Assert
-        await Assert.ThrowsAsync<Exception>(signUp);
+        await Assert.ThrowsAsync<ArgumentException>(signUp);
     }
 
     [Fact]
@@ -88,20 +88,20 @@ public class AuthServiceTests
         };
         Account userAccount = new Account {
             Email = email,
-            PasswordHash = _phs.Hash(password),
+            PasswordHash = passHasherService.Hash(password),
             Roles = new Role[] {Role.User}
         };
 
-        _accRepoMock.Setup(x => x.GetByEmailAsync(email))
+        accRepoMock.Setup(x => x.GetByEmailAsync(email))
             .ReturnsAsync(userAccount);
 
         //Act
-        var account = await _as.SignIn(data);
+        var account = await authService.SignInAsync(data);
         
         //Assert
-        Assert.Equal(account.Email, userAccount.Email);
-        Assert.Equal(account.Roles[0], userAccount.Roles[0]);
-        Assert.Equal(account.PasswordHash, userAccount.PasswordHash);
+        Assert.Equal(userAccount.Email, account.Email);
+        Assert.Equal(userAccount.Roles[0], account.Roles[0]);
+        Assert.Equal(userAccount.PasswordHash, account.PasswordHash);
     }
 
     [Fact]
@@ -118,18 +118,18 @@ public class AuthServiceTests
         };
         Account userAccount = new Account {
             Email = email,
-            PasswordHash = _phs.Hash(password),
+            PasswordHash = passHasherService.Hash(password),
             Roles = new Role[] {Role.User}
         };
 
-        _accRepoMock.Setup(x => x.GetByEmailAsync(email))
+        accRepoMock.Setup(x => x.GetByEmailAsync(email))
             .ReturnsAsync(userAccount);
 
         //Act
-        Func<Task> signIn = async() => await _as.SignIn(data);
+        Func<Task> signIn = async() => await authService.SignInAsync(data);
         
         //Assert
-        await Assert.ThrowsAsync<Exception>(signIn);
+        await Assert.ThrowsAsync<ArgumentException>(signIn);
     }
 
     [Fact]
@@ -144,13 +144,13 @@ public class AuthServiceTests
             Password = password
         };
 
-        _accRepoMock.Setup(x => x.GetByEmailAsync(wrongEmail))
+        accRepoMock.Setup(x => x.GetByEmailAsync(wrongEmail))
             .ReturnsAsync((Account)null!);
 
         //Act
-        Func<Task> signIn = async() => await _as.SignIn(data);
+        Func<Task> signIn = async() => await authService.SignInAsync(data);
         
         //Assert
-        await Assert.ThrowsAsync<Exception>(signIn);
+        await Assert.ThrowsAsync<ArgumentException>(signIn);
     }
 }

@@ -29,7 +29,7 @@ namespace Auth.Controllers
             {
                 try
                 {
-                    var account = await authService.SignIn(request);
+                    var account = await authService.SignInAsync(request);
                     return Ok(authService.GenerateJWT(account));
                 }
                 catch (Exception exc)
@@ -51,7 +51,7 @@ namespace Auth.Controllers
             {
                 try
                 {
-                    var account = await authService.SignUp(request);
+                    var account = await authService.SignUpAsync(request);
                     return Ok(authService.GenerateJWT(account));
                 }
                 catch(Exception exc)

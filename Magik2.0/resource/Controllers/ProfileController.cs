@@ -24,13 +24,13 @@ public class ProfileController : ControllerBase
     public async Task<IActionResult> Get()
     {
         var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        var profile = await _profileService.GetProfileOrDefault(accountId);
+        var profile = await _profileService.GetProfileOrDefaultAsync(accountId);
         
         if (profile == null)
         {
             try {
                 var email = User.Claims.Single(c => c.Type == ClaimTypes.Email).Value;
-                profile = await _profileService.CreateProfile(accountId, email);
+                profile = await _profileService.CreateProfileAsync(accountId, email);
             }
             catch(Exception exc) {
                 return BadRequest(exc.Message);
@@ -47,7 +47,7 @@ public class ProfileController : ControllerBase
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
-                await _profileService.UpdateProfile(accountId, profile);
+                await _profileService.UpdateProfileAsync(accountId, profile);
                 return Ok();
             }
             catch(Exception exc) {

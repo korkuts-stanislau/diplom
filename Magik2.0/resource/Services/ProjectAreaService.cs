@@ -28,7 +28,7 @@ public class ProjectAreaService
     /// <param name="area">Project area to create</param>
     /// <param name="accountId">Account ID</param>
     /// <returns>Created project area ID</returns>
-    public async Task<int> CreateProjectArea(UIModels.ProjectArea area, string accountId) {
+    public async Task<int> CreateProjectAreaAsync(UIModels.ProjectArea area, string accountId) {
         Models.ProjectArea newArea = new Models.ProjectArea {
             Name = area.Name,
             AccountId = accountId,
@@ -43,7 +43,7 @@ public class ProjectAreaService
     /// </summary>
     /// <param name="accountId">Account ID</param>
     /// <returns>List of project areas of passed account</returns>
-    public async Task<IEnumerable<ProjectArea>> GetProjectAreas(string accountId) {
+    public async Task<IEnumerable<ProjectArea>> GetProjectAreasAsync(string accountId) {
         return (await rep.GetAsync(accountId))
             .Select(area => new ProjectArea {
                 Id = area.Id,
@@ -57,7 +57,7 @@ public class ProjectAreaService
     /// </summary>
     /// <param name="area">Update project area info</param>
     /// <param name="accountId">Account ID</param>
-    public async Task UpdateProjectArea(UIModels.ProjectArea area, string accountId) {
+    public async Task UpdateProjectAreaAsync(UIModels.ProjectArea area, string accountId) {
         var areaToEdit = await ValidateAndGetProjectAreaAsync(area.Id, accountId);
         areaToEdit.Name = area.Name;
         if(!string.IsNullOrEmpty(area.Icon)) areaToEdit.Icon = converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128);
@@ -69,7 +69,7 @@ public class ProjectAreaService
     /// </summary>
     /// <param name="areaId">Project area ID</param>
     /// <param name="accountId">Account ID</param>
-    public async Task DeleteProjectArea(int areaId, string accountId) {
+    public async Task DeleteProjectAreaAsync(int areaId, string accountId) {
         var area = await ValidateAndGetProjectAreaAsync(areaId, accountId);
         await rep.DeleteAsync(area);
     }

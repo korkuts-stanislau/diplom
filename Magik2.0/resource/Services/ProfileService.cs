@@ -27,7 +27,7 @@ public class ProfileService
     /// </summary>
     /// <param name="accountId">Account ID</param>
     /// <returns>Account profile</returns>
-    public async Task<Profile?> GetProfileOrDefault(string accountId)
+    public async Task<Profile?> GetProfileOrDefaultAsync(string accountId)
     {
         var profile = await rep.FirstOrDefaultAsync(accountId);
         if (profile == null) return null;
@@ -46,7 +46,7 @@ public class ProfileService
     /// <param name="accountId">Account ID</param>
     /// <param name="email">User email</param>
     /// <returns>Created profile</returns>
-    public async Task<Profile> CreateProfile(string accountId, string email)
+    public async Task<Profile> CreateProfileAsync(string accountId, string email)
     {
         var profile = await rep.FirstOrDefaultAsync(accountId);
         if (profile != null) throw new Exception("У этого пользователя уже есть профиль");
@@ -75,7 +75,7 @@ public class ProfileService
     /// </summary>
     /// <param name="accountId">Account ID</param>
     /// <param name="editedProfile">Profile update data</param>
-    public async Task UpdateProfile(string accountId, UIModels.Profile editedProfile) {
+    public async Task UpdateProfileAsync(string accountId, UIModels.Profile editedProfile) {
         var profile = await rep.FirstOrDefaultAsync(accountId);
         if(profile == null) throw new Exception("У этого пользователя нет профиля");
 

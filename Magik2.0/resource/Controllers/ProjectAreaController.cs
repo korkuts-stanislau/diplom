@@ -22,7 +22,7 @@ public class ProjectAreaController : ControllerBase {
     [Route("")]
     public async Task<IActionResult> Get() {
         var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
-        return Ok(await projectAreaService.GetProjectAreas(accountId));
+        return Ok(await projectAreaService.GetProjectAreasAsync(accountId));
     }
 
     [HttpPost]
@@ -31,7 +31,7 @@ public class ProjectAreaController : ControllerBase {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
-                int newAreaId = await projectAreaService.CreateProjectArea(area, accountId);
+                int newAreaId = await projectAreaService.CreateProjectAreaAsync(area, accountId);
                 return Ok(newAreaId);
             }
             catch(Exception exc) {
@@ -49,7 +49,7 @@ public class ProjectAreaController : ControllerBase {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
-                await projectAreaService.UpdateProjectArea(area, accountId);
+                await projectAreaService.UpdateProjectAreaAsync(area, accountId);
                 return Ok();
             }
             catch(Exception exc) {
@@ -66,7 +66,7 @@ public class ProjectAreaController : ControllerBase {
     public async Task<IActionResult> Delete(int id) {
         var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
         try {
-            await projectAreaService.DeleteProjectArea(id, accountId);
+            await projectAreaService.DeleteProjectAreaAsync(id, accountId);
             return Ok();
         }
         catch(Exception exc) {
