@@ -8,9 +8,9 @@
     ".NETCoreApp,Version=v6.0": {
       "auth/1.0.0": {
         "dependencies": {
+          "Common": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.1",
           "Swashbuckle.AspNetCore": "6.2.3",
-          "common": "1.0.0",
           "MongoDB.Driver": "2.14.1"
         },
         "runtime": {
@@ -264,12 +264,12 @@
       },
       "System.Runtime.CompilerServices.Unsafe/5.0.0": {},
       "System.Security.Cryptography.Cng/4.5.0": {},
-      "common/1.0.0": {
+      "Common/1.0.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "6.15.0"
         },
         "runtime": {
-          "common.dll": {}
+          "Common.dll": {}
         }
       }
     }
@@ -441,7 +441,7 @@
       "path": "system.security.cryptography.cng/4.5.0",
       "hashPath": "system.security.cryptography.cng.4.5.0.nupkg.sha512"
     },
-    "common/1.0.0": {
+    "Common/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

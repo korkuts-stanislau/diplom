@@ -1,0 +1,35 @@
+.modal-window {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.2);
+    animation: slow-show .3s;
+}
+
+.modal-content {
+    background-color: #f4f4f4;
+    margin: 100px auto;
+    padding: 20px;
+    width: 500px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    animation: slow-show .3s;
+}
+
+.close-modal-button {
+    width: 33px;
+    height: 33px;
+    border-radius: 50% !important;
+}
+
+@media (max-width: 700px) {
+    .modal-content {
+        width: calc(100% - 40px - 20px);
+        margin: 60px 10px;
+        border-radius: 5px;
+    }
+}
