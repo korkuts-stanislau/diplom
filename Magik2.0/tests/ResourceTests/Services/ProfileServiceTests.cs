@@ -12,6 +12,7 @@ namespace Tests.ResourceTests.Services;
 
 public class ProfileServiceTests {
     private readonly ProfileService profileService;
+    private readonly Mock<IUnitOfWork> uofMock = new Mock<IUnitOfWork>();
     private readonly Mock<IProfileRepository> profileRepoMock = new Mock<IProfileRepository>();
     private readonly PictureConverter pictureConverter = new PictureConverter();
 
@@ -25,7 +26,10 @@ public class ProfileServiceTests {
         });
         AutoMapper.IMapper mapper = mappingConfig.CreateMapper();
 
-        profileService = new ProfileService(profileRepoMock.Object, pictureConverter, mapper);
+        uofMock.Setup(x => x.Profiles)
+            .Returns(profileRepoMock.Object);
+
+        profileService = new ProfileService(uofMock.Object, pictureConverter, mapper);
     }
 
     [Fact]

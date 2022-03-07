@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 using Resource.Services;
 using Resource.Tools;
 using Resource.Data.Interfaces;
-using Resource.Data.Implementations;
+using Resource.Data.MSImplementations;
 
 namespace Resource
 {
@@ -73,11 +73,10 @@ namespace Resource
                 opts.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
 
-            services.AddTransient<IProfileRepository, MSProfileRepository>();
-            services.AddTransient<IProjectAreaRepository, MSProjectAreaRepository>();
-            
-            services.AddTransient<UserAccessValidator>();
             services.AddTransient<PictureConverter>();
+            
+            services.AddScoped<IUnitOfWork, MSUnitOfWork>();
+            services.AddScoped<UserAccessValidator>();
             
             services.AddScoped<ProfileService>();
             services.AddScoped<ProjectAreaService>();

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Resource.Data.Interfaces;
 using Resource.Models;
 
-namespace Resource.Data.Implementations;
+namespace Resource.Data.MSImplementations;
 
 public class MSProjectRepository : IProjectRepository
 {

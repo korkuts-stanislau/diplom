@@ -13,9 +13,10 @@ namespace Tests.ResourceTests.Services;
 
 public class ProjectAreaServiceTests {
     private readonly ProjectAreaService projectAreaService;
+    private readonly Mock<IUnitOfWork> uofMock = new Mock<IUnitOfWork>();
     private readonly Mock<IProjectAreaRepository> projectAreaRepoMock = new Mock<IProjectAreaRepository>();
     private readonly PictureConverter pictureConverter = new PictureConverter();
-    private readonly UserAccessValidator accessValidator = new UserAccessValidator();
+    private readonly UserAccessValidator accessValidator;
     
     public ProjectAreaServiceTests()
     {
@@ -26,8 +27,14 @@ public class ProjectAreaServiceTests {
             });
         });
         AutoMapper.IMapper mapper = mappingConfig.CreateMapper();
+
         
-        projectAreaService = new ProjectAreaService(projectAreaRepoMock.Object, pictureConverter, accessValidator, mapper);
+        uofMock.Setup(x => x.ProjectAreas)
+            .Returns(projectAreaRepoMock.Object);
+
+        accessValidator = new UserAccessValidator(uofMock.Object);
+        
+        projectAreaService = new ProjectAreaService(uofMock.Object, pictureConverter, accessValidator, mapper);
     }
 
     [Fact]

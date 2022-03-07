@@ -1,25 +1,40 @@
+using AutoMapper;
 using Resource.Data.Interfaces;
+using Resource.Models;
 using Resource.Tools;
 using Resource.UIModels;
 
 namespace Resource.Services;
 
 public class ProjectService {
-    private readonly IProjectRepository projectRep;
-    private readonly IProjectAreaRepository areaRep;
+    private readonly IUnitOfWork uof;
     private readonly UserAccessValidator accessValidator;
+    private readonly IMapper mapper;
 
-    public ProjectService(IProjectRepository projectRep, IProjectAreaRepository areaRep, UserAccessValidator accessValidator)
+    public ProjectService(IUnitOfWork uof, UserAccessValidator accessValidator, IMapper mapper)
     {
-        this.projectRep = projectRep;
-        this.areaRep = areaRep;
+        this.uof = uof;
         this.accessValidator = accessValidator;
+        this.mapper = mapper;
+    }
+
+    public async Task CreateProjectAsync(string accountId, int projectAreaId, ProjectUI project) {
+        await accessValidator.ValidateAndGetProjectAreaAsync(accountId, projectAreaId);
+        Project newProject = new Project {
+            ProjectAreaId = projectAreaId,
+            Name = project.Name,
+            Description = project.Description
+        };
+        await uof.Projects.CreateAsync(newProject);
+        project.Id = newProject.Id;
     }
 
     public async Task<IEnumerable<ProjectUI>> GetProjectsAsync(string accountId, int areaId) {
-        await accessValidator.ValidateAndGetProjectAreaAsync(accountId, areaId, areaRep);
-        throw new NotImplementedException();
+        await accessValidator.ValidateAndGetProjectAreaAsync(accountId, areaId);
+        return mapper.Map<IEnumerable<ProjectUI>>(await uof.Projects.GetAsync(areaId));
     }
 
-     
+    public async Task UpdateProjectAsync(string accountId, ProjectUI project) {
+        throw new NotImplementedException();
+    }
 }
