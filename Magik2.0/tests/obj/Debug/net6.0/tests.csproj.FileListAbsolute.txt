@@ -166,3 +166,5 @@ D:\university\diplom\Magik2.0\tests\obj\Debug\net6.0\tests.dll
 D:\university\diplom\Magik2.0\tests\obj\Debug\net6.0\ref\tests.dll
 D:\university\diplom\Magik2.0\tests\obj\Debug\net6.0\tests.pdb
 D:\university\diplom\Magik2.0\tests\obj\Debug\net6.0\tests.genruntimeconfig.cache
+D:\university\diplom\Magik2.0\tests\bin\Debug\net6.0\AutoMapper.dll
+D:\university\diplom\Magik2.0\tests\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

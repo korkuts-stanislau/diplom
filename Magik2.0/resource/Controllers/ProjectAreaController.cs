@@ -31,8 +31,8 @@ public class ProjectAreaController : ControllerBase {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
-                int newAreaId = await projectAreaService.CreateProjectAreaAsync(area, accountId);
-                return Ok(newAreaId);
+                await projectAreaService.CreateProjectAreaAsync(accountId, area);
+                return Ok(area.Id);
             }
             catch(Exception exc) {
                 return BadRequest(exc.Message);
@@ -49,7 +49,7 @@ public class ProjectAreaController : ControllerBase {
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
-                await projectAreaService.UpdateProjectAreaAsync(area, accountId);
+                await projectAreaService.UpdateProjectAreaAsync(accountId, area);
                 return Ok();
             }
             catch(Exception exc) {
@@ -66,7 +66,7 @@ public class ProjectAreaController : ControllerBase {
     public async Task<IActionResult> Delete(int id) {
         var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
         try {
-            await projectAreaService.DeleteProjectAreaAsync(id, accountId);
+            await projectAreaService.DeleteProjectAreaAsync(accountId, id);
             return Ok();
         }
         catch(Exception exc) {

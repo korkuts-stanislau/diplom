@@ -14,11 +14,6 @@ public class ProjectAreaService
     private readonly UserAccessValidator accessValidator;
     private readonly IMapper mapper;
 
-    /// <summary>
-    /// Service for project areas management
-    /// </summary>
-    /// <param name="rep">Project area repository</param>
-    /// <param name="converter">Pictures converter</param>
     public ProjectAreaService(IProjectAreaRepository rep, PictureConverter converter, UserAccessValidator accessValidator, IMapper mapper)
     {
         this.rep = rep;
@@ -27,50 +22,30 @@ public class ProjectAreaService
         this.mapper = mapper;
     }
 
-    /// <summary>
-    /// Create project area for account
-    /// </summary>
-    /// <param name="area">Project area to create</param>
-    /// <param name="accountId">Account ID</param>
-    /// <returns>Created project area ID</returns>
-    public async Task<int> CreateProjectAreaAsync(UIModels.ProjectAreaUI area, string accountId) {
+    public async Task CreateProjectAreaAsync(string accountId, UIModels.ProjectAreaUI area) {
+        var icon = string.IsNullOrEmpty(area.Icon) ? null : converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128); // create icon from user image
         Models.ProjectArea newArea = new Models.ProjectArea {
             Name = area.Name,
             AccountId = accountId,
-            Icon = string.IsNullOrEmpty(area.Icon) ? null : converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128)         
+            Icon = icon
         };
         await rep.CreateAsync(newArea);
-        return newArea.Id;
+        area.Id = newArea.Id;
     }
 
-    /// <summary>
-    /// Get all account project areas
-    /// </summary>
-    /// <param name="accountId">Account ID</param>
-    /// <returns>List of project areas of passed account</returns>
     public async Task<IEnumerable<ProjectAreaUI>> GetProjectAreasAsync(string accountId) {
         return mapper.Map<IEnumerable<ProjectAreaUI>>(await rep.GetAsync(accountId));
     }
 
-    /// <summary>
-    /// Update project area for account
-    /// </summary>
-    /// <param name="area">Update project area info</param>
-    /// <param name="accountId">Account ID</param>
-    public async Task UpdateProjectAreaAsync(UIModels.ProjectAreaUI area, string accountId) {
-        var areaToEdit = await accessValidator.ValidateAndGetProjectAreaAsync(area.Id, accountId);
+    public async Task UpdateProjectAreaAsync(string accountId, UIModels.ProjectAreaUI area) {
+        var areaToEdit = await accessValidator.ValidateAndGetProjectAreaAsync(accountId, area.Id, rep);
         areaToEdit.Name = area.Name;
         if(!string.IsNullOrEmpty(area.Icon)) areaToEdit.Icon = converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128);
         await rep.UpdateAsync(areaToEdit);
     }
 
-    /// <summary>
-    /// Delete account project area
-    /// </summary>
-    /// <param name="areaId">Project area ID</param>
-    /// <param name="accountId">Account ID</param>
-    public async Task DeleteProjectAreaAsync(int areaId, string accountId) {
-        var area = await accessValidator.ValidateAndGetProjectAreaAsync(areaId, accountId);
+    public async Task DeleteProjectAreaAsync(string accountId, int areaId) {
+        var area = await accessValidator.ValidateAndGetProjectAreaAsync(accountId, areaId, rep);
         await rep.DeleteAsync(area);
     }  
 }

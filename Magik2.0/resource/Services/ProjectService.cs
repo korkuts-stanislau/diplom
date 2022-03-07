@@ -5,17 +5,19 @@ using Resource.UIModels;
 namespace Resource.Services;
 
 public class ProjectService {
-    private readonly IProjectRepository rep;
+    private readonly IProjectRepository projectRep;
+    private readonly IProjectAreaRepository areaRep;
     private readonly UserAccessValidator accessValidator;
 
-    public ProjectService(IProjectRepository rep, UserAccessValidator accessValidator)
+    public ProjectService(IProjectRepository projectRep, IProjectAreaRepository areaRep, UserAccessValidator accessValidator)
     {
-        this.rep = rep;
+        this.projectRep = projectRep;
+        this.areaRep = areaRep;
         this.accessValidator = accessValidator;
     }
 
-    public async Task<IEnumerable<ProjectUI>> GetProjectsAsync(int areaId, string accountId) {
-        await accessValidator.ValidateAndGetProjectAreaAsync(areaId, accountId);
+    public async Task<IEnumerable<ProjectUI>> GetProjectsAsync(string accountId, int areaId) {
+        await accessValidator.ValidateAndGetProjectAreaAsync(accountId, areaId, areaRep);
         throw new NotImplementedException();
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Moq;
 using Resource.Data.Interfaces;
+using Resource.MapperProfiles;
 using Resource.Models;
 using Resource.Services;
 using Resource.Tools;
@@ -18,7 +19,15 @@ public class ProjectAreaServiceTests {
     
     public ProjectAreaServiceTests()
     {
-        projectAreaService = new ProjectAreaService(projectAreaRepoMock.Object, pictureConverter, accessValidator);
+        var mappingConfig = new AutoMapper.MapperConfiguration(mc =>
+        {
+            mc.AddProfiles(new AutoMapper.Profile[] {
+                new ProjectAreaMapperProfile()
+            });
+        });
+        AutoMapper.IMapper mapper = mappingConfig.CreateMapper();
+        
+        projectAreaService = new ProjectAreaService(projectAreaRepoMock.Object, pictureConverter, accessValidator, mapper);
     }
 
     [Fact]

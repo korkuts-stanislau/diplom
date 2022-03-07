@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Moq;
 using Resource.Data.Interfaces;
+using Resource.MapperProfiles;
 using Resource.Models;
 using Resource.Services;
 using Resource.Tools;
@@ -16,7 +17,15 @@ public class ProfileServiceTests {
 
     public ProfileServiceTests()
     {
-        profileService = new ProfileService(profileRepoMock.Object, pictureConverter);
+        var mappingConfig = new AutoMapper.MapperConfiguration(mc =>
+        {
+            mc.AddProfiles(new AutoMapper.Profile[] {
+                new ProfileMapperProfile()
+            });
+        });
+        AutoMapper.IMapper mapper = mappingConfig.CreateMapper();
+
+        profileService = new ProfileService(profileRepoMock.Object, pictureConverter, mapper);
     }
 
     [Fact]
@@ -39,13 +48,14 @@ public class ProfileServiceTests {
         //Arrange
         string accountId = Guid.NewGuid().ToString();
         string email = "test@gmail.com";
+        string username = email.Split("@")[0];
 
         //Act
         var createdProfile = await profileService.CreateProfileAsync(accountId, email);
 
         //Assert
         Assert.NotNull(createdProfile);
-        Assert.Equal(email, createdProfile.Username);
+        Assert.Equal(username, createdProfile.Username);
         Assert.Equal("", createdProfile.Picture);
     }
 

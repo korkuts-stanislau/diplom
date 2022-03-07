@@ -76,8 +76,8 @@ namespace Resource
             services.AddTransient<IProfileRepository, MSProfileRepository>();
             services.AddTransient<IProjectAreaRepository, MSProjectAreaRepository>();
             
-            services.AddScoped<UserAccessValidator>();
-            services.AddScoped<PictureConverter>();
+            services.AddTransient<UserAccessValidator>();
+            services.AddTransient<PictureConverter>();
             
             services.AddScoped<ProfileService>();
             services.AddScoped<ProjectAreaService>();

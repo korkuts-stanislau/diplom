@@ -18,6 +18,12 @@ public class MSProjectRepository : IProjectRepository
         await context.SaveChangesAsync();
     }
 
+    public async Task DeleteAsync(Project project)
+    {
+        context.Projects.Remove(project);
+        await context.SaveChangesAsync();
+    }
+
     public async Task<Project?> FirstOrDefaultAsync(int projectId)
     {
         return await context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
