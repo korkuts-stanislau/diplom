@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Resource.Data;
 using Resource.Data.Interfaces;
 using Resource.Tools;
@@ -10,16 +11,18 @@ public class ProfileService
 {
     private readonly IProfileRepository rep;
     private readonly PictureConverter converter;
+    private readonly IMapper mapper;
 
     /// <summary>
     /// Service for accounts' profiles management
     /// </summary>
     /// <param name="rep">Profile repository</param>
     /// <param name="converter">Pictures converter</param>
-    public ProfileService(IProfileRepository rep, PictureConverter converter)
+    public ProfileService(IProfileRepository rep, PictureConverter converter, IMapper mapper)
     {
         this.rep = rep;
         this.converter = converter;
+        this.mapper = mapper;
     }
 
     /// <summary>
@@ -32,12 +35,7 @@ public class ProfileService
         var profile = await rep.FirstOrDefaultAsync(accountId);
         if (profile == null) return null;
         
-        return new ProfileUI
-        {
-            Username = profile.Username,
-            Description = profile.Description,
-            Picture = profile.Picture != null ? Convert.ToBase64String(profile.Picture) : ""
-        };
+        return mapper.Map<ProfileUI>(profile);
     }
 
     /// <summary>
@@ -62,12 +60,7 @@ public class ProfileService
 
         await rep.CreateAsync(profile);
 
-        return new ProfileUI
-        {
-            Username = profile.Username,
-            Description = profile.Description,
-            Picture = profile.Picture != null ? Convert.ToBase64String(profile.Picture) : ""
-        };
+        return mapper.Map<ProfileUI>(profile);
     }
 
     /// <summary>

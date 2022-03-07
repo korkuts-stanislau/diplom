@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Resource.Data;
 using Resource.Data.Interfaces;
@@ -11,17 +12,19 @@ public class ProjectAreaService
     private readonly IProjectAreaRepository rep;
     private readonly PictureConverter converter;
     private readonly UserAccessValidator accessValidator;
+    private readonly IMapper mapper;
 
     /// <summary>
     /// Service for project areas management
     /// </summary>
     /// <param name="rep">Project area repository</param>
     /// <param name="converter">Pictures converter</param>
-    public ProjectAreaService(IProjectAreaRepository rep, PictureConverter converter, UserAccessValidator accessValidator)
+    public ProjectAreaService(IProjectAreaRepository rep, PictureConverter converter, UserAccessValidator accessValidator, IMapper mapper)
     {
         this.rep = rep;
         this.converter = converter;
         this.accessValidator = accessValidator;
+        this.mapper = mapper;
     }
 
     /// <summary>
@@ -34,7 +37,7 @@ public class ProjectAreaService
         Models.ProjectArea newArea = new Models.ProjectArea {
             Name = area.Name,
             AccountId = accountId,
-            Icon = string.IsNullOrEmpty(area.Icon) ? null : converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128)            
+            Icon = string.IsNullOrEmpty(area.Icon) ? null : converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128)         
         };
         await rep.CreateAsync(newArea);
         return newArea.Id;
@@ -46,12 +49,7 @@ public class ProjectAreaService
     /// <param name="accountId">Account ID</param>
     /// <returns>List of project areas of passed account</returns>
     public async Task<IEnumerable<ProjectAreaUI>> GetProjectAreasAsync(string accountId) {
-        return (await rep.GetAsync(accountId))
-            .Select(area => new ProjectAreaUI {
-                Id = area.Id,
-                Name = area.Name,
-                Icon = area.Icon != null ? Convert.ToBase64String(area.Icon) : ""
-            });
+        return mapper.Map<IEnumerable<ProjectAreaUI>>(await rep.GetAsync(accountId));
     }
 
     /// <summary>
@@ -60,7 +58,7 @@ public class ProjectAreaService
     /// <param name="area">Update project area info</param>
     /// <param name="accountId">Account ID</param>
     public async Task UpdateProjectAreaAsync(UIModels.ProjectAreaUI area, string accountId) {
-        var areaToEdit = await accessValidator.ValidateAndGetProjectAreaAsync(area.Id, accountId, rep);
+        var areaToEdit = await accessValidator.ValidateAndGetProjectAreaAsync(area.Id, accountId);
         areaToEdit.Name = area.Name;
         if(!string.IsNullOrEmpty(area.Icon)) areaToEdit.Icon = converter.RestrictImage(Convert.FromBase64String(area.Icon), 128, 128);
         await rep.UpdateAsync(areaToEdit);
@@ -72,7 +70,7 @@ public class ProjectAreaService
     /// <param name="areaId">Project area ID</param>
     /// <param name="accountId">Account ID</param>
     public async Task DeleteProjectAreaAsync(int areaId, string accountId) {
-        var area = await accessValidator.ValidateAndGetProjectAreaAsync(areaId, accountId, rep);
+        var area = await accessValidator.ValidateAndGetProjectAreaAsync(areaId, accountId);
         await rep.DeleteAsync(area);
     }  
 }

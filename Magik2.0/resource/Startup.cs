@@ -66,6 +66,8 @@ namespace Resource
                     };
                 });
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddDbContext<AppDbContext>(opts =>
             {
                 opts.UseSqlServer(Configuration.GetConnectionString("Default"));
@@ -74,9 +76,9 @@ namespace Resource
             services.AddTransient<IProfileRepository, MSProfileRepository>();
             services.AddTransient<IProjectAreaRepository, MSProjectAreaRepository>();
             
-            services.AddTransient<UserAccessValidator>();
-            services.AddTransient<PictureConverter>();
-
+            services.AddScoped<UserAccessValidator>();
+            services.AddScoped<PictureConverter>();
+            
             services.AddScoped<ProfileService>();
             services.AddScoped<ProjectAreaService>();
         }

@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "nS3bIQHLOjO2/Ei/s/yT0Aoexm30ltxi6bRnOfqFJvS68rNr41cuXzhbuRnuWmOD0Sko3lP4nRzssMOc6BY9Pg==",
+  "dgSpecHash": "gLY+nFKydn+xeSUhffvptBdDtaJPobBluOZBbYDoHxzebASSxzZsponcU6WVXOZ23sAoHp3QAeOnKQB+A7+Prw==",
   "success": true,
   "projectFilePath": "D:\\university\\diplom\\Magik2.0\\resource\\resource.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\stani\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\stani\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.1\\microsoft.aspnetcore.authentication.jwtbearer.6.0.1.nupkg.sha512",
-    "C:\\Users\\stani\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\stani\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\stani\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.1\\microsoft.entityframeworkcore.6.0.1.nupkg.sha512",
