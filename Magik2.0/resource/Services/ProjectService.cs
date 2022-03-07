@@ -35,6 +35,14 @@ public class ProjectService {
     }
 
     public async Task UpdateProjectAsync(string accountId, ProjectUI project) {
-        throw new NotImplementedException();
+        var projectToEdit = await accessValidator.ValidateAndGetProjectAsync(accountId, project.Id);
+        projectToEdit.Name = project.Name;
+        projectToEdit.Description = project.Description;
+        await uof.Projects.UpdateAsync(projectToEdit);
+    }
+
+    public async Task DeleteProjectAsync(string accountId, int projectId) {
+        var project = await accessValidator.ValidateAndGetProjectAsync(accountId, projectId);
+        await uof.Projects.DeleteAsync(project);
     }
 }

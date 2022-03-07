@@ -67,13 +67,13 @@ public class ProfileServiceTests {
     public async Task GetProfileOrDefaultAsync_GetExistingProfile() {
         //Arrange
         string accountId = Guid.NewGuid().ToString();
-        string email = "test@gmail.com";
+        string username = "test";
 
         profileRepoMock.Setup(x => x.FirstOrDefaultAsync(accountId))
             .ReturnsAsync(new Profile {
                 Id = 0,
                 AccountId = accountId,
-                Username = email,
+                Username = username,
                 Picture = null,
                 Description = "",
                 Icon = null
@@ -84,7 +84,7 @@ public class ProfileServiceTests {
 
         //Assert
         Assert.NotNull(profile);
-        Assert.Equal(email, profile!.Username);
+        Assert.Equal(username, profile!.Username);
         Assert.Equal("", profile.Picture);
         Assert.Equal("", profile.Description);
     }
