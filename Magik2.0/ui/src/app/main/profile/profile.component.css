@@ -1,8 +1,10 @@
 #profile-info {
   width: 90%;
   margin: 10px auto;
+  padding-bottom: 5px;
   display: flex;
   flex-direction: row;
+  border-bottom: 1px solid rgb(175, 175, 175);
 }
 
 #profile-info img {
@@ -48,7 +50,8 @@
 @media (max-width: 700px) {
   #profile-info {
     width: 100%;
-    margin: 0 0 10px 0;
+    margin: 0;
+    padding-bottom: 15px;
     display: flex;
     flex-direction: column;
   }
@@ -72,7 +75,7 @@
   #profile-info img {
     height: 400px;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 0;
     margin: 0;
     object-fit: cover;
   }

@@ -11,7 +11,7 @@
             *ngIf="currentProjectArea === area">
             <button class="button"
                 (click)="editProjectAreaModal()">✎</button>
-            <button class="button"
+            <button class="cancel-button button"
                 (click)="deleteProjectArea(area)">🞪</button>
         </div>
     </div>
@@ -27,4 +27,5 @@
     [parent]="this"></app-add-project-area>
 <app-edit-project-area 
     *ngIf="modalService.isModalOpened('edit-project-area')"
-    [parent]="this"></app-edit-project-area>
+    [parent]="this"
+    [areaToEdit]="currentProjectArea"></app-edit-project-area>

@@ -3,6 +3,7 @@
 @import "global-styles/animations.css";
 @import "global-styles/button-styles.css";
 @import "global-styles/input-styles.css";
+@import "global-styles/color-styles.css";
 
 @font-face {
   font-family: Raleway;

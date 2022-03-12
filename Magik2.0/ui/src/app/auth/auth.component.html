@@ -9,14 +9,14 @@
       </div>
     </div>
     <div class="form-field">
-      <div class="error-message" *ngIf="authGroup.controls['email'].invalid && authGroup.controls['email'].touched">
+      <div class="error-message error" *ngIf="authGroup.controls['email'].invalid && authGroup.controls['email'].touched">
         Некоректный почтовый адрес
       </div>
       <label>Почтовый адрес</label>
       <input class="input" name="email" formControlName="email">
     </div>
     <div class="form-field">
-      <div class="error-message" *ngIf="authGroup.controls['password'].invalid && authGroup.controls['password'].touched">
+      <div class="error-message error" *ngIf="authGroup.controls['password'].invalid && authGroup.controls['password'].touched">
         Пароль должен содержать хотя бы 5 символов
       </div>
       <label>Пароль</label>

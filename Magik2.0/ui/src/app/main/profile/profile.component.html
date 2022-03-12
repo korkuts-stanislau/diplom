@@ -6,9 +6,9 @@
     <p>{{currentProfile?.description}}</p>
   </div>
   <div id="profile-opts">
+    <button class="button" (click)="profileRoutingService.routeToStatistic()">Статистика</button>
     <button class="button" (click)="profileRoutingService.routeToEdit()">Редактировать</button>
     <button class="button" (click)="profileRoutingService.routeToFriends()">Друзья</button>
-    <button class="button" (click)="profileRoutingService.routeToStatistic()">Статистика</button>
     <button class="button" (click)="profileRoutingService.routeToTests()">Тесты</button>
   </div>
 </section>

@@ -1,5 +1,4 @@
 #profile-edit-container {
-  border-top: 1px solid rgb(175, 175, 175);
   width: calc(100% - 10px);
   padding: 5px;
   display: flex;

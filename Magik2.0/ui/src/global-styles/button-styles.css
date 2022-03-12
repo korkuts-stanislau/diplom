@@ -4,10 +4,26 @@
     border-radius: 5px;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-    background-color: #23a5d5bb;
+    background-color: #23a5d5dc;
     color: rgb(255, 255, 255);
 }
 
 .button:hover {
-    background-color: #23a5d5d2;
+    background-color: #23a5d5df;
+}
+
+.apply-button {
+    background-color: #23d3ad;
+}
+
+.apply-button:hover {
+    background-color: #20be9c;
+}
+
+.cancel-button {
+    background-color: #d45f5f;
+}
+
+.cancel-button:hover {
+    background-color: #c06060;
 }
