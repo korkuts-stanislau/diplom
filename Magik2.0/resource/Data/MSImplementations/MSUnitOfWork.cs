@@ -10,10 +10,10 @@ public class MSUnitOfWork : IUnitOfWork {
         this.context = context;
     }
 
-    private MSProfileRepository? profiles;
-    public IProfileRepository Profiles => profiles ??= new MSProfileRepository(context);
-    private MSProjectAreaRepository? projectAreas;
-    public IProjectAreaRepository ProjectAreas => projectAreas ??= new MSProjectAreaRepository(context);
-    private MSProjectRepository? projects;
-    public IProjectRepository Projects => projects ??= new MSProjectRepository(context);
+    private MSProfilesRepository? profiles;
+    public IProfilesRepository Profiles => profiles ??= new MSProfilesRepository(context);
+    private MSFieldsRepository? fields;
+    public IFieldsRepository Fields => fields ??= new MSFieldsRepository(context);
+    private MSProjectsRepository? projects;
+    public IProjectsRepository Projects => projects ??= new MSProjectsRepository(context);
 }

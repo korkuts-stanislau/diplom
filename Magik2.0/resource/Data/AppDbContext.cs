@@ -18,9 +18,9 @@ namespace Resource.Data
         public DbSet<FileType> FileTypes { get; set; } = null!;
         public DbSet<Profile> Profiles { get; set; } = null!;
         public DbSet<Project> Projects { get; set; } = null!;
-        public DbSet<ProjectArea> ProjectAreas { get; set; } = null!;
-        public DbSet<ProjectData> ProjectsData { get; set; } = null!;
-        public DbSet<ProjectPart> ProjectParts { get; set; } = null!;
-        public DbSet<ProjectPartData> ProjectPartsData { get; set; } = null!;
+        public DbSet<ProjectType> ProjectTypes { get; set; } = null!;
+        public DbSet<Field> Fields { get; set; } = null!;
+        public DbSet<Stage> Stages { get; set; } = null!;
+        public DbSet<StageFile> StagesFiles { get; set; } = null!;
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProfileService} from "../../../services/profile/profile.service";
-import {Profile} from "../../../models/profile/profile";
+import {ProfilesService} from "../../../services/profile/profiles.service";
+import {Profile} from "../../../models/resource/profile";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ProfileRoutingService} from "../../../services/profile/routing/profile-routing.service";
 
@@ -12,7 +12,7 @@ import {ProfileRoutingService} from "../../../services/profile/routing/profile-r
 export class ProfileComponent implements OnInit {
   currentProfile?: Profile;
 
-  constructor(private profileService: ProfileService,
+  constructor(private profileService: ProfilesService,
               private sanitizer: DomSanitizer,
               public profileRoutingService: ProfileRoutingService) { }
 

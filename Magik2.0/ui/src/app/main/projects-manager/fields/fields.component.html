@@ -1,0 +1,31 @@
+<div id="fields-container">
+    <div class="field"
+        [class.active-field]="currentField === field"
+        *ngFor="let field of fields">
+        <div class="field-icon">
+            <img [src]="getUrlFromIcon(field.icon)"
+                (click)="selectField(field)">
+            <p>{{field.name}}</p>
+        </div>
+        <div class="field-edit" 
+            *ngIf="currentField === field">
+            <button class="button"
+                (click)="editFieldModal()">✎</button>
+            <button class="cancel-button button"
+                (click)="deleteField(field)">🞪</button>
+        </div>
+    </div>
+    <div id="add-field" 
+        class="field field-icon" 
+        (click)="addFieldModal()">
+        <img src="assets/add-field.png">
+        <p>Создать</p>
+    </div>
+</div>
+<app-add-field 
+    *ngIf="modalService.isModalOpened('add-field')"
+    [parent]="this"></app-add-field>
+<app-edit-field 
+    *ngIf="modalService.isModalOpened('edit-field')"
+    [parent]="this"
+    [fieldToEdit]="currentField"></app-edit-field>

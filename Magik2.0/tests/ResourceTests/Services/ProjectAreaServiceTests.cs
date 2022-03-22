@@ -12,9 +12,9 @@ using Xunit;
 namespace Tests.ResourceTests.Services;
 
 public class ProjectAreaServiceTests {
-    private readonly ProjectAreaService projectAreaService;
+    private readonly FieldsService projectAreaService;
     private readonly Mock<IUnitOfWork> uofMock = new Mock<IUnitOfWork>();
-    private readonly Mock<IProjectAreaRepository> projectAreaRepoMock = new Mock<IProjectAreaRepository>();
+    private readonly Mock<IFieldsRepository> projectAreaRepoMock = new Mock<IFieldsRepository>();
     private readonly PictureConverter pictureConverter = new PictureConverter();
     private readonly UserAccessValidator accessValidator;
     
@@ -23,18 +23,18 @@ public class ProjectAreaServiceTests {
         var mappingConfig = new AutoMapper.MapperConfiguration(mc =>
         {
             mc.AddProfiles(new AutoMapper.Profile[] {
-                new ProjectAreaMapperProfile()
+                new FieldMapperProfile()
             });
         });
         AutoMapper.IMapper mapper = mappingConfig.CreateMapper();
 
         
-        uofMock.Setup(x => x.ProjectAreas)
+        uofMock.Setup(x => x.Fields)
             .Returns(projectAreaRepoMock.Object);
 
         accessValidator = new UserAccessValidator(uofMock.Object);
         
-        projectAreaService = new ProjectAreaService(uofMock.Object, pictureConverter, accessValidator, mapper);
+        projectAreaService = new FieldsService(uofMock.Object, pictureConverter, accessValidator, mapper);
     }
 
     [Fact]
@@ -43,10 +43,10 @@ public class ProjectAreaServiceTests {
         string accountId = Guid.NewGuid().ToString();
 
         projectAreaRepoMock.Setup(x => x.GetAsync(accountId))
-            .ReturnsAsync(new List<ProjectArea>());
+            .ReturnsAsync(new List<Field>());
 
         //Act
-        var projectAreas = await projectAreaService.GetProjectAreasAsync(accountId);
+        var projectAreas = await projectAreaService.GetFieldsAsync(accountId);
 
         //Assert
         Assert.Empty(projectAreas);

@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { ProfileRoutingService } from 'src/services/profile/routing/profile-routing.service';
-import {Profile} from "../../../../models/profile/profile";
-import {ProfileService} from "../../../../services/profile/profile.service";
+import {Profile} from "../../../../models/resource/profile";
+import {ProfilesService} from "../../../../services/profile/profiles.service";
 
 @Component({
   selector: 'app-profile-edit',
@@ -16,7 +16,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
 
   private isPictureEdited: boolean = false;
 
-  constructor(private profileService: ProfileService,
+  constructor(private profileService: ProfilesService,
               private profileRoutingService: ProfileRoutingService) { }
   
   ngOnInit(): void {

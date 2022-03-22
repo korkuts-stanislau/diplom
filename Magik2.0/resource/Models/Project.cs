@@ -11,7 +11,11 @@ namespace Resource.Models
     {
         public int Id { get; set; }
 
-        public int ProjectAreaId { get; set; }
+        public int FieldId { get; set; }
+
+        public int ProjectTypeId { get; set;}
+
+        public int? OriginalProjectId { get; set;}
 
         [StringLength(50)]
         public string Name { get; set; } = null!;
@@ -20,8 +24,12 @@ namespace Resource.Models
         public string Description { get; set; } = null!;
 
 
-        public ProjectArea? ProjectArea { get; set; }
+        public Field? Field { get; set; }
+
+        public ProjectType? ProjectType { get; set; }
+
+        public Project? OriginalProject { get; set; }
         
-        public IEnumerable<ProjectPart>? ProjectParts { get; set; }
+        public IEnumerable<Stage>? Stages { get; set; }
     }
 }

@@ -78,8 +78,9 @@ namespace Resource
             services.AddScoped<IUnitOfWork, MSUnitOfWork>();
             services.AddScoped<UserAccessValidator>();
             
-            services.AddScoped<ProfileService>();
-            services.AddScoped<ProjectAreaService>();
+            services.AddScoped<ProfilesService>();
+            services.AddScoped<FieldsService>();
+            services.AddScoped<ProjectsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

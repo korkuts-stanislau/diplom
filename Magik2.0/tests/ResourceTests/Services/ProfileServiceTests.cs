@@ -11,9 +11,9 @@ using Xunit;
 namespace Tests.ResourceTests.Services;
 
 public class ProfileServiceTests {
-    private readonly ProfileService profileService;
+    private readonly ProfilesService profileService;
     private readonly Mock<IUnitOfWork> uofMock = new Mock<IUnitOfWork>();
-    private readonly Mock<IProfileRepository> profileRepoMock = new Mock<IProfileRepository>();
+    private readonly Mock<IProfilesRepository> profileRepoMock = new Mock<IProfilesRepository>();
     private readonly PictureConverter pictureConverter = new PictureConverter();
 
     public ProfileServiceTests()
@@ -29,7 +29,7 @@ public class ProfileServiceTests {
         uofMock.Setup(x => x.Profiles)
             .Returns(profileRepoMock.Object);
 
-        profileService = new ProfileService(uofMock.Object, pictureConverter, mapper);
+        profileService = new ProfilesService(uofMock.Object, pictureConverter, mapper);
     }
 
     [Fact]

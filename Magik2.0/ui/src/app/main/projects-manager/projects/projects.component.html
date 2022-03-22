@@ -1,0 +1,9 @@
+<div id="projects-container" *ngIf="currentField">
+    <h3>Проекты в области "{{currentField!.name}}"</h3>
+    <select class="select">
+        <option *ngFor="let project of projects">{{project.name}}</option>
+    </select>
+    <button class="button apply-button">Добавить</button>
+    <button class="button">Изменить</button>
+    <button class="button cancel-button">Удалить</button>
+</div>

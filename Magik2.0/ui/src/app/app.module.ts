@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HeaderComponent } from './header/header.component';
@@ -8,7 +7,6 @@ import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
 import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './main/home/home.component';
-import { ProjectsComponent } from './main/projects/projects.component';
 import { ProfileComponent } from './main/profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
 import {AUTH_API_URL, RESOURCE_API_URL, tokenGetter} from "./config/app-injection-tokens";
@@ -19,12 +17,12 @@ import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.c
 import { ProfileFriendsComponent } from './main/profile/profile-friends/profile-friends.component';
 import { ProfileStatisticComponent } from './main/profile/profile-statistic/profile-statistic.component';
 import { ProfileTestsComponent } from './main/profile/profile-tests/profile-tests.component';
-import { ProjectAreasComponent } from './main/projects/project-areas/project-areas.component';
-import { AreaProjectsComponent } from './main/projects/area-projects/area-projects.component';
-import { ProjectStepsComponent } from './main/projects/project-steps/project-steps.component';
+import { ProjectsComponent } from './main/projects-manager/projects/projects.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AddProjectAreaComponent } from './main/projects/project-areas/add-project-area/add-project-area.component';
-import { EditProjectAreaComponent } from './main/projects/project-areas/edit-project-area/edit-project-area.component';
+import { FieldsComponent } from './main/projects-manager/fields/fields.component';
+import { AddFieldComponent } from './main/projects-manager/fields/add-field/add-field.component';
+import { EditFieldComponent } from './main/projects-manager/fields/edit-field/edit-field.component';
+import { ProjectsManagerComponent } from './main/projects-manager/projects-manager.component';
 
 @NgModule({
   declarations: [
@@ -34,18 +32,17 @@ import { EditProjectAreaComponent } from './main/projects/project-areas/edit-pro
     FooterComponent,
     NavComponent,
     HomeComponent,
-    ProjectsComponent,
+    ProjectsManagerComponent,
     ProfileComponent,
     AuthComponent,
     ProfileEditComponent,
     ProfileFriendsComponent,
     ProfileStatisticComponent,
     ProfileTestsComponent,
-    ProjectAreasComponent,
-    AreaProjectsComponent,
-    ProjectStepsComponent,
-    AddProjectAreaComponent,
-    EditProjectAreaComponent
+    FieldsComponent,
+    ProjectsComponent,
+    AddFieldComponent,
+    EditFieldComponent
   ],
   imports: [
     BrowserModule,

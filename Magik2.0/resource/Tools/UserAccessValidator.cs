@@ -17,16 +17,16 @@ public class UserAccessValidator {
     }
 
     /// <summary>
-    /// Validate if user owns project area
+    /// Validate if user owns field
     /// </summary>
     /// <param name="accountId">User accoutn ID</param>
-    /// <param name="areaId">Project area ID</param>
-    /// <returns>Project area if user owner of that area</returns>
-    public async Task<Models.ProjectArea> ValidateAndGetProjectAreaAsync(string accountId, int areaId) {
-        var area = await uof.ProjectAreas.FirstOrDefaultAsync(areaId);
-        if(area == null) throw new Exception("Нет такой области проектов");
-        if(area.AccountId != accountId) throw new Exception("Эта область проектов принадлежит другому пользователю");
-        return area;
+    /// <param name="fieldId">Field ID</param>
+    /// <returns>Field if user owner of that field</returns>
+    public async Task<Models.Field> ValidateAndGetFieldAsync(string accountId, int fieldId) {
+        var field = await uof.Fields.FirstOrDefaultAsync(fieldId);
+        if(field == null) throw new Exception("Нет такой области проектов");
+        if(field.AccountId != accountId) throw new Exception("Эта область проектов принадлежит другому пользователю");
+        return field;
     }
 
     /// <summary>
@@ -38,7 +38,7 @@ public class UserAccessValidator {
     public async Task<Models.Project> ValidateAndGetProjectAsync(string accountId, int projectId) {
         var project = await uof.Projects.FirstOrDefaultAsync(projectId);
         if(project == null) throw new Exception("Нет такого проекта");
-        await ValidateAndGetProjectAreaAsync(accountId, project.ProjectAreaId);
+        await ValidateAndGetFieldAsync(accountId, project.FieldId);
         return project;
     }
 }

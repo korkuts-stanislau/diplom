@@ -4,6 +4,7 @@
 @import "global-styles/button-styles.css";
 @import "global-styles/input-styles.css";
 @import "global-styles/color-styles.css";
+@import "global-styles/select-styles.css";
 
 @font-face {
   font-family: Raleway;
