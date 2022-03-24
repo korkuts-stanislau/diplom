@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class RoutingService {
+export class AppRoutingService {
   private currentPage:string = "projects";
 
   constructor() {}

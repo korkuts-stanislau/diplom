@@ -21,8 +21,9 @@
            accept="image/*"
            hidden
            (change)="editPhotoEvent($event)">
-    <button class="button" (click)="choosePhoto.click()">
-      Изменить
+    <button class="button" (click)="choosePhoto.click()"
+      [class.apply-button]="isPictureEdited">
+      {{isPictureEdited ? "Загружено!" : "Загрузить"}}
     </button>
   </div>
   <div class="profile-edit-item">

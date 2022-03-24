@@ -6,11 +6,12 @@
     margin: 5px auto 15px auto;
     padding: 10px 0;
     width: 95%;
+    height: 160px;
     border-bottom: 1px solid rgb(173, 173, 173);
 }
 
 .field {
-    margin: 0 5px;
+    margin: 0;
     padding: 5px;
     display: flex;
     flex-direction: row;
@@ -44,43 +45,88 @@
     overflow: hidden;
 }
 
-.field-edit {
-    height: 100px;
-    width: 0;
-    z-index: 1;
+/*Далее стили связанные с текущей областью*/
+
+#current-field-container {
+    margin: 5px auto 15px auto;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    animation: slow-show .5s;
+    justify-content: space-between;
+    width: 95%;
+    max-height: 160px;
+    border-bottom: 1px solid rgb(173, 173, 173);
 }
 
-.field-edit > button {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 18px;
-    margin: 6px;
+#current-field-area {
+    display: flex;
+    justify-content: space-between;
 }
 
-.field-edit > button:hover {
-    filter: brightness(0.8);
+#current-field-header {
+    display: flex;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+#current-field-header > * {
+    margin: 0 5px;
+}
+
+#current-field-header > h3 {
+    transform: translateY(7px);
+    height: 25px;
+    font-size: 20px;
+    overflow: hidden;
+}
+
+#current-field-header > button {
+    min-width: 40px;
+}
+
+#current-field-operations {
+    display: flex;
+    max-width: 40%;
+}
+
+#current-field-operations > * {
+    margin-left: 5px;
+}
+
+#current-field-operations:nth-child(1) {
+    font-size: 40px;
+}
+
+#projects-container {
+    overflow-y: auto;
+    min-width: 40%;
+}
+
+#projects-container > * {
+    display: flex;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    overflow-x: hidden;
+    cursor: pointer;
+}
+
+#projects-container > *:hover {
+    filter: brightness(0.95);
+}
+
+.selected-project {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 @media (max-width: 700px) {
     .field-icon > img{
         height: 90px;
-        width: 90px;;
+        width: 90px;
     }
 
-    .field-edit {
-        height: 90px;
-    }
-
-    .field-edit > button {
-        width: 38px;
-        height: 45px;
-        font-size: 16px;
-        margin: 5px;
-        transform: translateX(-10px);
+    #current-field-header {
+        max-width: 60%;
     }
 }

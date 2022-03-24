@@ -5,3 +5,7 @@
 .success {
     background-color: rgba(150, 255, 159, 0.5);
 }
+
+.emphasis {
+    background-color: #ee765280;
+}

@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import { ProfileRoutingService } from 'src/services/profile/routing/profile-routing.service';
+import { ProfileRoutingService } from 'src/services/routing/profile-routing.service';
 import {Profile} from "../../../../models/resource/profile";
 import {ProfilesService} from "../../../../services/profile/profiles.service";
 
@@ -10,11 +10,12 @@ import {ProfilesService} from "../../../../services/profile/profiles.service";
 })
 export class ProfileEditComponent implements OnInit, OnDestroy {
   @Input()public currentProfile?: Profile;
+  private newPicture: string = "";
 
   public error = "";
   public info = "";
 
-  private isPictureEdited: boolean = false;
+  public isPictureEdited: boolean = false;
 
   constructor(private profileService: ProfilesService,
               private profileRoutingService: ProfileRoutingService) { }
@@ -35,7 +36,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
       reader.readAsDataURL(file);
       reader.onload = function () {
          // get only data part from base64
-        me.currentProfile!.picture = reader.result!.toString().split(',')[1];
+        me.newPicture = reader.result!.toString().split(',')[1];
         me.isPictureEdited = true;
       };
     }
@@ -48,10 +49,14 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
       this.info = "";
     }
     else {
-      this.profileService.editProfile(this.currentProfile!, this.isPictureEdited)
+      let newProfile = new Profile(this.currentProfile!.username,
+        this.currentProfile!.description,
+        this.newPicture);
+      this.profileService.editProfile(newProfile, this.isPictureEdited)
       .subscribe(res => {
         this.info = "Профиль успешно изменён";
         this.error = "";
+        this.currentProfile!.picture = this.newPicture;
       }, err => {
         this.error = err.message;
         this.info = "";

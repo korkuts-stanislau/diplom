@@ -17,12 +17,12 @@ import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.c
 import { ProfileFriendsComponent } from './main/profile/profile-friends/profile-friends.component';
 import { ProfileStatisticComponent } from './main/profile/profile-statistic/profile-statistic.component';
 import { ProfileTestsComponent } from './main/profile/profile-tests/profile-tests.component';
-import { ProjectsComponent } from './main/projects-manager/projects/projects.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FieldsComponent } from './main/projects-manager/fields/fields.component';
 import { AddFieldComponent } from './main/projects-manager/fields/add-field/add-field.component';
 import { EditFieldComponent } from './main/projects-manager/fields/edit-field/edit-field.component';
 import { ProjectsManagerComponent } from './main/projects-manager/projects-manager.component';
+import { ProjectComponent } from './main/projects-manager/project/project.component';
 
 @NgModule({
   declarations: [
@@ -40,9 +40,9 @@ import { ProjectsManagerComponent } from './main/projects-manager/projects-manag
     ProfileStatisticComponent,
     ProfileTestsComponent,
     FieldsComponent,
-    ProjectsComponent,
     AddFieldComponent,
-    EditFieldComponent
+    EditFieldComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,

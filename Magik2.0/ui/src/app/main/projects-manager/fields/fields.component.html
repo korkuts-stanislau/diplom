@@ -1,4 +1,4 @@
-<div id="fields-container">
+<div id="fields-container" *ngIf="isFieldsShown">
     <div class="field"
         [class.active-field]="currentField === field"
         *ngFor="let field of fields">
@@ -7,19 +7,33 @@
                 (click)="selectField(field)">
             <p>{{field.name}}</p>
         </div>
-        <div class="field-edit" 
-            *ngIf="currentField === field">
-            <button class="button"
-                (click)="editFieldModal()">✎</button>
-            <button class="cancel-button button"
-                (click)="deleteField(field)">🞪</button>
-        </div>
     </div>
     <div id="add-field" 
         class="field field-icon" 
         (click)="addFieldModal()">
         <img src="assets/add-field.png">
         <p>Создать</p>
+    </div>
+</div>
+<div id="current-field-container" *ngIf="!isFieldsShown">
+    <div id="current-field-area">
+        <div id="current-field-header">
+            <button class="button action-button" (click)="showFields()">❰</button>
+            <h3>{{currentField?.name}}</h3>
+        </div>
+        <div id="current-field-operations">
+            <button class="button apply-button action-button" (click)="addNewProject()">✛</button>
+            <button class="button action-button" (click)="editFieldModal()">✎</button>
+            <button class="button cancel-button action-button" (click)="deleteCurrentField()">✕</button>
+        </div>
+    </div>
+    <div id="projects-container">
+        <div *ngFor="let project of currentFieldProjects"
+            (click)="changeProject(project)"
+            [ngStyle]="{'background': project.color ? project.color : defaultProjectColor}"
+            [ngClass]="{'selected-project': project.id == currentProject?.id}">
+            <p>{{project.name}}</p>
+        </div>
     </div>
 </div>
 <app-add-field 

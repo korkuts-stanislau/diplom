@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProfilesService} from "../../../services/profile/profiles.service";
 import {Profile} from "../../../models/resource/profile";
 import {DomSanitizer} from "@angular/platform-browser";
-import {ProfileRoutingService} from "../../../services/profile/routing/profile-routing.service";
+import { ProfileRoutingService } from 'src/services/routing/profile-routing.service';
 
 @Component({
   selector: 'app-profile',

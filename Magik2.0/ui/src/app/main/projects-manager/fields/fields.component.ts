@@ -3,6 +3,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Field } from 'src/models/resource/field';
 import { ModalService } from 'src/services/modal/modal.service';
 import { FieldsService } from 'src/services/field/fields.service';
+import { ProjectsService } from 'src/services/project/projects.service';
+import { Project } from 'src/models/resource/project';
 
 @Component({
   selector: 'app-fields',
@@ -10,24 +12,41 @@ import { FieldsService } from 'src/services/field/fields.service';
   styleUrls: ['./fields.component.css']
 })
 export class FieldsComponent implements OnInit {
+  public defaultProjectColor = "#23a5d588";
 
   public fields?:Field[];
 
   public currentField?: Field;
 
-  @Output()changeFieldEvent = new EventEmitter<Field>();
+  public currentFieldProjects: Project[] = new Array<Project>();
+
+  @Output()private currentProjectChanged: EventEmitter<Project> = new EventEmitter<Project>();
+
+  @Input()public currentProject?: Project;
+
+  public isFieldsShown: boolean = true;
 
   constructor(private sanitizer: DomSanitizer,
     public modalService: ModalService,
-    private fieldsService: FieldsService) { }
+    private fieldsService: FieldsService,
+    private projectsService: ProjectsService) { }
 
   ngOnInit(): void {
     this.getFields();
   }
 
   selectField(field: Field) {
-    this.currentField = this.currentField === field ? undefined : field;
-    this.changeFieldEvent.emit(field);
+    this.currentField = field;
+    this.getCurrentFieldProjects();
+    this.hideFields();
+  }
+
+  showFields() {
+    this.isFieldsShown = true;
+  }
+
+  hideFields() {
+    this.isFieldsShown = false;
   }
 
   getUrlFromIcon(icon:string) {
@@ -75,17 +94,45 @@ export class FieldsComponent implements OnInit {
       });
   }
 
-  deleteField(field: Field) {
+  deleteCurrentField() {
     if(confirm("Вы уверены что хотите удалить эту область проектов?")) {
-      this.fieldsService.deleteField(field)
+      this.fieldsService.deleteField(this.currentField!)
         .subscribe(res => {
-          this.fields = this.fields?.filter(f => f !== field);
+          this.fields = this.fields?.filter(f => f !== this.currentField!);
           this.currentField = undefined;
-          this.changeFieldEvent.emit(this.currentField);
+          this.showFields();
         }, err => {
           console.log(err);
           alert("Удаление не удалось");
         });
     }
+  }
+
+  getCurrentFieldProjects() {
+    this.currentFieldProjects = new Array<Project>();
+    this.projectsService.getProjects(this.currentField!)
+      .subscribe(res => {
+        this.currentFieldProjects = res;
+      }, err => {
+        console.log(err);
+        alert("Получение проектов не удалось");
+      })
+  }
+
+  addNewProject() {
+    let newProject = new Project(0, "Новый проект", "Мой новый проект");
+    this.projectsService.addProject(this.currentField!, newProject)
+      .subscribe(res => {
+        newProject.id = res;
+        this.currentFieldProjects.push(newProject);
+      }, err => {
+        console.log(err);
+        alert("Не удалось добавить проект");
+      })
+  }
+
+  changeProject(project: Project) {
+    this.currentProject = project;
+    this.currentProjectChanged.emit(this.currentProject);
   }
 }

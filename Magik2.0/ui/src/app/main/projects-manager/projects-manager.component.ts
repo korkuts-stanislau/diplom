@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Field } from 'src/models/resource/field';
+import { Project } from 'src/models/resource/project';
 
 @Component({
   selector: 'app-projects-manager',
@@ -7,14 +8,15 @@ import { Field } from 'src/models/resource/field';
   styleUrls: ['./projects-manager.component.css']
 })
 export class ProjectsManagerComponent implements OnInit {
-  public currentField?: Field;
+
+  public currentProject?:Project;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  changeField(field: Field) {
-    this.currentField = field;
+  onCurrentProjectChanged(project:Project) {
+    this.currentProject = project;
   }
 }

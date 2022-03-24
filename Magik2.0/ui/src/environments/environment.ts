@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  authApi: 'http://localhost:7001/',
-  resourceApi: 'http://localhost:7002/',
-  allowedDomains: ['localhost:7001', "localhost:7002"]
+  authApi: 'http://192.168.100.77:7001/',
+  resourceApi: 'http://192.168.100.77:7002/',
+  allowedDomains: ['192.168.100.77:7001', "192.168.100.77:7002"]
 };
 
 /*

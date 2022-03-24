@@ -22,6 +22,8 @@ public class ProjectsService {
         await accessValidator.ValidateAndGetFieldAsync(accountId, fieldId);
         Project newProject = new Project {
             FieldId = fieldId,
+            ProjectTypeId = 1, //private project
+            OriginalProjectId = null,
             Name = project.Name,
             Description = project.Description
         };

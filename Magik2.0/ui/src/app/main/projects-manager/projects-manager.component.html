@@ -1,4 +1,5 @@
 <div id="projects-manager-container">
-    <app-fields (changeFieldEvent)="changeField($event)"></app-fields>
-    <app-projects [currentField]="currentField"></app-projects>
+    <app-fields (currentProjectChanged)="onCurrentProjectChanged($event)"
+        [currentProject]="currentProject"></app-fields>
+    <app-project [currentProject]="currentProject"></app-project>
 </div>

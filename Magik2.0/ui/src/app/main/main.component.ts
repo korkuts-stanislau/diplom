@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RoutingService} from "../../services/routing/routing.service";
+import {AppRoutingService} from "../../services/routing/routing.service";
 
 @Component({
   selector: 'app-main',
@@ -8,7 +8,7 @@ import {RoutingService} from "../../services/routing/routing.service";
 })
 export class MainComponent implements OnInit {
 
-  constructor(public routing:RoutingService) { }
+  constructor(public routing:AppRoutingService) { }
 
   ngOnInit(): void {
   }

@@ -16,4 +16,8 @@ export class ProjectsService {
   getProjects(field: Field): Observable<Project[]> {
     return this.http.get<Project[]>(`${this.url}api/projects/${field.id}`);
   }
+
+  addProject(field: Field, project:Project): Observable<number> {
+    return this.http.post<number>(`${this.url}api/projects/${field.id}`, project);
+  }
 }
