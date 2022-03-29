@@ -23,7 +23,7 @@ public class ProfilesService
     public async Task<ProfileUI> CreateProfileAsync(string accountId, string email)
     {
         var profile = await uof.Profiles.FirstOrDefaultAsync(accountId);
-        if (profile != null) throw new Exception("У этого пользователя уже есть профиль");
+        if (profile != null) throw new ApplicationException("У этого пользователя уже есть профиль");
 
         profile = new Models.Profile
         {
@@ -49,7 +49,7 @@ public class ProfilesService
 
     public async Task UpdateProfileAsync(string accountId, UIModels.ProfileUI editedProfile) {
         var profile = await uof.Profiles.FirstOrDefaultAsync(accountId);
-        if(profile == null) throw new Exception("У этого пользователя нет профиля");
+        if(profile == null) throw new ApplicationException("У этого пользователя нет профиля");
 
         profile.Username = editedProfile.Username;
         profile.Description = editedProfile.Description;

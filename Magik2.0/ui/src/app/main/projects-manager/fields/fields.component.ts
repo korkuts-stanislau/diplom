@@ -120,10 +120,10 @@ export class FieldsComponent implements OnInit {
   }
 
   addNewProject() {
-    let newProject = new Project(0, "Новый проект", "Мой новый проект");
+    let newProject = new Project(undefined, undefined, undefined, "Новый проект", "Мой новый проект", undefined);
     this.projectsService.addProject(this.currentField!, newProject)
       .subscribe(res => {
-        newProject.id = res;
+        newProject = res;
         this.currentFieldProjects.push(newProject);
       }, err => {
         console.log(err);

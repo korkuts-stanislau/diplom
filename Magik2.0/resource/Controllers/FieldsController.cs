@@ -34,7 +34,7 @@ public class FieldsController : ControllerBase {
                 await fieldsService.CreateFieldAsync(accountId, field);
                 return Ok(field.Id);
             }
-            catch(Exception exc) {
+            catch(ApplicationException exc) {
                 return BadRequest(exc.Message);
             }
         }
@@ -52,7 +52,7 @@ public class FieldsController : ControllerBase {
                 await fieldsService.UpdateFieldAsync(accountId, field);
                 return Ok();
             }
-            catch(Exception exc) {
+            catch(ApplicationException exc) {
                 return BadRequest(exc.Message);
             }
         }
@@ -69,7 +69,7 @@ public class FieldsController : ControllerBase {
             await fieldsService.DeleteFieldAsync(accountId, id);
             return Ok();
         }
-        catch(Exception exc) {
+        catch(ApplicationException exc) {
             return BadRequest(exc.Message);
         }
     }

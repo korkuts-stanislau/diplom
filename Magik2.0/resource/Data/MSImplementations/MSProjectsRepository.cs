@@ -32,6 +32,7 @@ public class MSProjectsRepository : IProjectsRepository
     public async Task<IEnumerable<Project>> GetAsync(int fieldId)
     {
         return await context.Projects.Where(p => p.FieldId == fieldId)
+            .Include(p => p.Stages)
             .ToListAsync();
     }
 

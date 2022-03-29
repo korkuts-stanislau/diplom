@@ -32,7 +32,7 @@ public class ProfilesController : ControllerBase
                 var email = User.Claims.Single(c => c.Type == ClaimTypes.Email).Value;
                 profile = await profilesService.CreateProfileAsync(accountId, email);
             }
-            catch(Exception exc) {
+            catch(ApplicationException exc) {
                 return BadRequest(exc.Message);
             }
         }
@@ -50,7 +50,7 @@ public class ProfilesController : ControllerBase
                 await profilesService.UpdateProfileAsync(accountId, profile);
                 return Ok();
             }
-            catch(Exception exc) {
+            catch(ApplicationException exc) {
                 return BadRequest(exc.Message);
             }
         }

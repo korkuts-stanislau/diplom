@@ -24,7 +24,7 @@ public class ProjectsController : ControllerBase {
         try {
             return Ok(await projectsService.GetProjectsAsync(accountId, fieldId));
         }
-        catch(Exception exc) {
+        catch(ApplicationException exc) {
             return BadRequest(exc.Message);
         }
     }
@@ -36,9 +36,9 @@ public class ProjectsController : ControllerBase {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
                 await projectsService.CreateProjectAsync(accountId, fieldId, project);
-                return Ok(project.Id);
+                return Ok(project);
             }
-            catch(Exception exc) {
+            catch(ApplicationException exc) {
                 return BadRequest(exc.Message);
             }
         }
@@ -56,7 +56,7 @@ public class ProjectsController : ControllerBase {
                 await projectsService.UpdateProjectAsync(accountId, project);
                 return Ok();
             }
-            catch(Exception exc) {
+            catch(ApplicationException exc) {
                 return BadRequest(exc.Message);
             }
         }
@@ -74,7 +74,7 @@ public class ProjectsController : ControllerBase {
                 await projectsService.DeleteProjectAsync(accountId, id);
                 return Ok();
             }
-            catch(Exception exc) {
+            catch(ApplicationException exc) {
                 return BadRequest(exc.Message);
             }
         }

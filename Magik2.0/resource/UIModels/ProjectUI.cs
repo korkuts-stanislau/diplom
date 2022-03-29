@@ -11,10 +11,16 @@ namespace Resource.UIModels
     {
         public int Id { get; set; }
 
+        public int ProjectTypeId { get; set;}
+
+        public int? OriginalProjectId { get; set;}
+
         [StringLength(50)]
         public string Name { get; set; } = null!;
 
         [StringLength(250)]
         public string Description { get; set; } = null!;
+
+        public string? Color { get; set; } = null!;
     }
 }

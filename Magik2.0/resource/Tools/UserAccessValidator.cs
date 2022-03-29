@@ -24,8 +24,8 @@ public class UserAccessValidator {
     /// <returns>Field if user owner of that field</returns>
     public async Task<Models.Field> ValidateAndGetFieldAsync(string accountId, int fieldId) {
         var field = await uof.Fields.FirstOrDefaultAsync(fieldId);
-        if(field == null) throw new Exception("Нет такой области проектов");
-        if(field.AccountId != accountId) throw new Exception("Эта область проектов принадлежит другому пользователю");
+        if(field == null) throw new ApplicationException("Нет такой области проектов");
+        if(field.AccountId != accountId) throw new ApplicationException("Эта область проектов принадлежит другому пользователю");
         return field;
     }
 
@@ -37,7 +37,7 @@ public class UserAccessValidator {
     /// <returns>Project if user owner of this project</returns>
     public async Task<Models.Project> ValidateAndGetProjectAsync(string accountId, int projectId) {
         var project = await uof.Projects.FirstOrDefaultAsync(projectId);
-        if(project == null) throw new Exception("Нет такого проекта");
+        if(project == null) throw new ApplicationException("Нет такого проекта");
         await ValidateAndGetFieldAsync(accountId, project.FieldId);
         return project;
     }
