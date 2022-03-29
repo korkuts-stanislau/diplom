@@ -1,5 +1,12 @@
 <div id="projects-manager-container">
-    <app-fields (currentProjectChanged)="onCurrentProjectChanged($event)"
+    <app-fields #fields
+        (currentProjectChanged)="onCurrentProjectChanged($event)"
         [currentProject]="currentProject"></app-fields>
-    <app-project [currentProject]="currentProject"></app-project>
+    <app-project
+        (currentProjectDeleted)="onCurrentProjectDeleted($event)"
+        [currentProject]="currentProject"
+        *ngIf="currentProject"></app-project>
+    <app-stages
+        [currentProject]="currentProject"
+        *ngIf="currentProject"></app-stages>
 </div>

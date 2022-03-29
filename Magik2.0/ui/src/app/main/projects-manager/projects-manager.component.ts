@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Field } from 'src/models/resource/field';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from 'src/models/resource/project';
+import { FieldsComponent } from './fields/fields.component';
 
 @Component({
   selector: 'app-projects-manager',
@@ -9,6 +9,8 @@ import { Project } from 'src/models/resource/project';
 })
 export class ProjectsManagerComponent implements OnInit {
 
+  @ViewChild(FieldsComponent)private fields!:FieldsComponent;
+  
   public currentProject?:Project;
 
   constructor() { }
@@ -18,5 +20,10 @@ export class ProjectsManagerComponent implements OnInit {
 
   onCurrentProjectChanged(project:Project) {
     this.currentProject = project;
+  }
+
+  onCurrentProjectDeleted(item:any) {
+    this.fields.removeProjectFromList(this.currentProject!);
+    this.currentProject = undefined;
   }
 }

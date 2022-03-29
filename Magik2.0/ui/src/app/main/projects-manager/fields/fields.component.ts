@@ -135,4 +135,8 @@ export class FieldsComponent implements OnInit {
     this.currentProject = project;
     this.currentProjectChanged.emit(this.currentProject);
   }
+
+  removeProjectFromList(project:Project) {
+    this.currentFieldProjects = this.currentFieldProjects.filter(p => p.id != project.id);
+  }
 }

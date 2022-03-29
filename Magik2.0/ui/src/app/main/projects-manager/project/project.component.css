@@ -1,0 +1,33 @@
+#current-project-container {
+    margin: 0 25px;
+}
+
+#current-project-container > p {
+    margin: 5px;
+    text-align: center;
+}
+
+#current-project-header {
+    display: flex;
+    justify-content: center;
+}
+
+#current-project-header > h3{
+    margin: 5px 10px 5px 5px;
+    font-size: 20px;
+    transform: translateY(5px);
+}
+
+#current-project-actions > * {
+    margin: 5px;
+}
+
+@media (max-width:700px) {
+    #current-project-container {
+        margin: 0 20px;
+    }
+
+    #current-project-header > h3{
+        transform: translateY(3px);
+    }
+}

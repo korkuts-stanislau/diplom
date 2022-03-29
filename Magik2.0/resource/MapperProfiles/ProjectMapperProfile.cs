@@ -34,8 +34,10 @@ public class ProjectMapperProfile : Profile {
             );
     }
 
+    private const string DEFAULT_COLOR = "#23a5d588";
+
     private string GetProjectColorFromStages(IEnumerable<Models.Stage>? stages) {
-        if(stages == null || stages.Count() == 0) return GetColorFromDifference(100);
+        if(stages == null || stages.Count() == 0) return DEFAULT_COLOR;
         double meanDifference = stages.Select(stage => GetActExpDifference(stage)).Average(); // from -100 to 100
         return GetColorFromDifference(meanDifference);
     }
