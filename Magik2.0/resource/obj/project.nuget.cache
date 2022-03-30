@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gLY+nFKydn+xeSUhffvptBdDtaJPobBluOZBbYDoHxzebASSxzZsponcU6WVXOZ23sAoHp3QAeOnKQB+A7+Prw==",
+  "dgSpecHash": "34lCUh+YvESwKZ7M3gR7/+yr3QI+NGNgMJ7Rk71f2z06Wykwz30QoTP7dv0QtudReMI91yNJxgeDdH/vrim57g==",
   "success": true,
-  "projectFilePath": "D:\\university\\diplom\\Magik2.0\\resource\\resource.csproj",
+  "projectFilePath": "E:\\university\\diplom\\Magik2.0\\resource\\resource.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\stani\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\stani\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

@@ -984,11 +984,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\university\\diplom\\Magik2.0\\auth\\auth.csproj",
+      "projectUniqueName": "E:\\university\\diplom\\Magik2.0\\auth\\auth.csproj",
       "projectName": "auth",
-      "projectPath": "D:\\university\\diplom\\Magik2.0\\auth\\auth.csproj",
+      "projectPath": "E:\\university\\diplom\\Magik2.0\\auth\\auth.csproj",
       "packagesPath": "C:\\Users\\stani\\.nuget\\packages\\",
-      "outputPath": "D:\\university\\diplom\\Magik2.0\\auth\\obj\\",
+      "outputPath": "E:\\university\\diplom\\Magik2.0\\auth\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\stani\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1003,8 +1003,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\university\\diplom\\Magik2.0\\common\\Common.csproj": {
-              "projectPath": "D:\\university\\diplom\\Magik2.0\\common\\Common.csproj"
+            "E:\\university\\diplom\\Magik2.0\\common\\Common.csproj": {
+              "projectPath": "E:\\university\\diplom\\Magik2.0\\common\\Common.csproj"
             }
           }
         }
@@ -1050,7 +1050,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

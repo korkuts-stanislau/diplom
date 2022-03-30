@@ -10,3 +10,15 @@ D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.csproj.CoreCompileI
 D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.dll
 D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\ref\Common.dll
 D:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.pdb
+E:\university\diplom\Magik2.0\common\bin\Debug\net6.0\Common.deps.json
+E:\university\diplom\Magik2.0\common\bin\Debug\net6.0\Common.dll
+E:\university\diplom\Magik2.0\common\bin\Debug\net6.0\Common.pdb
+E:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.csproj.AssemblyReference.cache
+E:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+E:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.AssemblyInfoInputs.cache
+E:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.AssemblyInfo.cs
+E:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.csproj.CoreCompileInputs.cache
+E:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.dll
+E:\university\diplom\Magik2.0\common\obj\Debug\net6.0\refint\Common.dll
+E:\university\diplom\Magik2.0\common\obj\Debug\net6.0\Common.pdb
+E:\university\diplom\Magik2.0\common\obj\Debug\net6.0\ref\Common.dll

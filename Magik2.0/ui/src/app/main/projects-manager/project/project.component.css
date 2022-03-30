@@ -1,5 +1,8 @@
 #current-project-container {
-    margin: 0 25px;
+    margin: 0 30px;
+    background-color: rgba(152, 210, 228, 0.3);
+    border-radius: 5px;
+    padding: 5px;
 }
 
 #current-project-container > p {
@@ -15,7 +18,7 @@
 #current-project-header > h3{
     margin: 5px 10px 5px 5px;
     font-size: 20px;
-    transform: translateY(5px);
+    transform: translateY(8px);
 }
 
 #current-project-actions > * {
@@ -25,9 +28,5 @@
 @media (max-width:700px) {
     #current-project-container {
         margin: 0 20px;
-    }
-
-    #current-project-header > h3{
-        transform: translateY(3px);
     }
 }
