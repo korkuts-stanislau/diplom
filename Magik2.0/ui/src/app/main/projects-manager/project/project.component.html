@@ -8,3 +8,7 @@
     </div>
     <p>{{currentProject?.description}}</p>
 </div>
+<app-edit-project
+    *ngIf="modalService.isModalOpened('edit-project')"
+    [parent]="this"
+    [projectToEdit]="currentProject"></app-edit-project>

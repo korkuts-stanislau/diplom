@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Project } from 'src/models/resource/project';
+import { ModalService } from 'src/services/modal/modal.service';
 import { ProjectsService } from 'src/services/project/projects.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class ProjectComponent implements OnInit {
   @Input() public currentProject?: Project;
   @Output() public currentProjectDeleted: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private projectsService: ProjectsService) { }
+  constructor(private projectsService: ProjectsService,
+              public modalService: ModalService) { }
 
   ngOnInit(): void {
   }
@@ -30,6 +32,16 @@ export class ProjectComponent implements OnInit {
   }
 
   editCurrentProjectModal() {
+    this.modalService.openModal('edit-project');
+  }
 
+  editProject(project: Project) {
+    this.projectsService.editProject(project)
+      .subscribe(res => {
+        
+      }, err => {
+        console.log(err);
+        alert("Изменение не удалось");
+      });
   }
 }

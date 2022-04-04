@@ -24,6 +24,7 @@ import { EditFieldComponent } from './main/projects-manager/fields/edit-field/ed
 import { ProjectsManagerComponent } from './main/projects-manager/projects-manager.component';
 import { ProjectComponent } from './main/projects-manager/project/project.component';
 import { StagesComponent } from './main/projects-manager/stages/stages.component';
+import { EditProjectComponent } from './main/projects-manager/project/edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { StagesComponent } from './main/projects-manager/stages/stages.component
     AddFieldComponent,
     EditFieldComponent,
     ProjectComponent,
-    StagesComponent
+    StagesComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,

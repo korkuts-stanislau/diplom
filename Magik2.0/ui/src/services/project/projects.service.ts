@@ -22,7 +22,7 @@ export class ProjectsService {
   }
 
   editProject(project:Project):Observable<Project> {
-    return this.http.put<Project>(`${this.url}api/projects`, project);
+    return this.http.put<Project>(`${this.url}api/projects/${project.id}`, project);
   }
 
   deleteProject(project: Project): Observable<any> {

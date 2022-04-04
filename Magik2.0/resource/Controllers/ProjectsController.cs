@@ -47,9 +47,10 @@ public class ProjectsController : ControllerBase {
         }
     }
 
-    [HttpPut]
+    [HttpPut("{projectId}")]
     [Route("")]
-    public async Task<IActionResult> Update([FromBody]ProjectUI project) {
+    public async Task<IActionResult> Update(int projectId, [FromBody]ProjectUI project) {
+        if(projectId != project.Id) return BadRequest();
         if(ModelState.IsValid) {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
