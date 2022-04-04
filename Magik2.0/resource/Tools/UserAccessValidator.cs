@@ -41,4 +41,11 @@ public class UserAccessValidator {
         await ValidateAndGetFieldAsync(accountId, project.FieldId);
         return project;
     }
+
+    public async Task<Models.Stage> ValidateAndGetStageAsync(string accountId, int stageId) {
+        var stage = await uof.Stages.FirstOrDefaultAsync(stageId);
+        if(stage == null) throw new ApplicationException("Нет такого этапа");
+        await ValidateAndGetProjectAsync(accountId, stage.ProjectId);
+        return stage;
+    }
 }

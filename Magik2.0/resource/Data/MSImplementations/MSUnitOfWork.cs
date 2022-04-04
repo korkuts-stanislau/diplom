@@ -16,4 +16,6 @@ public class MSUnitOfWork : IUnitOfWork {
     public IFieldsRepository Fields => fields ??= new MSFieldsRepository(context);
     private MSProjectsRepository? projects;
     public IProjectsRepository Projects => projects ??= new MSProjectsRepository(context);
+    private MSStagesRepository? stages;
+    public IStagesRepository Stages => stages ??= new MSStagesRepository(context);
 }

@@ -81,6 +81,7 @@ namespace Resource
             services.AddScoped<ProfilesService>();
             services.AddScoped<FieldsService>();
             services.AddScoped<ProjectsService>();
+            services.AddScoped<StagesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

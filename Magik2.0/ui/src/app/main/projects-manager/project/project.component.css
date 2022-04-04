@@ -1,17 +1,24 @@
 #current-project-container {
-    margin: 0 30px;
-    background-color: rgba(180, 217, 228, 0.3);
-    border-radius: 5px;
     padding: 5px;
+    margin: 0 25px;
+    display: flex;
+    border-bottom: 1px solid rgb(173, 173, 173);
+    flex-direction: column;
+    align-items: center;
 }
 
 #current-project-container > p {
-    margin: 5px;
+    width: 50%;
+    margin: 5px 0 15px 0;
     text-align: center;
 }
 
 #current-project-header {
     display: flex;
+    width: calc(100% - 10px);
+    background-color: rgba(180, 180, 180, 0.493);
+    padding: 3px 10px;
+    border-radius: 5px;
     justify-content: center;
 }
 
@@ -27,6 +34,14 @@
 
 @media (max-width:700px) {
     #current-project-container {
-        margin: 0 20px;
+        margin: 0 10px;
     }
+
+    #current-project-container > p {
+        width: 90%;
+    }
+
+    #current-project-header {
+        width: calc(100% - 20px);
+    }    
 }
