@@ -20,7 +20,7 @@ namespace Resource.Models
         [StringLength(50)]
         public string Name { get; set; } = null!;
 
-        [StringLength(250)]
+        [StringLength(2048)]
         public string Description { get; set; } = null!;
 
 

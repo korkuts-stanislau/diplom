@@ -60,6 +60,14 @@
     width: 200px;
 }
 
+.modal-item > textarea {
+    padding: 5px 10px;
+    width: 200px;
+    resize: none;
+    overflow: auto;
+    height: 200px;
+}
+
 .modal-item > button {
     width: 209px;
 }

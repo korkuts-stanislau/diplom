@@ -16,7 +16,6 @@ import {JwtModule} from "@auth0/angular-jwt";
 import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.component';
 import { ProfileFriendsComponent } from './main/profile/profile-friends/profile-friends.component';
 import { ProfileStatisticComponent } from './main/profile/profile-statistic/profile-statistic.component';
-import { ProfileTestsComponent } from './main/profile/profile-tests/profile-tests.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FieldsComponent } from './main/projects-manager/fields/fields.component';
 import { AddFieldComponent } from './main/projects-manager/fields/add-field/add-field.component';
@@ -25,6 +24,7 @@ import { ProjectsManagerComponent } from './main/projects-manager/projects-manag
 import { ProjectComponent } from './main/projects-manager/project/project.component';
 import { StagesComponent } from './main/projects-manager/stages/stages.component';
 import { EditProjectComponent } from './main/projects-manager/project/edit-project/edit-project.component';
+import { AddStageComponent } from './main/projects-manager/project/add-stage/add-stage.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +40,13 @@ import { EditProjectComponent } from './main/projects-manager/project/edit-proje
     ProfileEditComponent,
     ProfileFriendsComponent,
     ProfileStatisticComponent,
-    ProfileTestsComponent,
     FieldsComponent,
     AddFieldComponent,
     EditFieldComponent,
     ProjectComponent,
     StagesComponent,
-    EditProjectComponent
+    EditProjectComponent,
+    AddStageComponent
   ],
   imports: [
     BrowserModule,

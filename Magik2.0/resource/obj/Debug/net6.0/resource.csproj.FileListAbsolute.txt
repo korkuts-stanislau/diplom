@@ -124,3 +124,5 @@ E:\university\diplom\Magik2.0\resource\obj\Debug\net6.0\refint\resource.dll
 E:\university\diplom\Magik2.0\resource\obj\Debug\net6.0\resource.pdb
 E:\university\diplom\Magik2.0\resource\obj\Debug\net6.0\resource.genruntimeconfig.cache
 E:\university\diplom\Magik2.0\resource\obj\Debug\net6.0\ref\resource.dll
+E:\university\diplom\Magik2.0\resource\bin\Debug\net6.0\Humanizer.dll
+E:\university\diplom\Magik2.0\resource\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll

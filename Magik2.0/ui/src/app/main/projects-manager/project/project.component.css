@@ -1,5 +1,5 @@
 #current-project-container {
-    padding: 5px;
+    padding: 10px 5px 15px 5px;
     margin: 0 25px;
     display: flex;
     border-bottom: 1px solid rgb(173, 173, 173);
@@ -9,14 +9,15 @@
 
 #current-project-container > p {
     width: 50%;
-    margin: 5px 0 15px 0;
+    margin: 15px 0;
+    white-space: pre-wrap;
     text-align: center;
 }
 
 #current-project-header {
     display: flex;
     width: calc(100% - 10px);
-    background-color: rgba(180, 180, 180, 0.493);
+    background-color: rgba(180, 180, 180, 0.2);
     padding: 3px 10px;
     border-radius: 5px;
     justify-content: center;

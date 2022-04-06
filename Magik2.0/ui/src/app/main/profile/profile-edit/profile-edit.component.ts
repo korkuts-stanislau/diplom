@@ -56,7 +56,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         this.info = "Профиль успешно изменён";
         this.error = "";
-        this.currentProfile!.picture = this.newPicture;
+        if(this.isPictureEdited) this.currentProfile!.picture = this.newPicture;
       }, err => {
         this.error = err.message;
         this.info = "";

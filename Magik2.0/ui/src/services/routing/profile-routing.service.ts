@@ -24,10 +24,6 @@ export class ProfileRoutingService {
     this.currentWindow = "statistic";
   }
 
-  routeToTests() {
-    this.currentWindow = "tests";
-  }
-
   isEdit():boolean {
     return this.currentWindow == "edit";
   }
@@ -38,9 +34,5 @@ export class ProfileRoutingService {
 
   isStatistic():boolean {
     return this.currentWindow == "statistic";
-  }
-
-  isTests():boolean {
-    return this.currentWindow == "tests";
   }
 }

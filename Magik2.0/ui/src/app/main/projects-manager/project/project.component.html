@@ -2,13 +2,19 @@
     <div id="current-project-header">
         <h3>{{currentProject?.name}}</h3>
         <div id="current-project-actions">
+            <button class="button action-button" *ngIf="descriptionShown" (click)="descriptionShown = false">▲</button>
+            <button class="button action-button" *ngIf="!descriptionShown" (click)="descriptionShown = true">▼</button>
+            <button class="button apply-button action-button" (click)="addStageModal()">✛</button>
             <button class="button action-button" (click)="editCurrentProjectModal()">✎</button>
             <button class="button action-button cancel-button" (click)="deleteCurrentProject()">✕</button>
         </div>
     </div>
-    <p>{{currentProject?.description}}</p>
+    <p *ngIf="descriptionShown">{{currentProject?.description}}</p>
 </div>
 <app-edit-project
     *ngIf="modalService.isModalOpened('edit-project')"
     [parent]="this"
     [projectToEdit]="currentProject"></app-edit-project>
+<app-add-stage
+    *ngIf="modalService.isModalOpened('add-stage')"
+    [parent]="this"></app-add-stage>

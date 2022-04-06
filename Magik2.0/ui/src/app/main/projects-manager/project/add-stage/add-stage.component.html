@@ -1,20 +1,20 @@
 <div class="modal-window">
     <div class="modal-content">
         <div class="modal-header">
-            <p class="modal-title">Изменение проекта</p>
+            <p class="modal-title">Добавление стадии</p>
             <button class="button cancel-button close-modal-button" (click)="modalService.closeModal()">✕</button>
         </div>
         <div id="modal-data">
             <div class="modal-item">
                 <label>Название</label>
-                <input class="input" [(ngModel)]="projectToEdit!.name">
+                <input class="input" [(ngModel)]="newStage!.name">
             </div>
             <div class="modal-item">
                 <label>Описание</label>
-                <textarea class="input" [(ngModel)]="projectToEdit!.description"></textarea>
+                <textarea class="input" [(ngModel)]="newStage!.description"></textarea>
             </div>
             <div class="modal-footer">
-                <button class="apply-button button" (click)="editProject()">Изменить</button>
+                <button class="apply-button button" (click)="addStage()">Добавить</button>
             </div>
         </div>
     </div>

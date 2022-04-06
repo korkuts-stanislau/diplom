@@ -3,6 +3,14 @@ dotnet new webapi -f net6.0
 dotnet new classlib -f net6.0
 dotnet run
 
+// EF and Migrations
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+
+dotnet ef migrations add {Name}
+dotnet ef migrations remove
+dotnet ef database update
+
 //Модули
 dotnet add package Microsoft.EntityFrameworkCore
 dotnet add package MongoDB.Driver

@@ -18,7 +18,7 @@ namespace Resource.UIModels
         [StringLength(50)]
         public string Name { get; set; } = null!;
 
-        [StringLength(250)]
+        [StringLength(2048)]
         public string Description { get; set; } = null!;
 
         public string? Color { get; set; } = null!;

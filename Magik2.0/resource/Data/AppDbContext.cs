@@ -9,10 +9,7 @@ namespace Resource.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions opts) : base(opts)
-        {
-            Database.EnsureCreated();
-        }
+        public AppDbContext(DbContextOptions opts) : base(opts){}
 
         public DbSet<AccountFile> AccountFiles { get; set; } = null!;
         public DbSet<FileType> FileTypes { get; set; } = null!;
