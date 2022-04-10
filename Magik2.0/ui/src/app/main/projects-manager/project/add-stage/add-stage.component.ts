@@ -11,7 +11,7 @@ import { ProjectComponent } from '../project.component';
 export class AddStageComponent implements OnInit {
 
   @Input()public parent?:ProjectComponent;
-  public newStage:Stage = new Stage("Новая стадия", "Моя новая стадия", new Date(), undefined, undefined, undefined);
+  public newStage:Stage = new Stage("Новая стадия", "Моя новая стадия", this.defaultDeadline(), undefined, undefined, undefined);
 
   constructor(public modalService: ModalService) { }
 
@@ -21,5 +21,16 @@ export class AddStageComponent implements OnInit {
   addStage() {
     this.parent!.addStage(this.newStage);
     this.modalService.closeModal();
+  }
+
+  currentDate(): Date {
+    return new Date();
+  }
+
+  defaultDeadline() {
+    // tomorow
+    let result = this.currentDate();
+    result.setDate(result.getDate() + 1);
+    return result;
   }
 }

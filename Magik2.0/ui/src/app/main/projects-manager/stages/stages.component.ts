@@ -31,4 +31,8 @@ export class StagesComponent implements OnInit, OnChanges {
         alert(err);
       });
   }
+
+  addStageToList(stage:Stage) {
+    this.stages?.push(stage);
+  }
 }

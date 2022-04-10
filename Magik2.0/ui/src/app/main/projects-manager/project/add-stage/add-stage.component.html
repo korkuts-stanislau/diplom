@@ -13,6 +13,14 @@
                 <label>Описание</label>
                 <textarea class="input" [(ngModel)]="newStage!.description"></textarea>
             </div>
+            <div class="modal-item">
+                <label>Дедлайн</label>
+                <input type="date" 
+                min="{{defaultDeadline() | date:'yyyy-MM-dd'}}"
+                class="input"
+                (ngModelChange)="newStage!.deadline = $event"
+                [ngModel]="newStage!.deadline | date:'yyyy-MM-dd'">
+            </div>
             <div class="modal-footer">
                 <button class="apply-button button" (click)="addStage()">Добавить</button>
             </div>

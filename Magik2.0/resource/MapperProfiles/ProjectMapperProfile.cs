@@ -43,22 +43,15 @@ public class ProjectMapperProfile : Profile {
     }
 
     private string GetColorFromDifference(double difference) {
-        double normDifference = difference + 101; // to range from 1 to 201
-        normDifference /= 201; // to range from 0 to ~0.99;
-        
         //r = 255 0 0
         //g = 0 255 0
         //y = 255 255 0
 
         int r, g;
-        if(normDifference > 0.5) {
-            g = (int)(255 * (normDifference));
-            r = (int)(255 * (1 - (normDifference - 0.5) * 2));
-        }
-        else {
-            g = (int)(255 * ((normDifference - 0.5) * 2));
-            r = (int)(255 * (1 - normDifference));
-        }
+        double bas = 255 * 2 * (1 / (1 + (Math.Abs(difference - 0.5) * 2)));
+        r = (int)(bas * (1 - difference));
+        g = (int)(bas * difference);
+
 
         return $"rgba({r}, {g}, 75, 0.5)";
     }
@@ -67,14 +60,15 @@ public class ProjectMapperProfile : Profile {
     /// Return difference between expected progress and actual progress for project stage
     /// </summary>
     /// <param name="stage">Project stage</param>
-    /// <returns>Difference between expected progress and actual progress in range from -100(You have done nothing and there is a deadline) to 100(You finished this stage)</returns>
+    /// <returns>Difference between expected progress and actual progress in range from 0(You have done nothing and there is a deadline) to 1(You finished this stage)</returns>
     private double GetActExpDifference(Models.Stage stage) {
-        if(stage.Progress == 100) return 100;
+        if(stage.Progress == 100) return 1;
         double timeSpent = (DateTime.Now - stage.CreationDate).TotalSeconds;
         double totalTime = (stage.Deadline - stage.CreationDate).TotalSeconds;
-        double expectedProgress = (timeSpent / totalTime) * 100;
-        double actualProgress = stage.Progress;
-        double difference = actualProgress - expectedProgress;
-        return difference < -100 ? -100 : difference;
+        double expectedProgress = timeSpent / totalTime;
+        if(expectedProgress > 1) expectedProgress = 1;
+        double actualProgress = stage.Progress / 100.0;
+        double difference = ((actualProgress - expectedProgress) + 1) / 2;
+        return difference;
     }
 }

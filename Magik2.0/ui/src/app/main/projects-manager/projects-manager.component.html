@@ -4,6 +4,7 @@
         [currentProject]="currentProject"></app-fields>
     <app-project
         (currentProjectDeleted)="onCurrentProjectDeleted($event)"
+        (stageAdded)="onStageAdded($event)"
         [currentProject]="currentProject"
         *ngIf="currentProject"></app-project>
     <app-stages

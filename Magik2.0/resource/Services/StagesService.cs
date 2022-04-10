@@ -19,13 +19,15 @@ public class StagesService {
 
     public async Task CreateStageAsync(string accountId, int projectId, StageUI stage) {
         await accessValidator.ValidateAndGetProjectAsync(accountId, projectId);
+        stage.CreationDate = DateTime.Now;
+        stage.Progress = 0;
         Models.Stage newStage = new Models.Stage {
             ProjectId = projectId,
             Name = stage.Name,
             Description = stage.Description,
-            CreationDate = DateTime.Now,
+            CreationDate = (DateTime)stage.CreationDate,
             Deadline = stage.Deadline,
-            Progress = 0
+            Progress = (int)stage.Progress
         };
         await uof.Stages.CreateAsync(newStage);
         stage.Id = newStage.Id;

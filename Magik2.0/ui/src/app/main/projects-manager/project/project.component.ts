@@ -14,6 +14,7 @@ export class ProjectComponent implements OnInit {
 
   @Input() public currentProject?: Project;
   @Output() public currentProjectDeleted: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public stageAdded: EventEmitter<Stage> = new EventEmitter<Stage>();
 
   public descriptionShown: boolean = false;
 
@@ -31,7 +32,7 @@ export class ProjectComponent implements OnInit {
   addStage(stage: Stage) {
     this.stagesService.addStage(this.currentProject!, stage)
       .subscribe(res => {
-        
+        this.stageAdded.emit(res);
       }, err => {
         console.log(err);
         alert("Изменение не удалось");

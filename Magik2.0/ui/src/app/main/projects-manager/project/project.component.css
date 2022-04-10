@@ -24,9 +24,15 @@
 }
 
 #current-project-header > h3{
+    height: 25px;
+    overflow-y: hidden;
     margin: 5px 10px 5px 5px;
     font-size: 20px;
     transform: translateY(8px);
+}
+
+#current-project-actions {
+    min-width: fit-content;
 }
 
 #current-project-actions > * {

@@ -19,6 +19,7 @@
     <div id="current-field-area">
         <div id="current-field-header">
             <button class="button action-button" (click)="showFields()">❰</button>
+            <img [src]="getUrlFromIcon(currentField!.icon)">
             <h3>{{currentField?.name}}</h3>
         </div>
         <div id="current-field-operations">
