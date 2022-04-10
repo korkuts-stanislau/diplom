@@ -68,7 +68,7 @@ public class ProjectMapperProfile : Profile {
         double expectedProgress = timeSpent / totalTime;
         if(expectedProgress > 1) expectedProgress = 1;
         double actualProgress = stage.Progress / 100.0;
-        double difference = ((actualProgress - expectedProgress) + 1) / 2;
+        double difference = Math.Pow(((actualProgress - expectedProgress) + 1) / 2, 0.7); //we use power for biasing color to green side
         return difference;
     }
 }
