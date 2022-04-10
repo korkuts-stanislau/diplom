@@ -28,6 +28,12 @@
   margin-bottom: 0.3rem;
 }
 
+#profile-desc > p {
+  white-space: pre-wrap;
+  max-height: 135px;
+  overflow-y: hidden;
+}
+
 #profile-opts {
   width: 20%;
   align-self: center;

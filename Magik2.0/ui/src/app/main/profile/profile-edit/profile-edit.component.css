@@ -35,9 +35,9 @@
   width: 30%;
 }
 
-.profile-edit-item > input, textarea {
+.profile-edit-item > input, .profile-edit-item > textarea {
   width: 60%;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .profile-edit-item > textarea {

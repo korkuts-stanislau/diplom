@@ -34,7 +34,7 @@ public class ProjectMapperProfile : Profile {
             );
     }
 
-    private const string DEFAULT_COLOR = "#23a5d588";
+    public static string DEFAULT_COLOR = "#23a5d588";
 
     private string GetProjectColorFromStages(IEnumerable<Models.Stage>? stages) {
         if(stages == null || stages.Count() == 0) return DEFAULT_COLOR;

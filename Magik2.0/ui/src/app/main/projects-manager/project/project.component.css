@@ -17,7 +17,6 @@
 #current-project-header {
     display: flex;
     width: calc(100% - 10px);
-    background-color: rgba(180, 180, 180, 0.2);
     padding: 3px 10px;
     border-radius: 5px;
     justify-content: center;

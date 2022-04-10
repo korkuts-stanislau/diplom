@@ -21,6 +21,7 @@ public class ProjectsService {
     public async Task CreateProjectAsync(string accountId, int fieldId, ProjectUI project) {
         await accessValidator.ValidateAndGetFieldAsync(accountId, fieldId);
         project.ProjectTypeId = 1; //private project by default
+        project.Color = Resource.MapperProfiles.ProjectMapperProfile.DEFAULT_COLOR;
         Project newProject = new Project {
             FieldId = fieldId,
             ProjectTypeId = project.ProjectTypeId,
