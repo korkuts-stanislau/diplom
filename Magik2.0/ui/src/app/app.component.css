@@ -19,6 +19,7 @@ footer {
 
 main {
   padding-top: 55px;
+  padding-bottom: 5px;
 }
 
 @media (max-width: 700px) {

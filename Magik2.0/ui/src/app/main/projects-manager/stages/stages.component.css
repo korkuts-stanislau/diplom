@@ -2,11 +2,57 @@
     margin: 10px 25px;
     padding: 5px;
     border-radius: 5px;
-    background-color: rgba(180, 217, 228, 0.3);
+    background-color: rgba(226, 226, 226, 0.3);
 }
+
+.stage-header {
+    margin: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(190, 190, 190, 0.2);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stage-actions > * {
+    margin-left: 5px;
+}
+
+.stage-content {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.stage-content > div {
+    margin-bottom: 10px;
+}
+
+.stage-info > label {
+    width: 20%;
+    min-width: 150px;
+    display: inline-block;
+}
+
+.stage-info > input {
+    width: 20%;
+    min-width: 150px;
+    display: inline-block;
+}
+
+.stage-info > progress {
+    width: 21%;
+    min-width: 160px;
+    display: inline-block;
+}
+
+
 
 @media (max-width: 700px) {
     #stages-container {
-        margin: 10px 20px;
+        margin: 10px 14px;
     }
 }

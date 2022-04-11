@@ -12,14 +12,28 @@ export class StagesComponent implements OnInit, OnChanges {
   @Input() public currentProject?: Project;
   public stages?:Stage[];
 
+  public openedStages: Stage[] = new Array<Stage>();
+
   constructor(private stagesService: StagesService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.getStages();
+    if(changes["currentProject"]) this.getStages();
   }
 
   ngOnInit(): void {
     this.getStages();
+  }
+
+  isStageOpened(stage:Stage) {
+    return this.openedStages.find(s => s.id == stage.id) != undefined;
+  }
+
+  openStage(stage:Stage) {
+    this.openedStages.push(stage);
+  }
+
+  closeStage(stage:Stage) {
+    this.openedStages = this.openedStages.filter(s => s.id != stage.id);
   }
 
   getStages() {

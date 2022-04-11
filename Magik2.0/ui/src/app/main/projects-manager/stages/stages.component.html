@@ -1,5 +1,30 @@
 <div id="stages-container">
-    <div *ngFor="let stage of stages">
-        {{stage.name}}
+    <div class="stage" *ngFor="let stage of stages">
+        <div class="stage-header">
+            <p>{{stage.name}}</p>
+            <div class="stage-actions">
+                <button class="button action-button" *ngIf="isStageOpened(stage)" (click)="closeStage(stage)">▲</button>
+                <button class="button action-button" *ngIf="!isStageOpened(stage)" (click)="openStage(stage)">▼</button>
+                <button class="button action-button">✎</button>
+                <button class="button action-button cancel-button">✕</button>
+            </div>
+        </div>
+        <div class="stage-content" *ngIf="isStageOpened(stage)">
+            <div class="stage-description">
+                <p>{{stage.description}}</p>
+            </div>
+            <div class="stage-info">
+                <label>Дата создания</label>
+                <input class="input" type="date" [ngModel]="stage.creationDate | date:'yyyy-MM-dd'" readonly>
+            </div>
+            <div class="stage-info">
+                <label>Дедлайн</label>
+                <input class="input" type="date" [ngModel]="stage.deadline | date:'yyyy-MM-dd'" readonly>
+            </div>
+            <div class="stage-info">
+                <label>Прогресс выполнения</label>
+                <progress class="progress" max="100" [value]="stage.progress"></progress>
+            </div>
+        </div>
     </div>
 </div>

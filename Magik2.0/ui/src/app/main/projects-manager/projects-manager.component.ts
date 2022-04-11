@@ -11,8 +11,8 @@ import { StagesComponent } from './stages/stages.component';
 })
 export class ProjectsManagerComponent implements OnInit {
 
-  @ViewChild(FieldsComponent)private fields!:FieldsComponent;
-  @ViewChild(StagesComponent)private stages!:StagesComponent;
+  @ViewChild(FieldsComponent)private fields?:FieldsComponent;
+  @ViewChild(StagesComponent)private stages?:StagesComponent;
   
   public currentProject?:Project;
 
@@ -26,12 +26,12 @@ export class ProjectsManagerComponent implements OnInit {
   }
 
   onCurrentProjectDeleted(item:any) {
-    this.fields.removeProjectFromList(this.currentProject!);
+    this.fields?.removeProjectFromList(this.currentProject!);
     this.currentProject = undefined;
   }
 
   onStageAdded(stage:Stage) {
-    this.stages.addStageToList(stage);
-    this.fields.getCurrentFieldProjects();
+    this.stages?.addStageToList(stage);
+    this.fields?.getCurrentFieldProjects();
   }
 }
