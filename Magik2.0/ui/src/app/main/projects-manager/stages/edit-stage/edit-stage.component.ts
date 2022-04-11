@@ -22,4 +22,15 @@ export class EditStageComponent implements OnInit {
     this.parent!.editStage(this.stageToEdit!);
     this.modalService.closeModal();
   }
+
+  currentDate(): Date {
+    return new Date();
+  }
+
+  defaultDeadline() {
+    // tomorow
+    let result = this.currentDate();
+    result.setDate(result.getDate() + 1);
+    return result;
+  }
 }

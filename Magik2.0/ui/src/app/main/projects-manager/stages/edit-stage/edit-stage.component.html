@@ -13,6 +13,17 @@
                 <label>Описание</label>
                 <textarea class="input" [(ngModel)]="stageToEdit!.description"></textarea>
             </div>
+            <div class="modal-item">
+                <label>Дедлайн</label>
+                <input class="input" type="date" 
+                    min="{{defaultDeadline() | date:'yyyy-MM-dd'}}"
+                    [ngModel]="stageToEdit!.deadline | date:'yyyy-MM-dd'" 
+                    (ngModelChange)="stageToEdit!.deadline = $event">
+            </div>
+            <div class="modal-item">
+                <label>Прогресс</label>
+                <input class="input" type="number" min="0" max="100" [(ngModel)]="stageToEdit!.progress">
+            </div>
             <div class="modal-footer">
                 <button class="apply-button button" (click)="editStage()">Изменить</button>
             </div>

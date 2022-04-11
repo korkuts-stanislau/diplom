@@ -44,7 +44,6 @@ export class StagesComponent implements OnInit, OnChanges {
     this.stagesService.getStages(this.currentProject!)
       .subscribe(res => {
         this.stages = res;
-        console.log(res);
       }, err => {
         console.log(err);
         alert(err);
@@ -63,7 +62,8 @@ export class StagesComponent implements OnInit, OnChanges {
   editStage(stage: Stage) {
     this.stagesService.editStage(stage)
       .subscribe(res => {
-        
+        let i = this.stages?.findIndex(s => s.id == stage.id)!;
+        this.stages![i] = res;
       }, err => {
         console.log(err);
         alert("Изменение не удалось");

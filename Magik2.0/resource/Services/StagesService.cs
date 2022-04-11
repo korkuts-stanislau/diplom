@@ -46,6 +46,7 @@ public class StagesService {
         stageToEdit.Deadline = stage.Deadline;
         stageToEdit.Progress = stage.Progress ?? 0;
         await uof.Stages.UpdateAsync(stageToEdit);
+        stage.Color = ColorEvaluator.GetStageColor(stageToEdit);
     }
 
     public async Task DeleteStageAsync(string accountId, int stageId) {
