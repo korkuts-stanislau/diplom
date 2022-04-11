@@ -1,12 +1,12 @@
 <div id="stages-container">
     <div class="stage" *ngFor="let stage of stages">
-        <div class="stage-header">
+        <div class="stage-header" [ngStyle]="{'background-color': stage.color}">
             <p>{{stage.name}}</p>
             <div class="stage-actions">
                 <button class="button action-button" *ngIf="isStageOpened(stage)" (click)="closeStage(stage)">▲</button>
                 <button class="button action-button" *ngIf="!isStageOpened(stage)" (click)="openStage(stage)">▼</button>
-                <button class="button action-button">✎</button>
-                <button class="button action-button cancel-button">✕</button>
+                <button class="button action-button" (click)="editStageModal(stage)">✎</button>
+                <button class="button action-button cancel-button" (click)="deleteStage(stage)">✕</button>
             </div>
         </div>
         <div class="stage-content" *ngIf="isStageOpened(stage)">
@@ -28,3 +28,7 @@
         </div>
     </div>
 </div>
+<app-edit-stage
+    *ngIf="modalService.isModalOpened('edit-stage')"
+    [parent]="this"
+    [stageToEdit]="stageToEdit"></app-edit-stage>

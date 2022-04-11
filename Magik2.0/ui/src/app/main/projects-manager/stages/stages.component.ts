@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Project } from 'src/models/resource/project';
 import { Stage } from 'src/models/resource/stage';
+import { ModalService } from 'src/services/modal/modal.service';
 import { StagesService } from 'src/services/stage/stages.service';
 
 @Component({
@@ -11,10 +12,13 @@ import { StagesService } from 'src/services/stage/stages.service';
 export class StagesComponent implements OnInit, OnChanges {
   @Input() public currentProject?: Project;
   public stages?:Stage[];
+  public stageToEdit?:Stage;
 
   public openedStages: Stage[] = new Array<Stage>();
 
-  constructor(private stagesService: StagesService) { }
+
+  constructor(private stagesService: StagesService,
+              public modalService: ModalService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes["currentProject"]) this.getStages();
@@ -40,6 +44,7 @@ export class StagesComponent implements OnInit, OnChanges {
     this.stagesService.getStages(this.currentProject!)
       .subscribe(res => {
         this.stages = res;
+        console.log(res);
       }, err => {
         console.log(err);
         alert(err);
@@ -48,5 +53,32 @@ export class StagesComponent implements OnInit, OnChanges {
 
   addStageToList(stage:Stage) {
     this.stages?.push(stage);
+  }
+
+  editStageModal(stage:Stage) {
+    this.stageToEdit = stage;
+    this.modalService.openModal('edit-stage');
+  }
+
+  editStage(stage: Stage) {
+    this.stagesService.editStage(stage)
+      .subscribe(res => {
+        
+      }, err => {
+        console.log(err);
+        alert("Изменение не удалось");
+      });
+  }
+
+  deleteStage(stage:Stage) {
+    if(confirm("Вы уверены что хотите удалить эту стадию?")) {
+      this.stagesService.deleteStage(stage)
+        .subscribe(res => {
+          this.stages = this.stages?.filter(s => s.id != stage.id);
+        }, err => {
+          console.log(err);
+          alert("Удаление не удалось");
+        });
+    }
   }
 }

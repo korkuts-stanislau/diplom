@@ -31,6 +31,7 @@ public class StagesService {
         };
         await uof.Stages.CreateAsync(newStage);
         stage.Id = newStage.Id;
+        stage.Color = ColorEvaluator.GetStageColor(newStage);
     }
 
     public async Task<IEnumerable<StageUI>> GetStagesAsync(string accountId, int projectId) {

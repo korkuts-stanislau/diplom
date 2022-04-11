@@ -8,7 +8,7 @@ public class StageUI {
     [StringLength(50)]
     public string Name { get; set; } = null!;
 
-    [StringLength(250)]
+    [StringLength(2048)]
     public string Description { get; set; } = null!;
 
     public DateTime? CreationDate { get; set; }
@@ -17,4 +17,5 @@ public class StageUI {
 
     [Range(0, 100)]
     public int? Progress { get; set; }
+    public string? Color { get; set; }
 }

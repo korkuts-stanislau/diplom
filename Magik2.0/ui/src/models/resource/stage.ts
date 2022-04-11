@@ -4,5 +4,6 @@ export class Stage {
                 public deadline:Date,
                 public creationDate?:Date,
                 public id?:number,
-                public progress?:number) {}
+                public progress?:number,
+                public color?:string) {}
 }

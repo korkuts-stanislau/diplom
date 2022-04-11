@@ -1,4 +1,5 @@
 using AutoMapper;
+using Resource.Tools;
 using Resource.UIModels;
 
 namespace Resource.MapperProfiles;
@@ -30,6 +31,10 @@ public class StageMapperProfile : Profile {
             .ForMember(
                 dest => dest.Progress,
                 opt => opt.MapFrom(src => src.Progress)
+            )
+            .ForMember(
+                dest => dest.Color,
+                opt => opt.MapFrom(src => ColorEvaluator.GetStageColor(src))
             );
     }
 }

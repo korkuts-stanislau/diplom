@@ -1,0 +1,21 @@
+<div class="modal-window">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p class="modal-title">Изменение стадии</p>
+            <button class="button cancel-button close-modal-button" (click)="modalService.closeModal()">✕</button>
+        </div>
+        <div id="modal-data">
+            <div class="modal-item">
+                <label>Название</label>
+                <input class="input" [(ngModel)]="stageToEdit!.name">
+            </div>
+            <div class="modal-item">
+                <label>Описание</label>
+                <textarea class="input" [(ngModel)]="stageToEdit!.description"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="apply-button button" (click)="editStage()">Изменить</button>
+            </div>
+        </div>
+    </div>
+</div>

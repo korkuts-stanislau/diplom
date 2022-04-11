@@ -25,6 +25,7 @@ import { ProjectComponent } from './main/projects-manager/project/project.compon
 import { StagesComponent } from './main/projects-manager/stages/stages.component';
 import { EditProjectComponent } from './main/projects-manager/project/edit-project/edit-project.component';
 import { AddStageComponent } from './main/projects-manager/project/add-stage/add-stage.component';
+import { EditStageComponent } from './main/projects-manager/stages/edit-stage/edit-stage.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AddStageComponent } from './main/projects-manager/project/add-stage/add
     ProjectComponent,
     StagesComponent,
     EditProjectComponent,
-    AddStageComponent
+    AddStageComponent,
+    EditStageComponent
   ],
   imports: [
     BrowserModule,
