@@ -2,6 +2,7 @@ import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { ProfileRoutingService } from 'src/services/routing/profile-routing.service';
 import {Profile} from "../../../../models/resource/profile";
 import {ProfilesService} from "../../../../services/profile/profiles.service";
+import { ProfileComponent } from '../profile.component';
 
 @Component({
   selector: 'app-profile-edit',
@@ -10,6 +11,7 @@ import {ProfilesService} from "../../../../services/profile/profiles.service";
 })
 export class ProfileEditComponent implements OnInit, OnDestroy {
   @Input()public currentProfile?: Profile;
+  @Input()public parent?: ProfileComponent;
   private newPicture: string = "";
 
   public error = "";
@@ -57,6 +59,7 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
         this.info = "Профиль успешно изменён";
         this.error = "";
         if(this.isPictureEdited) this.currentProfile!.picture = this.newPicture;
+        this.parent?.getPictureSource();
       }, err => {
         this.error = err.message;
         this.info = "";

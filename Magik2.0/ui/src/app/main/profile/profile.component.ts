@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProfilesService} from "../../../services/profile/profiles.service";
 import {Profile} from "../../../models/resource/profile";
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import { ProfileRoutingService } from 'src/services/routing/profile-routing.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { ProfileRoutingService } from 'src/services/routing/profile-routing.serv
 })
 export class ProfileComponent implements OnInit {
   currentProfile?: Profile;
+  currentProfileImageUrl?: SafeResourceUrl;
 
   constructor(private profileService: ProfilesService,
               private sanitizer: DomSanitizer,
@@ -23,14 +24,15 @@ export class ProfileComponent implements OnInit {
   getProfile() {
     this.profileService.getProfile()
       .subscribe(res => {
-        this.currentProfile = res
+        this.currentProfile = res;
+        this.getPictureSource();
       }, err => {
         console.log(err)
       });
   }
 
   getPictureSource() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(
+    this.currentProfileImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       `data:image/png;base64, ${this.currentProfile?.picture}`);
   }
 }

@@ -35,6 +35,7 @@ export class ProjectsManagerComponent implements OnInit {
   onStageAdded(stage:Stage) {
     this.stages?.addStageToList(stage);
     this.fields?.getCurrentFieldProjects();
+    this.reloadProject();
   }
 
   onStageEditedOrDeleted() {

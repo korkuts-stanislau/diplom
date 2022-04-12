@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { Project } from 'src/models/resource/project';
 import { Stage } from 'src/models/resource/stage';
 import { ModalService } from 'src/services/modal/modal.service';
@@ -10,17 +10,23 @@ import { StagesService } from 'src/services/stage/stages.service';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnChanges {
 
   @Input() public currentProject?: Project;
   @Output() public currentProjectDeleted: EventEmitter<any> = new EventEmitter<any>();
   @Output() public stageAdded: EventEmitter<Stage> = new EventEmitter<Stage>();
+
+  @ViewChild("projectHeader") public projectHeader?: ElementRef;
 
   public descriptionShown: boolean = false;
 
   constructor(private projectsService: ProjectsService,
               private stagesService: StagesService,
               public modalService: ModalService) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.reloadBackground();
+  }
 
   ngOnInit(): void {
   }
@@ -65,5 +71,8 @@ export class ProjectComponent implements OnInit {
     }
   }
 
-  
+  reloadBackground() {
+    console.log("ok");
+    this.projectHeader?.nativeElement.setAttribute('style', `background:${this.currentProject?.color}`);
+  }
 }

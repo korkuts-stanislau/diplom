@@ -1,6 +1,6 @@
 <section id="profile-info">
   <img *ngIf="!currentProfile || currentProfile?.picture == ''" src="assets/empty-profile.png" alt="profile image">
-  <img *ngIf="currentProfile && currentProfile?.picture != ''" [src]="getPictureSource()" alt="profile image">
+  <img *ngIf="currentProfile && currentProfile?.picture != ''" [src]="currentProfileImageUrl" alt="profile image">
   <div id="profile-desc">
     <h1>{{currentProfile?.username}}</h1>
     <p>{{currentProfile?.description}}</p>
@@ -12,7 +12,9 @@
   </div>
 </section>
 <section id="profile-funcs">
-  <app-profile-edit *ngIf="profileRoutingService.isEdit()" [currentProfile]="currentProfile"></app-profile-edit>
+  <app-profile-edit *ngIf="profileRoutingService.isEdit()"
+   [currentProfile]="currentProfile"
+   [parent]="this"></app-profile-edit>
   <app-profile-friends *ngIf="profileRoutingService.isFriends()"></app-profile-friends>
   <app-profile-statistic *ngIf="profileRoutingService.isStatistic()"></app-profile-statistic>
 </section>
