@@ -14,7 +14,7 @@ export class StagesComponent implements OnInit, OnChanges {
   @Output() public stageEditedOrDeleted: EventEmitter<any> = new EventEmitter<any>()
   public stages?:Stage[];
   public stageToEdit?:Stage;
-  public stageToAddFile?:Stage;
+  public stageToAddAttachment?:Stage;
 
   public openedStages: Stage[] = new Array<Stage>();
 
@@ -84,5 +84,10 @@ export class StagesComponent implements OnInit, OnChanges {
           alert("Удаление не удалось");
         });
     }
+  }
+
+  addAttachmentModal(stage:Stage) {
+    this.stageToAddAttachment = stage;
+    this.modalService.openModal("attachments");
   }
 }

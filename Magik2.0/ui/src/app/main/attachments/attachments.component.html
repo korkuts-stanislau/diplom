@@ -1,0 +1,14 @@
+<div class="modal-window">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p class="modal-title">Вложения</p>
+            <button class="button cancel-button close-modal-button" (click)="modalService.closeModal()">✕</button>
+        </div>
+        <div id="modal-data">
+            
+            <div class="modal-footer">
+                <button *ngIf="stage" class="apply-button button">Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>
