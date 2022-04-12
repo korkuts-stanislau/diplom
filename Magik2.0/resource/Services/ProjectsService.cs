@@ -38,6 +38,10 @@ public class ProjectsService {
         return mapper.Map<IEnumerable<ProjectUI>>(await uof.Projects.GetAsync(fieldId));
     }
 
+    public async Task<ProjectUI> GetProjectAsync(string accountId, int projectId) {
+        return mapper.Map<ProjectUI>(await accessValidator.ValidateAndGetProjectAsync(accountId, projectId));
+    }
+
     public async Task UpdateProjectAsync(string accountId, ProjectUI project) {
         var projectToEdit = await accessValidator.ValidateAndGetProjectAsync(accountId, project.Id);
         projectToEdit.Name = project.Name;

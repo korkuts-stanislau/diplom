@@ -39,6 +39,10 @@ public class StagesService {
         return mapper.Map<IEnumerable<StageUI>>(await uof.Stages.GetAsync(projectId));
     }
 
+    public async Task<StageUI> GetStageAsync(string accountId, int stageId) {
+        return mapper.Map<StageUI>(await accessValidator.ValidateAndGetStageAsync(accountId, stageId));
+    }
+
     public async Task UpdateStageAsync(string accountId, StageUI stage) {
         var stageToEdit = await accessValidator.ValidateAndGetStageAsync(accountId, stage.Id);
         stageToEdit.Name = stage.Name;

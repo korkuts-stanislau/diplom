@@ -9,5 +9,6 @@
         *ngIf="currentProject"></app-project>
     <app-stages
         [currentProject]="currentProject"
+        (stageEditedOrDeleted)="onStageEditedOrDeleted()"
         *ngIf="currentProject"></app-stages>
 </div>

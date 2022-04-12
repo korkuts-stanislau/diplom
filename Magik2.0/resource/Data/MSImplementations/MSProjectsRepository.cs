@@ -26,7 +26,9 @@ public class MSProjectsRepository : IProjectsRepository
 
     public async Task<Project?> FirstOrDefaultAsync(int projectId)
     {
-        return await context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
+        return await context.Projects.Where(p => p.Id == projectId)
+            .Include(p => p.Stages)
+            .FirstOrDefaultAsync(p => p.Id == projectId);
     }
 
     public async Task<IEnumerable<Project>> GetAsync(int fieldId)

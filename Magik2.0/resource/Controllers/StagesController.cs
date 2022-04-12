@@ -55,7 +55,7 @@ public class StagesController : ControllerBase {
             var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
             try {
                 await stagesService.UpdateStageAsync(accountId, stage);
-                return Ok();
+                return Ok(stage);
             }
             catch(ApplicationException exc) {
                 return BadRequest(exc.Message);

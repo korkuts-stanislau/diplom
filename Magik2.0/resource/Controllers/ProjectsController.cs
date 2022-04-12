@@ -29,6 +29,18 @@ public class ProjectsController : ControllerBase {
         }
     }
 
+    [HttpGet("single/{projectId}")]
+    [Route("")]
+    public async Task<IActionResult> GetSingle(int projectId) {
+        var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        try {
+            return Ok(await projectsService.GetProjectAsync(accountId, projectId));
+        }
+        catch(ApplicationException exc) {
+            return BadRequest(exc.Message);
+        }
+    }
+
     [HttpPost("{fieldId}")]
     [Route("")]
     public async Task<IActionResult> Create(int fieldId, [FromBody]ProjectUI project) {

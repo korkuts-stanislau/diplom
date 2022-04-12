@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Project } from 'src/models/resource/project';
 import { Stage } from 'src/models/resource/stage';
 import { ModalService } from 'src/services/modal/modal.service';
@@ -11,6 +11,7 @@ import { StagesService } from 'src/services/stage/stages.service';
 })
 export class StagesComponent implements OnInit, OnChanges {
   @Input() public currentProject?: Project;
+  @Output() public stageEditedOrDeleted: EventEmitter<any> = new EventEmitter<any>()
   public stages?:Stage[];
   public stageToEdit?:Stage;
 
@@ -64,6 +65,7 @@ export class StagesComponent implements OnInit, OnChanges {
       .subscribe(res => {
         let i = this.stages?.findIndex(s => s.id == stage.id)!;
         this.stages![i] = res;
+        this.stageEditedOrDeleted.emit();
       }, err => {
         console.log(err);
         alert("Изменение не удалось");
@@ -75,6 +77,7 @@ export class StagesComponent implements OnInit, OnChanges {
       this.stagesService.deleteStage(stage)
         .subscribe(res => {
           this.stages = this.stages?.filter(s => s.id != stage.id);
+          this.stageEditedOrDeleted.emit();
         }, err => {
           console.log(err);
           alert("Удаление не удалось");

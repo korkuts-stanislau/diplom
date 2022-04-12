@@ -7,8 +7,9 @@ public static class ColorEvaluator {
 
     public static string GetProjectColor(Project project) {
         if(project.Stages == null || project.Stages.Count() == 0) return DEFAULT_COLOR;
-        double meanDifference = project.Stages.Select(stage => GetActExpDifference(stage)).Average(); // from -100 to 100
-        return GetColorFromDifference(meanDifference);
+        var unfinishedStagesDifferences = project.Stages.Where(s => s.Progress != 100).Select(stage => GetActExpDifference(stage));
+        if(unfinishedStagesDifferences.Count() == 0) return GetColorFromDifference(1);
+        return GetColorFromDifference(unfinishedStagesDifferences.Average());
     }
 
     public static string GetStageColor(Stage stage) {

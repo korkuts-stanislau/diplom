@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from 'src/models/resource/project';
 import { Stage } from 'src/models/resource/stage';
+import { FieldsService } from 'src/services/field/fields.service';
+import { ProjectsService } from 'src/services/project/projects.service';
 import { FieldsComponent } from './fields/fields.component';
 import { StagesComponent } from './stages/stages.component';
 
@@ -16,7 +18,7 @@ export class ProjectsManagerComponent implements OnInit {
   
   public currentProject?:Project;
 
-  constructor() { }
+  constructor(private projectsService: ProjectsService) { }
 
   ngOnInit(): void {
   }
@@ -33,5 +35,21 @@ export class ProjectsManagerComponent implements OnInit {
   onStageAdded(stage:Stage) {
     this.stages?.addStageToList(stage);
     this.fields?.getCurrentFieldProjects();
+  }
+
+  onStageEditedOrDeleted() {
+    this.reloadProject();
+  }
+  
+  reloadProject() {
+    this.projectsService.getProject(this.currentProject?.id!)
+      .subscribe(res => {
+        this.currentProject!.name = res.name;
+        this.currentProject!.description = res.description;
+        this.currentProject!.color = res.color;
+        this.currentProject!.projectTypeId = res.projectTypeId;
+      }, err => {
+        
+      })
   }
 }
