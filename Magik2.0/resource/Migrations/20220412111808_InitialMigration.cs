@@ -5,10 +5,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace resource.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AttachmentTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AttachmentTypes", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Fields",
                 columns: table => new
@@ -22,19 +35,6 @@ namespace resource.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Fields", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FileTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FileTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,23 +68,23 @@ namespace resource.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AccountFiles",
+                name: "AccountAttachments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccountId = table.Column<string>(type: "nvarchar(24)", maxLength: 24, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    FileTypeId = table.Column<int>(type: "int", nullable: false),
-                    Data = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                    AttachmentTypeId = table.Column<int>(type: "int", nullable: false),
+                    Data = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AccountFiles", x => x.Id);
+                    table.PrimaryKey("PK_AccountAttachments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AccountFiles_FileTypes_FileTypeId",
-                        column: x => x.FileTypeId,
-                        principalTable: "FileTypes",
+                        name: "FK_AccountAttachments_AttachmentTypes_AttachmentTypeId",
+                        column: x => x.AttachmentTypeId,
+                        principalTable: "AttachmentTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -99,7 +99,7 @@ namespace resource.Migrations
                     ProjectTypeId = table.Column<int>(type: "int", nullable: false),
                     OriginalProjectId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,7 +131,7 @@ namespace resource.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Progress = table.Column<int>(type: "int", nullable: false)
@@ -148,25 +148,25 @@ namespace resource.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StagesFiles",
+                name: "StagesAttachments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StageId = table.Column<int>(type: "int", nullable: false),
-                    AccountFileId = table.Column<int>(type: "int", nullable: false)
+                    AccountAttachmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StagesFiles", x => x.Id);
+                    table.PrimaryKey("PK_StagesAttachments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StagesFiles_AccountFiles_AccountFileId",
-                        column: x => x.AccountFileId,
-                        principalTable: "AccountFiles",
+                        name: "FK_StagesAttachments_AccountAttachments_AccountAttachmentId",
+                        column: x => x.AccountAttachmentId,
+                        principalTable: "AccountAttachments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StagesFiles_Stages_StageId",
+                        name: "FK_StagesAttachments_Stages_StageId",
                         column: x => x.StageId,
                         principalTable: "Stages",
                         principalColumn: "Id",
@@ -174,9 +174,9 @@ namespace resource.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AccountFiles_FileTypeId",
-                table: "AccountFiles",
-                column: "FileTypeId");
+                name: "IX_AccountAttachments_AttachmentTypeId",
+                table: "AccountAttachments",
+                column: "AttachmentTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_FieldId",
@@ -199,13 +199,13 @@ namespace resource.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StagesFiles_AccountFileId",
-                table: "StagesFiles",
-                column: "AccountFileId");
+                name: "IX_StagesAttachments_AccountAttachmentId",
+                table: "StagesAttachments",
+                column: "AccountAttachmentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StagesFiles_StageId",
-                table: "StagesFiles",
+                name: "IX_StagesAttachments_StageId",
+                table: "StagesAttachments",
                 column: "StageId");
         }
 
@@ -215,16 +215,16 @@ namespace resource.Migrations
                 name: "Profiles");
 
             migrationBuilder.DropTable(
-                name: "StagesFiles");
+                name: "StagesAttachments");
 
             migrationBuilder.DropTable(
-                name: "AccountFiles");
+                name: "AccountAttachments");
 
             migrationBuilder.DropTable(
                 name: "Stages");
 
             migrationBuilder.DropTable(
-                name: "FileTypes");
+                name: "AttachmentTypes");
 
             migrationBuilder.DropTable(
                 name: "Projects");

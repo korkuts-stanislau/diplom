@@ -2,10 +2,10 @@
 
 namespace Resource.Models;
 
-public class FileType
+public class AttachmentType
 {
     public int Id { get; set; }
     
-    [StringLength(5)]
+    [StringLength(20)]
     public string Name { get; set; } = null!;
 }

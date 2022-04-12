@@ -85,13 +85,4 @@ export class StagesComponent implements OnInit, OnChanges {
         });
     }
   }
-
-  openFilesModal(stage:Stage) {
-    this.stageToAddFile = stage;
-    this.modalService.openModal("files");
-  }
-
-  addFileToStage(file:File) {
-
-  }
 }

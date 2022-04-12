@@ -5,7 +5,7 @@
             <div class="stage-actions">
                 <button class="button action-button" *ngIf="isStageOpened(stage)" (click)="closeStage(stage)">▲</button>
                 <button class="button action-button" *ngIf="!isStageOpened(stage)" (click)="openStage(stage)">▼</button>
-                <button class="button action-button apply-button" (click)="openFilesModal(stage)">☰</button>
+                <button class="button action-button apply-button">☰</button>
                 <button class="button action-button" (click)="editStageModal(stage)">✎</button>
                 <button class="button action-button cancel-button" (click)="deleteStage(stage)">✕</button>
             </div>
@@ -33,6 +33,3 @@
     *ngIf="modalService.isModalOpened('edit-stage')"
     [parent]="this"
     [stageToEdit]="stageToEdit"></app-edit-stage>
-<app-files
-    *ngIf="modalService.isModalOpened('files')"
-    [stage]="stageToAddFile"></app-files>

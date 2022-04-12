@@ -26,7 +26,6 @@ import { StagesComponent } from './main/projects-manager/stages/stages.component
 import { EditProjectComponent } from './main/projects-manager/project/edit-project/edit-project.component';
 import { AddStageComponent } from './main/projects-manager/project/add-stage/add-stage.component';
 import { EditStageComponent } from './main/projects-manager/stages/edit-stage/edit-stage.component';
-import { FilesComponent } from './main/files/files.component';
 
 @NgModule({
   declarations: [
@@ -49,8 +48,7 @@ import { FilesComponent } from './main/files/files.component';
     StagesComponent,
     EditProjectComponent,
     AddStageComponent,
-    EditStageComponent,
-    FilesComponent
+    EditStageComponent
   ],
   imports: [
     BrowserModule,

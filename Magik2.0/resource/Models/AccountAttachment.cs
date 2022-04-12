@@ -2,7 +2,7 @@
 
 namespace Resource.Models;
 
-public class AccountFile
+public class AccountAttachment
 {
     public int Id { get; set; }
 
@@ -12,10 +12,10 @@ public class AccountFile
     [StringLength(50)]
     public string Name { get; set; } = null!;
 
-    public int FileTypeId { get; set; }
+    public int AttachmentTypeId { get; set; }
 
-    public byte[]? Data { get; set; }
+    public string Data { get; set; } = null!;
 
 
-    public FileType? FileType { get; set; }
+    public AttachmentType? AttachmentType { get; set; }
 }

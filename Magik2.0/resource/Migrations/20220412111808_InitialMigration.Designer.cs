@@ -12,8 +12,8 @@ using Resource.Data;
 namespace resource.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220411135504_ExpandStageDescriptionSize")]
-    partial class ExpandStageDescriptionSize
+    [Migration("20220412111808_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace resource.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Resource.Models.AccountFile", b =>
+            modelBuilder.Entity("Resource.Models.AccountAttachment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -37,11 +37,12 @@ namespace resource.Migrations
                         .HasMaxLength(24)
                         .HasColumnType("nvarchar(24)");
 
-                    b.Property<byte[]>("Data")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<int>("FileTypeId")
+                    b.Property<int>("AttachmentTypeId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Data")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -50,9 +51,27 @@ namespace resource.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FileTypeId");
+                    b.HasIndex("AttachmentTypeId");
 
-                    b.ToTable("AccountFiles");
+                    b.ToTable("AccountAttachments");
+                });
+
+            modelBuilder.Entity("Resource.Models.AttachmentType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AttachmentTypes");
                 });
 
             modelBuilder.Entity("Resource.Models.Field", b =>
@@ -79,24 +98,6 @@ namespace resource.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Fields");
-                });
-
-            modelBuilder.Entity("Resource.Models.FileType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("nvarchar(5)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FileTypes");
                 });
 
             modelBuilder.Entity("Resource.Models.Profile", b =>
@@ -225,7 +226,7 @@ namespace resource.Migrations
                     b.ToTable("Stages");
                 });
 
-            modelBuilder.Entity("Resource.Models.StageFile", b =>
+            modelBuilder.Entity("Resource.Models.StageAttachment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,7 +234,7 @@ namespace resource.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AccountFileId")
+                    b.Property<int>("AccountAttachmentId")
                         .HasColumnType("int");
 
                     b.Property<int>("StageId")
@@ -241,22 +242,22 @@ namespace resource.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountFileId");
+                    b.HasIndex("AccountAttachmentId");
 
                     b.HasIndex("StageId");
 
-                    b.ToTable("StagesFiles");
+                    b.ToTable("StagesAttachments");
                 });
 
-            modelBuilder.Entity("Resource.Models.AccountFile", b =>
+            modelBuilder.Entity("Resource.Models.AccountAttachment", b =>
                 {
-                    b.HasOne("Resource.Models.FileType", "FileType")
+                    b.HasOne("Resource.Models.AttachmentType", "AttachmentType")
                         .WithMany()
-                        .HasForeignKey("FileTypeId")
+                        .HasForeignKey("AttachmentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FileType");
+                    b.Navigation("AttachmentType");
                 });
 
             modelBuilder.Entity("Resource.Models.Project", b =>
@@ -295,11 +296,11 @@ namespace resource.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("Resource.Models.StageFile", b =>
+            modelBuilder.Entity("Resource.Models.StageAttachment", b =>
                 {
-                    b.HasOne("Resource.Models.AccountFile", "AccountFile")
+                    b.HasOne("Resource.Models.AccountAttachment", "AccountAttachment")
                         .WithMany()
-                        .HasForeignKey("AccountFileId")
+                        .HasForeignKey("AccountAttachmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -309,7 +310,7 @@ namespace resource.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AccountFile");
+                    b.Navigation("AccountAttachment");
 
                     b.Navigation("Stage");
                 });
