@@ -18,4 +18,8 @@ public class MSUnitOfWork : IUnitOfWork {
     public IProjectsRepository Projects => projects ??= new MSProjectsRepository(context);
     private MSStagesRepository? stages;
     public IStagesRepository Stages => stages ??= new MSStagesRepository(context);
+    private MSAccountAttachmentsRepository? accAttachments;
+    public IAccountAttachmentsRepository AccountAttachments => accAttachments ??= new MSAccountAttachmentsRepository(context);
+    private MSStagesAttachmentsRepository? stagesAttachments;
+    public IStagesAttachmentsRepository StagesAttachments => stagesAttachments ??= new MSStagesAttachmentsRepository(context);
 }

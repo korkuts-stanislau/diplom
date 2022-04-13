@@ -48,4 +48,11 @@ public class UserAccessValidator {
         await ValidateAndGetProjectAsync(accountId, stage.ProjectId);
         return stage;
     }
+
+    public async Task<Models.AccountAttachment> ValidateAndGetAttachmentAsync(string accountId, int attachmentId) {
+        var attachment = await uof.AccountAttachments.FirstOrDefaultAsync(attachmentId);
+        if(attachment == null) throw new ApplicationException("Нет такого вложения");
+        if(attachment.AccountId != accountId) throw new ApplicationException("Это вложение принадлежит другому пользователю");
+        return attachment;
+    }
 }

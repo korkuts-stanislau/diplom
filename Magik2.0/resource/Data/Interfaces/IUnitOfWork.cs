@@ -5,4 +5,6 @@ public interface IUnitOfWork {
     public IFieldsRepository Fields { get; }
     public IProjectsRepository Projects { get; }
     public IStagesRepository Stages { get; }
+    public IAccountAttachmentsRepository AccountAttachments{ get; }
+    public IStagesAttachmentsRepository StagesAttachments { get; }
 }
