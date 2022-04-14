@@ -35,6 +35,10 @@ public class StageMapperProfile : Profile {
             .ForMember(
                 dest => dest.Color,
                 opt => opt.MapFrom(src => ColorEvaluator.GetStageColor(src))
+            )
+            .ForMember(
+                dest => dest.Attachments,
+                opt => opt.MapFrom(src => new List<AttachmentUI>())
             );
     }
 }

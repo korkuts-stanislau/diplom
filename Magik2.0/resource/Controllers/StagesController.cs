@@ -11,10 +11,12 @@ namespace Resource.Controllers;
 [Authorize]
 public class StagesController : ControllerBase {
     private readonly StagesService stagesService;
+    private readonly AttachmentsService attachmentsService;
 
-    public StagesController(StagesService stagesService)
+    public StagesController(StagesService stagesService, AttachmentsService attachmentsService)
     {
         this.stagesService = stagesService;
+        this.attachmentsService = attachmentsService;
     }
 
     [HttpGet("{projectId}")]
@@ -22,7 +24,12 @@ public class StagesController : ControllerBase {
     public async Task<IActionResult> Get(int projectId) {
         var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
         try {
-            return Ok(await stagesService.GetStagesAsync(accountId, projectId));
+            var stages = await stagesService.GetStagesAsync(accountId, projectId);
+            // fill stages with attachments
+            foreach(var stage in stages) {
+                stage.Attachments = await attachmentsService.GetStageAttachments(accountId, stage.Id);
+            }
+            return Ok(stages);
         }
         catch(ApplicationException exc) {
             return BadRequest(exc.Message);

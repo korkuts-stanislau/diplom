@@ -1,0 +1,62 @@
+#attachments-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#attachments-container > * {
+    padding: 10px;
+    height: 70px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#attachments-container > *:hover {
+    filter: brightness(0.9);
+}
+
+.link-attachment {
+    background: rgba(250, 255, 175, 0.5);
+}
+
+.table-attachment {
+    background: rgba(175, 236, 255, 0.5);
+}
+
+#add-attachment {
+    background: rgba(175, 255, 175, 0.5);
+}
+
+#add-attachment > p {
+    height: initial !important;
+}
+
+#attachments-container > * > p {
+    text-overflow: clip;
+    overflow: hidden;
+    height: 20px;
+    text-align: center;
+}
+
+.attachments-actions > * {
+    width: 33px;
+    height: 33px;
+    filter:contrast(0.85);
+    margin-right: 4px;
+}
+
+.attachments-actions > button:last-child {
+    margin-right: 0;
+}
+
+@media (max-width:700px) {
+    #attachments-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

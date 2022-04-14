@@ -5,10 +5,29 @@
             <button class="button cancel-button close-modal-button" (click)="modalService.closeModal()">✕</button>
         </div>
         <div id="modal-data">
-            
-            <div class="modal-footer">
-                <button *ngIf="stage" class="apply-button button">Добавить</button>
+            <div id="attachments-container">
+                <div *ngFor="let attach of accountAttachments"
+                 [ngClass]="{'link-attachment': attach.attachmentTypeId, 'table-attachment': attach.attachmentTypeId == 2}">
+                    <p>{{attach.name}}</p>
+                    <div class="attachments-actions">
+                        <button class="button apply-button" 
+                            *ngIf="stage"
+                            (click)="addAttachmentToStage(attach)">✛</button>
+                        <button class="button" (click)="editAttachmentModal(attach)">✎</button>
+                        <button class="button cancel-button" (click)="deleteAttachment(attach)">✕</button>
+                    </div>
+                </div>
+                <div id="add-attachment" (click)="createAttachmentModal()">
+                    <p>Создать вложение</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<app-edit-attachment
+    *ngIf="modalService.isChildOpened('edit-attachment')"
+    [attachment]="attachToEdit"
+    (attachmentEdited)="editAttachment($event)"></app-edit-attachment>
+<app-create-attachment
+    *ngIf="modalService.isChildOpened('create-attachment')"
+    (attachmentCreated)="createAttachment($event)"></app-create-attachment>

@@ -8,7 +8,8 @@ export class ModalService {
   constructor() { }
 
   private currentModalName: string = "";
-
+  private modalChild: string = "";
+ 
   public openModal(modalName:string) {
     this.currentModalName = modalName;
   }
@@ -19,5 +20,17 @@ export class ModalService {
 
   public closeModal() {
     this.currentModalName = "";
+  }
+
+  public openChildModal(childName:string) {
+    this.modalChild = childName;
+  }
+
+  public isChildOpened(childName:string) {
+    return this.modalChild == childName;
+  }
+
+  public closeChild() {
+    this.modalChild = "";
   }
 }

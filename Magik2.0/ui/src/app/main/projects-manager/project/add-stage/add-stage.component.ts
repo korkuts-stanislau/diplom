@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Attachment } from 'src/models/resource/attachment';
 import { Stage } from 'src/models/resource/stage';
 import { ModalService } from 'src/services/modal/modal.service';
 import { ProjectComponent } from '../project.component';
@@ -11,7 +12,7 @@ import { ProjectComponent } from '../project.component';
 export class AddStageComponent implements OnInit {
 
   @Input()public parent?:ProjectComponent;
-  public newStage:Stage = new Stage("Новая стадия", "Моя новая стадия", this.defaultDeadline(), undefined, undefined, undefined);
+  public newStage:Stage = new Stage("Новая стадия", "Моя новая стадия", this.defaultDeadline(), new Array<Attachment>(), undefined, undefined, undefined);
 
   constructor(public modalService: ModalService) { }
 

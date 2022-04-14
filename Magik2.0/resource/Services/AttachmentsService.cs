@@ -33,11 +33,24 @@ public class AttachmentsService
     public async Task CreateNewAttachmentAsync(string accountId, AttachmentUI attachment) {
         AccountAttachment attach = new AccountAttachment {
             Name = attachment.Name,
+            AccountId = accountId,
             AttachmentTypeId = attachment.AttachmentTypeId,
             Data = attachment.Data
         };
         await uof.AccountAttachments.CreateAsync(attach);
         attachment.Id = attach.Id;
+    }
+
+    public async Task AddAttachmentToStageAsync(string accountId, int stageId, int attachmentId) {
+        await accessValidator.ValidateAndGetStageAsync(accountId, stageId);
+        await accessValidator.ValidateAndGetAttachmentAsync(accountId, attachmentId);
+        var same = await uof.StagesAttachments.WhereAsync(a => a.StageId == stageId && a.AccountAttachmentId == attachmentId);
+        if(same.Count() > 0) throw new ApplicationException("Это вложение уже находится в этой стадии");
+        StageAttachment attach = new StageAttachment {
+            StageId = stageId,
+            AccountAttachmentId = attachmentId
+        };
+        await uof.StagesAttachments.CreateAsync(attach);
     }
 
     public async Task UpdateAttachmentAsync(string accountId, AttachmentUI attachment) {
@@ -48,9 +61,9 @@ public class AttachmentsService
         await uof.AccountAttachments.UpdateAsync(attach);
     }
 
-    public async Task DeleteAttachmentAsync(string accountId, AttachmentUI attachment) {
-        ArgumentNullException.ThrowIfNull(attachment.Id);
-        var attach = await accessValidator.ValidateAndGetAttachmentAsync(accountId, (int)attachment.Id);
+    public async Task DeleteAttachmentAsync(string accountId, int attachmentId) {
+        ArgumentNullException.ThrowIfNull(attachmentId);
+        var attach = await accessValidator.ValidateAndGetAttachmentAsync(accountId, attachmentId);
         await uof.AccountAttachments.DeleteAsync(attach);
     }
 }

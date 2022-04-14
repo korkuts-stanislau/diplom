@@ -15,6 +15,8 @@ public class StageUI {
 
     public DateTime Deadline { get; set; }
 
+    public IEnumerable<AttachmentUI> Attachments { get; set; } = null!;
+
     [Range(0, 100)]
     public int? Progress { get; set; }
     public string? Color { get; set; }

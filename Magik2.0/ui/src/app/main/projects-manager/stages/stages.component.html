@@ -26,6 +26,29 @@
                 <label>Прогресс выполнения</label>
                 <progress class="progress" max="100" [value]="stage.progress"></progress>
             </div>
+            <div class="stage-attachments">
+                <div class="stage-attachment"
+                    *ngFor="let attachment of stage.attachments"
+                    [ngClass]="{'link-attachment': attachment.attachmentTypeId, 'table-attachment': attachment.attachmentTypeId == 2}">
+                    <div class="stage-attachment-header">
+                        <p>{{attachment.name}}</p>
+                        <button class="button action-button">✎</button>
+                        <button class="button action-button cancel-button">✕</button>
+                    </div>
+                    <div class="link-attachment-data" *ngIf="attachment.attachmentTypeId == 1">
+                        <a target="_blank" [href]="attachment.data">{{attachment.data}}</a>
+                    </div>
+                    <div class="table-attachment-data" *ngIf="attachment.attachmentTypeId == 2">
+                        <div class="stage-attachment-table">
+                            <div *ngFor="let row of getTableFromAttachment(attachment); let i = index">
+                                <div *ngFor="let item of row; let j = index">
+                                    <p>{{item}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -35,4 +58,7 @@
     [stageToEdit]="stageToEdit"></app-edit-stage>
 <app-attachments
     *ngIf="modalService.isModalOpened('attachments')"
-    [stage]="stageToAddAttachment"></app-attachments>
+    [stage]="stageToAddAttachment"
+    (attachmentAdded)="addAttachmentToList($event)"
+    (attachmentEdited)="editAttachments($event)"
+    (attachmentDeleted)="deleteAttachmentFromStages($event)"></app-attachments>

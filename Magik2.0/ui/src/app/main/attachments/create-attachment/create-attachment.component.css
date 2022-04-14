@@ -1,0 +1,24 @@
+#attachment-table {
+    width: 100%;
+    overflow: auto;
+}
+
+#attachment-table {
+    display: flex;
+    flex-direction: column;
+}
+
+#attachment-table > div {
+    display: flex;
+    flex-direction: row;
+
+}
+
+#attachment-table > div > div {
+    flex: 1 75px;
+}
+
+#attachment-table > div > div > input {
+    width: calc(100% - 10px);
+    min-width: 75px;
+}

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Attachment } from 'src/models/resource/attachment';
 import { Project } from 'src/models/resource/project';
 import { Stage } from 'src/models/resource/stage';
 import { ModalService } from 'src/services/modal/modal.service';
@@ -89,5 +90,29 @@ export class StagesComponent implements OnInit, OnChanges {
   addAttachmentModal(stage:Stage) {
     this.stageToAddAttachment = stage;
     this.modalService.openModal("attachments");
+  }
+
+  getTableFromAttachment(attach: Attachment):string[][] {
+    return JSON.parse(attach.data);
+  }
+
+  addAttachmentToList(attach:Attachment) {
+    this.stageToAddAttachment?.attachments.push(attach);
+  }
+
+  editAttachments(attach:Attachment) {
+    for(let stage of this.stages!) {
+      let current = stage.attachments.filter(a => a.id == attach.id)[0];
+      if(current) {
+        current.name = attach.name;
+        current.data = attach.data;
+      }
+    }
+  }
+
+  deleteAttachmentFromStages(attach:Attachment) {
+    for(let stage of this.stages!) {
+      stage.attachments = stage.attachments.filter(a => a.id != attach.id);
+    }
   }
 }

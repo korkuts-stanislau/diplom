@@ -27,6 +27,8 @@ import { EditProjectComponent } from './main/projects-manager/project/edit-proje
 import { AddStageComponent } from './main/projects-manager/project/add-stage/add-stage.component';
 import { EditStageComponent } from './main/projects-manager/stages/edit-stage/edit-stage.component';
 import { AttachmentsComponent } from './main/attachments/attachments.component';
+import { EditAttachmentComponent } from './main/attachments/edit-attachment/edit-attachment.component';
+import { CreateAttachmentComponent } from './main/attachments/create-attachment/create-attachment.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { AttachmentsComponent } from './main/attachments/attachments.component';
     EditProjectComponent,
     AddStageComponent,
     EditStageComponent,
-    AttachmentsComponent
+    AttachmentsComponent,
+    EditAttachmentComponent,
+    CreateAttachmentComponent
   ],
   imports: [
     BrowserModule,

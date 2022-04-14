@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Resource.Data.Interfaces;
 using Resource.Models;
@@ -29,6 +30,13 @@ public class MSStagesAttachmentsRepository : IStagesAttachmentsRepository
     public async Task<StageAttachment?> FirstOrDefaultAsync(int attachmentId)
     {
         return await context.StagesAttachments.FirstOrDefaultAsync(s => s.Id == attachmentId);
+    }
+
+    public async Task<IEnumerable<StageAttachment>> WhereAsync(Expression<Func<StageAttachment, bool>> predicate)
+    {
+        return await context.StagesAttachments
+            .Where(predicate)
+            .ToListAsync();
     }
 
     public async Task<IEnumerable<StageAttachment>> GetAsync(int stageId)
