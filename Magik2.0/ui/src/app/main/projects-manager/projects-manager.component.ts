@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { Project } from 'src/models/resource/project';
 import { Stage } from 'src/models/resource/stage';
 import { FieldsService } from 'src/services/field/fields.service';
@@ -48,7 +48,6 @@ export class ProjectsManagerComponent implements OnInit {
         this.currentProject!.name = res.name;
         this.currentProject!.description = res.description;
         this.currentProject!.color = res.color;
-        this.currentProject!.projectTypeId = res.projectTypeId;
       }, err => {
         
       })
