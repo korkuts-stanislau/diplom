@@ -14,14 +14,6 @@ public class ProjectMapperProfile : Profile {
                 opt => opt.MapFrom(src => src.Id)
             )
             .ForMember(
-                dest => dest.ProjectTypeId,
-                opt => opt.MapFrom(src => src.ProjectTypeId)
-            )
-            .ForMember(
-                dest => dest.OriginalProjectId,
-                opt => opt.MapFrom(src => src.OriginalProjectId)
-            )
-            .ForMember(
                 dest => dest.Name,
                 opt => opt.MapFrom(src => src.Name)
             )

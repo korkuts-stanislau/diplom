@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { Attachment } from 'src/models/resource/attachment';
 import { Project } from 'src/models/resource/project';
 import { Stage } from 'src/models/resource/stage';
+import { AttachmentsService } from 'src/services/attachment/attachments.service';
 import { ModalService } from 'src/services/modal/modal.service';
 import { StagesService } from 'src/services/stage/stages.service';
 
@@ -21,6 +22,7 @@ export class StagesComponent implements OnInit, OnChanges {
 
 
   constructor(private stagesService: StagesService,
+              private attachmentsService: AttachmentsService,
               public modalService: ModalService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -114,5 +116,14 @@ export class StagesComponent implements OnInit, OnChanges {
     for(let stage of this.stages!) {
       stage.attachments = stage.attachments.filter(a => a.id != attach.id);
     }
+  }
+
+  deleteAttachmentFromStage(stage:Stage, attach:Attachment) {
+    this.attachmentsService.deleteAttachmentFromStage(stage, attach)
+      .subscribe(res => {
+        stage.attachments = stage.attachments.filter(a => a.id != attach.id);
+      }, err => {
+
+      })
   }
 }

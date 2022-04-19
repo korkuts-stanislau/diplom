@@ -15,7 +15,6 @@ namespace Resource.Data
         public DbSet<AttachmentType> AttachmentTypes { get; set; } = null!;
         public DbSet<Profile> Profiles { get; set; } = null!;
         public DbSet<Project> Projects { get; set; } = null!;
-        public DbSet<ProjectType> ProjectTypes { get; set; } = null!;
         public DbSet<Field> Fields { get; set; } = null!;
         public DbSet<Stage> Stages { get; set; } = null!;
         public DbSet<StageAttachment> StagesAttachments { get; set; } = null!;

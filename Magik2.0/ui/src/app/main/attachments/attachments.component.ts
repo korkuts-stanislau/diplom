@@ -80,7 +80,6 @@ export class AttachmentsComponent implements OnInit {
     this.attachmentsService.addAttachmentToStage(this.stage!, attach)
       .subscribe(res => {
         this.attachmentAdded.emit(attach);
-        alert("Вложение успешно добавлено");
       }, err => {
         alert("Вложение уже находится в этой стадии");
       });

@@ -13,14 +13,6 @@ namespace Resource.Models
 
         public int FieldId { get; set; }
 
-        //1 - Public
-        //2 - Readonly
-        //3 - Copyable
-        //4 - Public
-        public int ProjectTypeId { get; set;}
-
-        public int? OriginalProjectId { get; set;}
-
         [StringLength(50)]
         public string Name { get; set; } = null!;
 
@@ -29,10 +21,6 @@ namespace Resource.Models
 
 
         public Field? Field { get; set; }
-
-        public ProjectType? ProjectType { get; set; }
-
-        public Project? OriginalProject { get; set; }
         
         public IEnumerable<Stage>? Stages { get; set; }
     }

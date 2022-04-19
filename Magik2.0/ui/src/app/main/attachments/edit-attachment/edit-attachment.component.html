@@ -9,6 +9,27 @@
                 <label>Название</label>
                 <input class="input" [(ngModel)]="attachment!.name">
             </div>
+            <div class="modal-item" *ngIf="attachment!.attachmentTypeId == 1">
+                <label>Значение</label>
+                <input class="input" [(ngModel)]="attachment!.data">
+            </div>
+            <div class="modal-item" *ngIf="attachment!.attachmentTypeId == 2">
+                <label>Строки</label>
+                <input type="number" min="1" class="input" [(ngModel)]="rows" (ngModelChange)="reinitTable()">
+            </div>
+            <div class="modal-item" *ngIf="attachment!.attachmentTypeId == 2">
+                <label>Столбцы</label>
+                <input type="number" min="1" class="input" [(ngModel)]="columns" (ngModelChange)="reinitTable()">
+            </div>
+            <div id="attachment-table-container" *ngIf="attachment!.attachmentTypeId == 2">
+                <div id="attachment-table">
+                    <div *ngFor="let row of table; let i = index">
+                        <div *ngFor="let item of row; let j = index">
+                            <input class="input" type="text" [ngModel]="item" (ngModelChange)="changeTableValue($event, i, j)">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button class="apply-button button" (click)="editAttachment()">Изменить</button>

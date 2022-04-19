@@ -62,8 +62,17 @@ public class AttachmentsService
     }
 
     public async Task DeleteAttachmentAsync(string accountId, int attachmentId) {
-        ArgumentNullException.ThrowIfNull(attachmentId);
         var attach = await accessValidator.ValidateAndGetAttachmentAsync(accountId, attachmentId);
         await uof.AccountAttachments.DeleteAsync(attach);
+    }
+
+    public async Task DeleteAttachmentFromStageAsync(string accountId, int stageId, int attachmentId) {
+        var stage = await accessValidator.ValidateAndGetStageAsync(accountId, stageId);
+        var attach = await accessValidator.ValidateAndGetAttachmentAsync(accountId, attachmentId);
+        var stageAttachments = await uof.StagesAttachments.WhereAsync(a => a.AccountAttachmentId == attachmentId && a.StageId == stageId);
+        if(stageAttachments.Count() == 0) {
+            throw new ApplicationException("В этой стадии нет этого вложения");
+        }
+        await uof.StagesAttachments.DeleteAsync(stageAttachments.First());
     }
 }

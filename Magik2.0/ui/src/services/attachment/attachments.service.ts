@@ -33,6 +33,10 @@ export class AttachmentsService {
       return this.http.put<Attachment>(`${this.url}api/attachments/${attach.id}`, attach);
     }
 
+    deleteAttachmentFromStage(stage: Stage, attachment: Attachment): Observable<any> {
+      return this.http.delete<any>(`${this.url}api/attachments/stage/${stage.id}?attachmentId=${attachment.id}`);
+    }
+
     deleteAttachment(attach: Attachment): Observable<any> {
       return this.http.delete<any>(`${this.url}api/attachments/${attach.id}`);
     }

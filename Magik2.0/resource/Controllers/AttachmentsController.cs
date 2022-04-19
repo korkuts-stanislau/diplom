@@ -93,6 +93,23 @@ public class AttachmentsController : ControllerBase {
         }
     }
 
+    [HttpDelete("stage/{stageId}")]
+    public async Task<IActionResult> DeleteFromStage(int stageId, [FromQuery]int attachmentId) {
+        if(ModelState.IsValid) {
+            var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            try {
+                await attachmentsService.DeleteAttachmentFromStageAsync(accountId, stageId, attachmentId);
+                return Ok();
+            }
+            catch(ApplicationException exc) {
+                return BadRequest(exc.Message);
+            }
+        }
+        else {
+            return BadRequest();
+        }
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id) {
         if(ModelState.IsValid) {

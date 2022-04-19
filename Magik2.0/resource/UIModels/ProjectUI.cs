@@ -11,10 +11,6 @@ namespace Resource.UIModels
     {
         public int Id { get; set; }
 
-        public int ProjectTypeId { get; set;}
-
-        public int? OriginalProjectId { get; set;}
-
         [StringLength(50)]
         public string Name { get; set; } = null!;
 
