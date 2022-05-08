@@ -1,5 +1,6 @@
 <div class="base-container">
   <app-home *ngIf="routing.isHomepage()"></app-home>
   <app-projects-manager *ngIf="routing.isProjects()"></app-projects-manager>
+  <app-chat *ngIf="routing.isChat()"></app-chat>
   <app-profile *ngIf="routing.isProfile()"></app-profile>
 </div>

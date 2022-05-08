@@ -26,9 +26,10 @@ import { StagesComponent } from './main/projects-manager/stages/stages.component
 import { EditProjectComponent } from './main/projects-manager/project/edit-project/edit-project.component';
 import { AddStageComponent } from './main/projects-manager/project/add-stage/add-stage.component';
 import { EditStageComponent } from './main/projects-manager/stages/edit-stage/edit-stage.component';
-import { AttachmentsComponent } from './main/attachments/attachments.component';
-import { EditAttachmentComponent } from './main/attachments/edit-attachment/edit-attachment.component';
-import { CreateAttachmentComponent } from './main/attachments/create-attachment/create-attachment.component';
+import { AttachmentsComponent } from './main/projects-manager/attachments/attachments.component';
+import { EditAttachmentComponent } from './main/projects-manager/attachments/edit-attachment/edit-attachment.component';
+import { CreateAttachmentComponent } from './main/projects-manager/attachments/create-attachment/create-attachment.component';
+import { ChatComponent } from './main/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CreateAttachmentComponent } from './main/attachments/create-attachment/
     EditStageComponent,
     AttachmentsComponent,
     EditAttachmentComponent,
-    CreateAttachmentComponent
+    CreateAttachmentComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
