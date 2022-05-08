@@ -4,4 +4,5 @@ ng g component(service...) {name}
 ng serve --host 192.168.100.77
 
 //Модули
-npm install @auth0/angular-jwt --save-dev
+npm install @auth0/angular-jwt --save
+npm install @microsoft/signalr --save

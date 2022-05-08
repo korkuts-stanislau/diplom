@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AppRoutingService {
-  private currentPage:string = "projects";
+  private currentPage:string = "homepage";
 
   constructor() {}
 
@@ -20,6 +20,10 @@ export class AppRoutingService {
     this.currentPage = "profile";
   }
 
+  routeToChat() {
+    this.currentPage = "chat";
+  }
+
   isHomepage():boolean {
     return this.currentPage == "homepage";
   }
@@ -30,5 +34,9 @@ export class AppRoutingService {
 
   isProfile():boolean {
     return this.currentPage == "profile";
+  }
+
+  isChat():boolean {
+    return this.currentPage == "chat";
   }
 }

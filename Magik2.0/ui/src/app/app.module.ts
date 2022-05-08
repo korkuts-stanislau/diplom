@@ -9,7 +9,7 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './main/home/home.component';
 import { ProfileComponent } from './main/profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
-import {AUTH_API_URL, RESOURCE_API_URL, tokenGetter} from "./config/app-injection-tokens";
+import {AUTH_API_URL, CHAT_API_URL, RESOURCE_API_URL, tokenGetter} from "./config/app-injection-tokens";
 import {environment} from "../environments/environment";
 import {HttpClientModule} from "@angular/common/http";
 import {JwtModule} from "@auth0/angular-jwt";
@@ -77,6 +77,10 @@ import { CreateAttachmentComponent } from './main/attachments/create-attachment/
     {
       provide: RESOURCE_API_URL,
       useValue: environment.resourceApi
+    },
+    {
+      provide: CHAT_API_URL,
+      useValue: environment.chatApi
     }
   ],
   bootstrap: [AppComponent]
