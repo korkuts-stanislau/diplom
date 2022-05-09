@@ -4,20 +4,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProfileRoutingService {
-  private currentWindow:string = "statistic";
+  private currentWindow:string = "contacts";
 
   constructor() {}
 
   default() {
-    this.currentWindow = "statistic";
+    this.currentWindow = "contacts";
   }
 
   routeToEdit() {
     this.currentWindow = "edit";
   }
 
-  routeToFriends() {
-    this.currentWindow = "friends";
+  routeToContacts() {
+    this.currentWindow = "contacts";
   }
 
   routeToStatistic() {
@@ -28,8 +28,8 @@ export class ProfileRoutingService {
     return this.currentWindow == "edit";
   }
 
-  isFriends():boolean {
-    return this.currentWindow == "friends";
+  isContacts():boolean {
+    return this.currentWindow == "contacts";
   }
 
   isStatistic():boolean {

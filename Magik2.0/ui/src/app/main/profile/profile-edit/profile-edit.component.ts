@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ProfileRoutingService } from 'src/services/routing/profile-routing.service';
 import {Profile} from "../../../../models/resource/profile";
 import {ProfilesService} from "../../../../services/profile/profiles.service";
@@ -9,7 +9,7 @@ import { ProfileComponent } from '../profile.component';
   templateUrl: './profile-edit.component.html',
   styleUrls: ['./profile-edit.component.css']
 })
-export class ProfileEditComponent implements OnInit, OnDestroy {
+export class ProfileEditComponent implements OnInit {
   @Input()public currentProfile?: Profile;
   @Input()public parent?: ProfileComponent;
   private newPicture: string = "";
@@ -19,14 +19,9 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
 
   public isPictureEdited: boolean = false;
 
-  constructor(private profileService: ProfilesService,
-              private profileRoutingService: ProfileRoutingService) { }
+  constructor(private profileService: ProfilesService) { }
   
   ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-    this.profileRoutingService.default();
   }
 
   editPhotoEvent(event: Event) {
@@ -51,8 +46,11 @@ export class ProfileEditComponent implements OnInit, OnDestroy {
       this.info = "";
     }
     else {
-      let newProfile = new Profile(this.currentProfile!.username,
+      let newProfile = new Profile(
+        this.currentProfile!.id,
+        this.currentProfile!.username,
         this.currentProfile!.description,
+        undefined,
         this.newPicture);
       this.profileService.editProfile(newProfile, this.isPictureEdited)
       .subscribe(res => {

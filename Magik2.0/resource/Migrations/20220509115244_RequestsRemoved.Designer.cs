@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Resource.Data;
 
@@ -11,9 +12,10 @@ using Resource.Data;
 namespace resource.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220509115244_RequestsRemoved")]
+    partial class RequestsRemoved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,17 +85,17 @@ namespace resource.Migrations
                     b.Property<bool>("Accepted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("FirstProfileId")
-                        .HasColumnType("int");
+                    b.Property<string>("FirstAccountId")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
-                    b.Property<int?>("SecondProfileId")
-                        .HasColumnType("int");
+                    b.Property<string>("SecondAccountId")
+                        .IsRequired()
+                        .HasMaxLength(24)
+                        .HasColumnType("nvarchar(24)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FirstProfileId");
-
-                    b.HasIndex("SecondProfileId");
 
                     b.ToTable("Contacts");
                 });
@@ -255,23 +257,6 @@ namespace resource.Migrations
                         .IsRequired();
 
                     b.Navigation("AttachmentType");
-                });
-
-            modelBuilder.Entity("Resource.Models.Contact", b =>
-                {
-                    b.HasOne("Resource.Models.Profile", "FirstProfile")
-                        .WithMany()
-                        .HasForeignKey("FirstProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Resource.Models.Profile", "SecondProfile")
-                        .WithMany()
-                        .HasForeignKey("SecondProfileId");
-
-                    b.Navigation("FirstProfile");
-
-                    b.Navigation("SecondProfile");
                 });
 
             modelBuilder.Entity("Resource.Models.Project", b =>

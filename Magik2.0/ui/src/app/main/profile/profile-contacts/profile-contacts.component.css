@@ -1,0 +1,82 @@
+#profile-contacts-container {
+    width: calc(100% - 10px);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+#profile-contacts-container h2 {
+    text-align: center;
+    margin: 10px 0 25px 0;
+}
+
+#contacts-search-container, 
+#account-contacts-container {
+    width: 50%;
+}
+
+#contacts-search-container {
+    margin-bottom: 10px;
+}
+
+#contacts-search-container > input {
+    width: calc(100% - 10px);
+}
+
+#contacts-search-actions {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.contact {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
+    gap: 5px;
+}
+
+.contact-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
+    gap: 5px;
+}
+
+.contact img {
+    height: 80px;
+    border-radius: 50%;
+}
+
+.contact p {
+    font-size: 20px;
+}
+
+@media (max-width: 700px) {
+    #contacts-search-container, 
+    #account-contacts-container {
+        width: 80%;
+    }
+
+    .contact img {
+        height: 60px;
+    }
+
+    .contact p {
+        font-size: 16px;
+    }
+}

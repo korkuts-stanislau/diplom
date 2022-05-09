@@ -29,4 +29,24 @@ export class ProfilesService {
     if(profile.description.length > 200 ) return "Максимальная длина описания 200 символов";
     return undefined;
   }
+
+  getAcceptedContacts(): Observable<Profile[]> {
+    return this.http.get<Profile[]>(`${this.url}api/profiles/contacts/accepted`);
+  }
+
+  getRequestedContacts(): Observable<Profile[]> {
+    return this.http.get<Profile[]>(`${this.url}api/profiles/contacts/requested`);
+  }
+
+  searchProfilesByName(name: string): Observable<Profile[]> {
+    return this.http.get<Profile[]>(`${this.url}api/profiles/contacts/search?name=${name}`);
+  }
+
+  searchProfilesByDescription(description: string): Observable<Profile[]> {
+    return this.http.get<Profile[]>(`${this.url}api/profiles/contacts/search?description=${description}`);
+  }
+
+  getOtherProfile() {
+    
+  }
 }

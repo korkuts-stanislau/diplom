@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Resource.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Resource.Data
 {
@@ -18,5 +14,6 @@ namespace Resource.Data
         public DbSet<Field> Fields { get; set; } = null!;
         public DbSet<Stage> Stages { get; set; } = null!;
         public DbSet<StageAttachment> StagesAttachments { get; set; } = null!;
+        public DbSet<Contact> Contacts { get; set; } = null!;
     }
 }

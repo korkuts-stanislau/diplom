@@ -60,4 +60,20 @@ public class ProfilesService
 
         await uof.Profiles.UpdateAsync(profile);
     }
+
+    public async Task<IEnumerable<ProfileUI>> GetAcceptedContactProfilesAsync(string accountId) {
+        return mapper.Map<IEnumerable<ProfileUI>>(await uof.Profiles.GetAcceptedContactProfilesAsync(accountId));
+    }
+
+    public async Task<IEnumerable<ProfileUI>> GetRequestedContactProfilesAsync(string accountId) {
+        return mapper.Map<IEnumerable<ProfileUI>>(await uof.Profiles.GetRequestedContactProfilesAsync(accountId));
+    }
+
+    public async Task<IEnumerable<ProfileUI>> SearchProfilesByName(string accountId, string name) {
+        return mapper.Map<IEnumerable<ProfileUI>>(await uof.Profiles.SearchProfiles(accountId, IProfilesRepository.SearchFilter.Name, name));
+    }
+
+    public async Task<IEnumerable<ProfileUI>> SearchProfilesByDescription(string accountId, string description) {
+        return mapper.Map<IEnumerable<ProfileUI>>(await uof.Profiles.SearchProfiles(accountId, IProfilesRepository.SearchFilter.Description, description));
+    }
 }

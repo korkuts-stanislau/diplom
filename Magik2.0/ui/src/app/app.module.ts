@@ -14,7 +14,6 @@ import {environment} from "../environments/environment";
 import {HttpClientModule} from "@angular/common/http";
 import {JwtModule} from "@auth0/angular-jwt";
 import { ProfileEditComponent } from './main/profile/profile-edit/profile-edit.component';
-import { ProfileFriendsComponent } from './main/profile/profile-friends/profile-friends.component';
 import { ProfileStatisticComponent } from './main/profile/profile-statistic/profile-statistic.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FieldsComponent } from './main/projects-manager/fields/fields.component';
@@ -30,6 +29,7 @@ import { AttachmentsComponent } from './main/projects-manager/attachments/attach
 import { EditAttachmentComponent } from './main/projects-manager/attachments/edit-attachment/edit-attachment.component';
 import { CreateAttachmentComponent } from './main/projects-manager/attachments/create-attachment/create-attachment.component';
 import { ChatComponent } from './main/chat/chat.component';
+import { ProfileContactsComponent } from './main/profile/profile-contacts/profile-contacts.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { ChatComponent } from './main/chat/chat.component';
     ProfileComponent,
     AuthComponent,
     ProfileEditComponent,
-    ProfileFriendsComponent,
+    ProfileContactsComponent,
     ProfileStatisticComponent,
     FieldsComponent,
     AddFieldComponent,

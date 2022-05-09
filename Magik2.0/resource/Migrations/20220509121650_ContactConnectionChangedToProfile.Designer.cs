@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Resource.Data;
 
@@ -11,9 +12,10 @@ using Resource.Data;
 namespace resource.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220509121650_ContactConnectionChangedToProfile")]
+    partial class ContactConnectionChangedToProfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,32 +72,6 @@ namespace resource.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AttachmentTypes");
-                });
-
-            modelBuilder.Entity("Resource.Models.Contact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("Accepted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("FirstProfileId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SecondProfileId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FirstProfileId");
-
-                    b.HasIndex("SecondProfileId");
-
-                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Resource.Models.Field", b =>
@@ -255,23 +231,6 @@ namespace resource.Migrations
                         .IsRequired();
 
                     b.Navigation("AttachmentType");
-                });
-
-            modelBuilder.Entity("Resource.Models.Contact", b =>
-                {
-                    b.HasOne("Resource.Models.Profile", "FirstProfile")
-                        .WithMany()
-                        .HasForeignKey("FirstProfileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Resource.Models.Profile", "SecondProfile")
-                        .WithMany()
-                        .HasForeignKey("SecondProfileId");
-
-                    b.Navigation("FirstProfile");
-
-                    b.Navigation("SecondProfile");
                 });
 
             modelBuilder.Entity("Resource.Models.Project", b =>

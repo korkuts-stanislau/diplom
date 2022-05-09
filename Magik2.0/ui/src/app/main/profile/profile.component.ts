@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {ProfilesService} from "../../../services/profile/profiles.service";
 import {Profile} from "../../../models/resource/profile";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
@@ -10,7 +10,7 @@ import { AuthService } from 'src/services/auth/auth.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   currentProfile?: Profile;
   currentProfileImageUrl?: SafeResourceUrl;
 
@@ -18,6 +18,10 @@ export class ProfileComponent implements OnInit {
               private sanitizer: DomSanitizer,
               public profileRoutingService: ProfileRoutingService,
               private authService: AuthService) { }
+
+  ngOnDestroy(): void {
+    this.profileRoutingService.default();
+  }
 
   ngOnInit(): void {
     this.getProfile();

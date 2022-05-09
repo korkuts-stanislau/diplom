@@ -8,7 +8,7 @@
   <div id="profile-opts">
     <button class="button" (click)="profileRoutingService.routeToStatistic()">Статистика</button>
     <button class="button" (click)="profileRoutingService.routeToEdit()">Редактировать</button>
-    <button class="button" (click)="profileRoutingService.routeToFriends()">Друзья</button>
+    <button class="button" (click)="profileRoutingService.routeToContacts()">Контакты</button>
     <button class="button cancel-button" (click)="signOut()">Выйти</button>
   </div>
 </section>
@@ -16,6 +16,6 @@
   <app-profile-edit *ngIf="profileRoutingService.isEdit()"
    [currentProfile]="currentProfile"
    [parent]="this"></app-profile-edit>
-  <app-profile-friends *ngIf="profileRoutingService.isFriends()"></app-profile-friends>
+  <app-profile-contacts *ngIf="profileRoutingService.isContacts()"></app-profile-contacts>
   <app-profile-statistic *ngIf="profileRoutingService.isStatistic()"></app-profile-statistic>
 </section>
