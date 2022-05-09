@@ -10,10 +10,13 @@ import { ProfilesService } from 'src/services/profile/profiles.service';
 })
 export class ProfileContactsComponent implements OnInit {
 
-  isMyContactsShown = true;
+  isContactsShown = true;
   isSearchedProfilesShown = false;
   acceptedContacts?:Profile[];
   requestedContacts?:Profile[];
+  searchedContacts?:Profile[];
+
+  searchField:string = "";
 
   constructor(private sanitizer: DomSanitizer,
               private profilesService: ProfilesService) { }
@@ -21,6 +24,16 @@ export class ProfileContactsComponent implements OnInit {
   ngOnInit(): void {
     this.getContacts();
     this.getRequests();
+  }
+
+  showContacts() {
+    this.isContactsShown = true;
+    this.isSearchedProfilesShown = false;
+  }
+
+  showSearchResults() {
+    this.isContactsShown = false;
+    this.isSearchedProfilesShown = true;
   }
 
   getContactIconSource(contact:Profile) {
@@ -32,6 +45,7 @@ export class ProfileContactsComponent implements OnInit {
     this.profilesService.getAcceptedContacts()
       .subscribe(res => {
         this.acceptedContacts = res;
+        this.showContacts();
       }, err => console.log(err));
   }
 
@@ -39,6 +53,23 @@ export class ProfileContactsComponent implements OnInit {
     this.profilesService.getRequestedContacts()
       .subscribe(res => {
         this.requestedContacts = res;
+        this.showContacts();
+      }, err => console.log(err));
+  }
+
+  searchContactsByName() {
+    this.profilesService.searchProfilesByName(this.searchField)
+      .subscribe(res => {
+        this.searchedContacts = res;
+        this.showSearchResults();
+      }, err => console.log(err));
+  }
+
+  searchContactsByDescription() {
+    this.profilesService.searchProfilesByDescription(this.searchField)
+      .subscribe(res => {
+        this.searchedContacts = res;
+        this.showSearchResults();
       }, err => console.log(err));
   }
 
@@ -46,5 +77,17 @@ export class ProfileContactsComponent implements OnInit {
     if(confirm("Вы действительно хотите удалить этот контакт?")) {
       
     }
+  }
+
+  acceptContact(contact: Profile) {
+
+  }
+
+  sendRequestToProfile(contact: Profile) {
+    
+  }
+
+  openProfileModal(contact:Profile) {
+
   }
 }

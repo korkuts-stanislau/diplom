@@ -2,17 +2,18 @@
     <h2>Контакты</h2>
     <div id="contacts-search-container">
         <p>Найти пользователей</p>
-        <input class="input"/>
+        <input class="input" [(ngModel)]="searchField"/>
         <div id="contacts-search-actions">
-            <button class="button">По имени</button>
-            <button class="button">По описанию</button>
-            <button class="button cancel-button">Сброс</button>
+            <button class="button" (click)="searchContactsByName()">По имени</button>
+            <button class="button" (click)="searchContactsByDescription()">По описанию</button>
+            <button class="button cancel-button" (click)="showContacts()">Сброс</button>
         </div>
     </div>
-    <div *ngIf="isMyContactsShown" id="account-contacts-container">
+    <div *ngIf="isContactsShown" id="account-contacts-container">
         <div class="contact" *ngFor="let contact of acceptedContacts">
             <div class="contact-info">
-                <img [src]="getContactIconSource(contact)">
+                <img *ngIf="contact.icon" [src]="getContactIconSource(contact)">
+                <img *ngIf="!contact.icon" src="assets/empty-profile.png">
                 <p>{{contact.username}}</p>
             </div>
             <div class="contact-actions">
@@ -22,7 +23,8 @@
         </div>
         <div class="contact" *ngFor="let contact of requestedContacts">
             <div class="contact-info">
-                <img [src]="getContactIconSource(contact)">
+                <img *ngIf="contact.icon" [src]="getContactIconSource(contact)">
+                <img *ngIf="!contact.icon" src="assets/empty-profile.png">
                 <p>{{contact.username}}</p>
             </div>
             <div class="contact-actions">
@@ -33,6 +35,16 @@
         </div>
     </div>
     <div *ngIf="isSearchedProfilesShown" id="searched-profiles-container">
-        
+        <div class="contact" *ngFor="let contact of searchedContacts">
+            <div class="contact-info">
+                <img *ngIf="contact.icon" [src]="getContactIconSource(contact)">
+                <img *ngIf="!contact.icon" src="assets/empty-profile.png">
+                <p>{{contact.username}}</p>
+            </div>
+            <div class="contact-actions">
+                <button class="button action-button apply-button">✓</button>
+                <button class="button action-button">!</button>
+            </div>
+        </div>
     </div>
 </div>

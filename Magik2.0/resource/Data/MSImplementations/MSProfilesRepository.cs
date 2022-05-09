@@ -76,10 +76,10 @@ namespace Resource.Data.MSImplementations {
             // filter
             switch(filter) {
                 case IProfilesRepository.SearchFilter.Name:
-                    otherProfilesQ = context.Profiles.Where(p => p.Username.ToLower() == query && p.AccountId != accountId);
+                    otherProfilesQ = context.Profiles.Where(p => p.Username.ToLower().Contains(query) && p.AccountId != accountId);
                     break;
                 case IProfilesRepository.SearchFilter.Description:
-                    otherProfilesQ = context.Profiles.Where(p => p.Description.ToLower() == query && p.AccountId != accountId);
+                    otherProfilesQ = context.Profiles.Where(p => p.Description.ToLower().Contains(query) && p.AccountId != accountId);
                     break;
             }
             var otherProfiles = await otherProfilesQ!
