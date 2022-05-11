@@ -46,7 +46,23 @@ export class ProfilesService {
     return this.http.get<Profile[]>(`${this.url}api/profiles/contacts/search?description=${description}`);
   }
 
-  getOtherProfile() {
-    
+  getOtherProfile(profile: Profile) {
+    return this.http.get<Profile>(`${this.url}api/profiles/contacts/profile/${profile.id}`);
+  }
+
+  deleteContact(profile: Profile): Observable<any> {
+    return this.http.delete<any>(`${this.url}api/profiles/contacts/${profile.id}`);
+  }
+
+  declineRequest(profile: Profile): Observable<any> {
+    return this.http.delete<any>(`${this.url}api/profiles/contacts/requests/${profile.id}`);
+  }
+
+  acceptContact(profile: Profile): Observable<any> {
+    return this.http.post<any>(`${this.url}api/profiles/contacts/requests/accept`, profile.id);
+  }
+
+  sendRequestToProfile(profile: Profile): Observable<any> {
+    return this.http.post<any>(`${this.url}api/profiles/contacts/requests/send`, profile.id);
   }
 }

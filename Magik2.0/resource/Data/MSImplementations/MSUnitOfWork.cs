@@ -22,4 +22,6 @@ public class MSUnitOfWork : IUnitOfWork {
     public IAccountAttachmentsRepository AccountAttachments => accAttachments ??= new MSAccountAttachmentsRepository(context);
     private MSStagesAttachmentsRepository? stagesAttachments;
     public IStagesAttachmentsRepository StagesAttachments => stagesAttachments ??= new MSStagesAttachmentsRepository(context);
+    private MSCardsRepository? cards;
+    public ICardsRepository Cards => cards ??= new MSCardsRepository(context);
 }

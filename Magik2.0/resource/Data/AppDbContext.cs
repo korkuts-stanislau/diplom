@@ -15,5 +15,6 @@ namespace Resource.Data
         public DbSet<Stage> Stages { get; set; } = null!;
         public DbSet<StageAttachment> StagesAttachments { get; set; } = null!;
         public DbSet<Contact> Contacts { get; set; } = null!;
+        public DbSet<Card> Cards { get; set; } = null!;
     }
 }

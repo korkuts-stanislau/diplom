@@ -69,11 +69,33 @@ public class ProfilesService
         return mapper.Map<IEnumerable<ProfileUI>>(await uof.Profiles.GetRequestedContactProfilesAsync(accountId));
     }
 
-    public async Task<IEnumerable<ProfileUI>> SearchProfilesByName(string accountId, string name) {
-        return mapper.Map<IEnumerable<ProfileUI>>(await uof.Profiles.SearchProfiles(accountId, IProfilesRepository.SearchFilter.Name, name));
+    public async Task<IEnumerable<ProfileUI>> SearchProfilesByNameAsync(string accountId, string name) {
+        return mapper.Map<IEnumerable<ProfileUI>>(await uof.Profiles.SearchProfilesAsync(accountId, IProfilesRepository.SearchFilter.Name, name));
     }
 
-    public async Task<IEnumerable<ProfileUI>> SearchProfilesByDescription(string accountId, string description) {
-        return mapper.Map<IEnumerable<ProfileUI>>(await uof.Profiles.SearchProfiles(accountId, IProfilesRepository.SearchFilter.Description, description));
+    public async Task<IEnumerable<ProfileUI>> SearchProfilesByDescriptionAsync(string accountId, string description) {
+        return mapper.Map<IEnumerable<ProfileUI>>(await uof.Profiles.SearchProfilesAsync(accountId, IProfilesRepository.SearchFilter.Description, description));
+    }
+
+    public async Task<ProfileUI?> GetOtherProfileAsync(int profileId) {
+        var profile = await uof.Profiles.FirstOrDefaultAsync(profileId);
+        if(profile == null) return null;
+        return mapper.Map<ProfileUI>(profile);
+    }
+
+    public async Task DeleteContactAsync(string accountId, int otherProfileId) {
+        await uof.Profiles.DeleteContactAsync(accountId, otherProfileId);
+    }
+
+    public async Task DeclineRequestAsync(string accountId, int otherProfileId) {
+        await uof.Profiles.DeclineRequestAsync(accountId, otherProfileId);
+    }
+
+    public async Task AcceptRequestAsync(string accountId, int otherProfileId) {
+        await uof.Profiles.AcceptRequestAsync(accountId, otherProfileId);
+    }
+
+    public async Task SendRequestAsync(string accountId, int otherProfileId) {
+        await uof.Profiles.SendRequestAsync(accountId, otherProfileId);
     }
 }

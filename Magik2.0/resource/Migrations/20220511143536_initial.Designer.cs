@@ -12,8 +12,8 @@ using Resource.Data;
 namespace resource.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220419140422_ProjectTypeAndOriginalProjectFieldsRemoved")]
-    partial class ProjectTypeAndOriginalProjectFieldsRemoved
+    [Migration("20220511143536_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,6 +72,60 @@ namespace resource.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AttachmentTypes");
+                });
+
+            modelBuilder.Entity("Resource.Models.Card", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Answer")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Question")
+                        .IsRequired()
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("Cards");
+                });
+
+            modelBuilder.Entity("Resource.Models.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("FirstProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SecondProfileId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FirstProfileId");
+
+                    b.HasIndex("SecondProfileId");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Resource.Models.Field", b =>
@@ -231,6 +285,34 @@ namespace resource.Migrations
                         .IsRequired();
 
                     b.Navigation("AttachmentType");
+                });
+
+            modelBuilder.Entity("Resource.Models.Card", b =>
+                {
+                    b.HasOne("Resource.Models.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("Resource.Models.Contact", b =>
+                {
+                    b.HasOne("Resource.Models.Profile", "FirstProfile")
+                        .WithMany()
+                        .HasForeignKey("FirstProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Resource.Models.Profile", "SecondProfile")
+                        .WithMany()
+                        .HasForeignKey("SecondProfileId");
+
+                    b.Navigation("FirstProfile");
+
+                    b.Navigation("SecondProfile");
                 });
 
             modelBuilder.Entity("Resource.Models.Project", b =>

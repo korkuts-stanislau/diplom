@@ -1,0 +1,16 @@
+<div class="modal-window">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p class="modal-title">Информация о пользователе</p>
+            <button class="button cancel-button close-modal-button" (click)="modalService.closeModal()">✕</button>
+        </div>
+        <div class="modal-data">
+            <div id="contact-profile-info-container">
+                <img *ngIf="profile?.picture" [src]="getPictureSource()"/>
+                <img *ngIf="!profile?.picture" src="assets/empty-profile.png"/>
+                <h2>{{profile?.username}}</h2>
+                <p>{{profile?.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

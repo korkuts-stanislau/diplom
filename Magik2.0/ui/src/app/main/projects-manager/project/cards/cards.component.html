@@ -1,0 +1,32 @@
+<div class="modal-window">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p class="modal-title">Карточки проекта</p>
+            <button class="button cancel-button close-modal-button" (click)="modalService.closeModal()">✕</button>
+        </div>
+        <div id="modal-data">
+            <div id="cards-info">
+                <p>Количество карточек: {{cards?.length}}</p>
+            </div>
+            <div id="cards-container">
+                <div class="card" [title]="card.question" *ngFor="let card of cards">
+                    <p>{{card.question}}</p>
+                    <div class="card-actions">
+                        <button class="button action-button" (click)="editCardModal(card)">✎</button>
+                        <button class="button action-button cancel-button" (click)="deleteCard(card)">✕</button>
+                    </div>
+                </div>
+                <div class="card" id="add-new-card" (click)="createCardModal()">
+                    <p>Добавить новую</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-create-card 
+    *ngIf="modalService.isChildOpened('create-card')"
+    (cardCreated)="createCard($event)"></app-create-card>
+<app-edit-card 
+    *ngIf="modalService.isChildOpened('edit-card')"
+    [cardToEdit]="cardToEdit"
+    (cardEdited)="editCard($event)"></app-edit-card>

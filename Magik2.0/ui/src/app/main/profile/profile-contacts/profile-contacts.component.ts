@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Profile } from 'src/models/resource/profile';
+import { ModalService } from 'src/services/modal/modal.service';
 import { ProfilesService } from 'src/services/profile/profiles.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class ProfileContactsComponent implements OnInit {
   searchField:string = "";
 
   constructor(private sanitizer: DomSanitizer,
-              private profilesService: ProfilesService) { }
+              private profilesService: ProfilesService,
+              public modalService: ModalService) { }
 
   ngOnInit(): void {
     this.getContacts();
@@ -74,20 +76,48 @@ export class ProfileContactsComponent implements OnInit {
   }
 
   deleteContact(contact: Profile) {
-    if(confirm("Вы действительно хотите удалить этот контакт?")) {
-      
+    if(confirm("Вы хотите удалить этот контакт?")) {
+      this.profilesService.deleteContact(contact)
+        .subscribe(res => {
+          this.acceptedContacts = this.acceptedContacts!.filter(c => c.id != contact.id);
+        }, err => console.log(err));
+    }
+  }
+
+  declineRequest(contact: Profile) {
+    if(confirm("Вы хотите отменить запрос в контакты этого пользователя?")) {
+      this.profilesService.declineRequest(contact)
+        .subscribe(res => {
+          this.requestedContacts = this.requestedContacts!.filter(c => c.id != contact.id);
+        }, err => console.log(err));
     }
   }
 
   acceptContact(contact: Profile) {
-
+    if(confirm("Вы хотите добавить этого пользователя в контакты?")) {
+      this.profilesService.acceptContact(contact)
+        .subscribe(res => {
+          this.acceptedContacts!.push(contact);
+          this.requestedContacts = this.requestedContacts!.filter(c => c.id != contact.id);
+        }, err => console.log(err));
+    }
   }
 
   sendRequestToProfile(contact: Profile) {
-    
+    if(confirm("Вы хотите отправить этому пользователю запрос в контакты?")) {
+      this.profilesService.sendRequestToProfile(contact)
+        .subscribe(res => {
+          this.searchedContacts = this.searchedContacts!.filter(c => c.id != contact.id);
+        }, err => console.log(err));
+    }
   }
 
+  openedProfile?: Profile;
   openProfileModal(contact:Profile) {
-
+    this.profilesService.getOtherProfile(contact)
+      .subscribe(res => {
+        this.openedProfile = res;
+        this.modalService.openModal('show-profile');
+      }, err => console.log(err));
   }
 }

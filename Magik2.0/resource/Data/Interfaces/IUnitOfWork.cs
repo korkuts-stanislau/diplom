@@ -7,4 +7,5 @@ public interface IUnitOfWork {
     public IStagesRepository Stages { get; }
     public IAccountAttachmentsRepository AccountAttachments{ get; }
     public IStagesAttachmentsRepository StagesAttachments { get; }
+    public ICardsRepository Cards { get; }
 }

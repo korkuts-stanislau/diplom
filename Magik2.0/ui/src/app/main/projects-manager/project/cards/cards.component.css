@@ -1,0 +1,51 @@
+#cards-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.card {
+    height: 80px;
+    background-color: rgba(50, 50, 50, 0.05);
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: default;
+}
+
+.card p {
+    max-height: 73px;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    justify-items: center;
+}
+
+.card-actions > button {
+    height: 35px;
+    width: 35px;
+}
+
+#add-new-card {
+    cursor: pointer;
+    background-color: rgba(175, 255, 175, 0.5);
+}
+
+#add-new-card:hover {
+    filter: brightness(0.9);
+}
+
+@media (max-width:700px) {
+    #cards-container {
+        gap: 5px;
+    }
+}

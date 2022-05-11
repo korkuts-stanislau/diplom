@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProfileRoutingService {
-  private currentWindow:string = "contacts";
+  private currentWindow:string = "statistic";
 
   constructor() {}
 
   default() {
-    this.currentWindow = "contacts";
+    this.currentWindow = "statistic";
   }
 
   routeToEdit() {

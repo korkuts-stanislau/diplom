@@ -95,12 +95,86 @@ public class ProfilesController : ControllerBase
         
         try {
             if(!string.IsNullOrEmpty(name)) {
-                return Ok(await profilesService.SearchProfilesByName(accountId, name));
+                return Ok(await profilesService.SearchProfilesByNameAsync(accountId, name));
             }
             if(!string.IsNullOrEmpty(description)) {
-                return Ok(await profilesService.SearchProfilesByDescription(accountId, description));
+                return Ok(await profilesService.SearchProfilesByDescriptionAsync(accountId, description));
             }
             return BadRequest("Передайте параметр поиска");
+        }
+        catch(ApplicationException exc) {
+            return BadRequest(exc.Message);
+        }
+    }
+
+    [Route("contacts/profile/{id}")]
+    [HttpGet]
+    public async Task<IActionResult> GetOtherProfile(int id)
+    {
+        try {
+            var otherProfile = await profilesService.GetOtherProfileAsync(id);
+            if(otherProfile != null) {
+                return Ok(otherProfile);
+            }
+            else {
+                return BadRequest("Такого профиля не существует");
+            }
+        }
+        catch(ApplicationException exc) {
+            return BadRequest(exc.Message);
+        }
+    }
+
+    [Route("contacts/{id}")]
+    [HttpDelete]
+    public async Task<IActionResult> DeleteContact(int id)
+    {
+        var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        try {
+            await profilesService.DeleteContactAsync(accountId, id);
+            return Ok();
+        }
+        catch(ApplicationException exc) {
+            return BadRequest(exc.Message);
+        }
+    }
+
+    [Route("contacts/requests/{id}")]
+    [HttpDelete]
+    public async Task<IActionResult> DeclineContact(int id)
+    {
+        var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        try {
+            await profilesService.DeclineRequestAsync(accountId, id);
+            return Ok();
+        }
+        catch(ApplicationException exc) {
+            return BadRequest(exc.Message);
+        }
+    }
+
+    [Route("contacts/requests/accept")]
+    [HttpPost]
+    public async Task<IActionResult> AcceptContact([FromBody]int id)
+    {
+        var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        try {
+            await profilesService.AcceptRequestAsync(accountId, id);
+            return Ok();
+        }
+        catch(ApplicationException exc) {
+            return BadRequest(exc.Message);
+        }
+    }
+
+    [Route("contacts/requests/send")]
+    [HttpPost]
+    public async Task<IActionResult> SendRequest([FromBody]int id)
+    {
+        var accountId = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier).Value;
+        try {
+            await profilesService.SendRequestAsync(accountId, id);
+            return Ok();
         }
         catch(ApplicationException exc) {
             return BadRequest(exc.Message);

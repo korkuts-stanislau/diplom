@@ -55,4 +55,11 @@ public class UserAccessValidator {
         if(attachment.AccountId != accountId) throw new ApplicationException("Это вложение принадлежит другому пользователю");
         return attachment;
     }
+
+    public async Task<Models.Card> ValidateAndGetCardAsync(string accountId, int cardId) {
+        var card = await uof.Cards.FirstOrDefaultAsync(cardId);
+        if(card == null) throw new ApplicationException("Нет такой карты");
+        await ValidateAndGetProjectAsync(accountId, card.ProjectId);
+        return card;
+    }
 }

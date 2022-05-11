@@ -30,6 +30,10 @@ import { EditAttachmentComponent } from './main/projects-manager/attachments/edi
 import { CreateAttachmentComponent } from './main/projects-manager/attachments/create-attachment/create-attachment.component';
 import { ChatComponent } from './main/chat/chat.component';
 import { ProfileContactsComponent } from './main/profile/profile-contacts/profile-contacts.component';
+import { ProfileShowComponent } from './main/profile/profile-contacts/profile-show/profile-show.component';
+import { CardsComponent } from './main/projects-manager/project/cards/cards.component';
+import { CreateCardComponent } from './main/projects-manager/project/cards/create-card/create-card.component';
+import { EditCardComponent } from './main/projects-manager/project/cards/edit-card/edit-card.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,11 @@ import { ProfileContactsComponent } from './main/profile/profile-contacts/profil
     AttachmentsComponent,
     EditAttachmentComponent,
     CreateAttachmentComponent,
-    ChatComponent
+    ChatComponent,
+    ProfileShowComponent,
+    CardsComponent,
+    CreateCardComponent,
+    EditCardComponent
   ],
   imports: [
     BrowserModule,

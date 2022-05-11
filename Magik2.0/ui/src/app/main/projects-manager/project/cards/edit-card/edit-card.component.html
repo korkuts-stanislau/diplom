@@ -1,0 +1,19 @@
+<div class="modal-window">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p class="modal-title">Изменение карты</p>
+            <button class="button cancel-button close-modal-button" (click)="modalService.closeChild()">✕</button>
+        </div>
+        <div class="modal-data">
+            <div class="modal-item">
+                <textarea class="input card-textarea" [(ngModel)]="cardToEdit!.question" placeholder="Вопрос"></textarea>
+            </div>
+            <div class="modal-item">
+                <textarea class="input card-textarea" [(ngModel)]="cardToEdit!.answer" placeholder="Ответ"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="apply-button button" (click)="editCard()">Изменить</button>
+        </div>
+    </div>
+</div>

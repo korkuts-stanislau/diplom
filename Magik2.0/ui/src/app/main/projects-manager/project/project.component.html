@@ -6,6 +6,7 @@
         <div id="current-project-actions">
             <button class="button action-button" *ngIf="descriptionShown" (click)="descriptionShown = false">▲</button>
             <button class="button action-button" *ngIf="!descriptionShown" (click)="descriptionShown = true">▼</button>
+            <button class="button action-button" (click)="openCardsModal()">⛋</button>
             <button class="button apply-button action-button" (click)="addStageModal()">✛</button>
             <button class="button action-button" (click)="editCurrentProjectModal()">✎</button>
             <button class="button action-button cancel-button" (click)="deleteCurrentProject()">✕</button>
@@ -20,3 +21,6 @@
 <app-add-stage
     *ngIf="modalService.isModalOpened('add-stage')"
     [parent]="this"></app-add-stage>
+<app-cards 
+    *ngIf="modalService.isModalOpened('cards')"
+    [currentProject]="currentProject"></app-cards>

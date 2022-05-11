@@ -17,7 +17,7 @@
                 <p>{{contact.username}}</p>
             </div>
             <div class="contact-actions">
-                <button class="button action-button">!</button>
+                <button class="button action-button" (click)="openProfileModal(contact)">!</button>
                 <button (click)="deleteContact(contact)" class="button action-button cancel-button">✕</button>
             </div>
         </div>
@@ -28,9 +28,9 @@
                 <p>{{contact.username}}</p>
             </div>
             <div class="contact-actions">
-                <button class="button action-button apply-button">✓</button>
-                <button class="button action-button">!</button>
-                <button (click)="deleteContact(contact)" class="button action-button cancel-button">✕</button>
+                <button class="button action-button apply-button" (click)="acceptContact(contact)">✓</button>
+                <button class="button action-button" (click)="openProfileModal(contact)">!</button>
+                <button (click)="declineRequest(contact)" class="button action-button cancel-button">✕</button>
             </div>
         </div>
     </div>
@@ -42,9 +42,12 @@
                 <p>{{contact.username}}</p>
             </div>
             <div class="contact-actions">
-                <button class="button action-button apply-button">✓</button>
-                <button class="button action-button">!</button>
+                <button class="button action-button apply-button" (click)="sendRequestToProfile(contact)">✓</button>
+                <button class="button action-button" (click)="openProfileModal(contact)">!</button>
             </div>
         </div>
     </div>
 </div>
+<app-profile-show *ngIf="modalService.isModalOpened('show-profile')"
+    [profile]="openedProfile">
+</app-profile-show>

@@ -75,4 +75,8 @@ export class ProjectComponent implements OnInit, OnChanges {
     console.log("ok");
     this.projectHeader?.nativeElement.setAttribute('style', `background:${this.currentProject?.color}`);
   }
+
+  openCardsModal() {
+    this.modalService.openModal('cards');
+  }
 }

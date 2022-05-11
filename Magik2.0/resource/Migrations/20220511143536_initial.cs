@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace resource.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,19 +55,6 @@ namespace resource.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProjectTypes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AccountAttachments",
                 columns: table => new
                 {
@@ -96,8 +83,6 @@ namespace resource.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FieldId = table.Column<int>(type: "int", nullable: false),
-                    ProjectTypeId = table.Column<int>(type: "int", nullable: false),
-                    OriginalProjectId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(2048)", maxLength: 2048, nullable: false)
                 },
@@ -110,15 +95,51 @@ namespace resource.Migrations
                         principalTable: "Fields",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Contacts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstProfileId = table.Column<int>(type: "int", nullable: false),
+                    SecondProfileId = table.Column<int>(type: "int", nullable: true),
+                    Accepted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Projects_Projects_OriginalProjectId",
-                        column: x => x.OriginalProjectId,
-                        principalTable: "Projects",
+                        name: "FK_Contacts_Profiles_FirstProfileId",
+                        column: x => x.FirstProfileId,
+                        principalTable: "Profiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Contacts_Profiles_SecondProfileId",
+                        column: x => x.SecondProfileId,
+                        principalTable: "Profiles",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cards",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Question = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
+                    Answer = table.Column<string>(type: "nvarchar(1024)", maxLength: 1024, nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cards", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Projects_ProjectTypes_ProjectTypeId",
-                        column: x => x.ProjectTypeId,
-                        principalTable: "ProjectTypes",
+                        name: "FK_Cards_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -179,19 +200,24 @@ namespace resource.Migrations
                 column: "AttachmentTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cards_ProjectId",
+                table: "Cards",
+                column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contacts_FirstProfileId",
+                table: "Contacts",
+                column: "FirstProfileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contacts_SecondProfileId",
+                table: "Contacts",
+                column: "SecondProfileId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Projects_FieldId",
                 table: "Projects",
                 column: "FieldId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Projects_OriginalProjectId",
-                table: "Projects",
-                column: "OriginalProjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Projects_ProjectTypeId",
-                table: "Projects",
-                column: "ProjectTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stages_ProjectId",
@@ -212,10 +238,16 @@ namespace resource.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Profiles");
+                name: "Cards");
+
+            migrationBuilder.DropTable(
+                name: "Contacts");
 
             migrationBuilder.DropTable(
                 name: "StagesAttachments");
+
+            migrationBuilder.DropTable(
+                name: "Profiles");
 
             migrationBuilder.DropTable(
                 name: "AccountAttachments");
@@ -231,9 +263,6 @@ namespace resource.Migrations
 
             migrationBuilder.DropTable(
                 name: "Fields");
-
-            migrationBuilder.DropTable(
-                name: "ProjectTypes");
         }
     }
 }

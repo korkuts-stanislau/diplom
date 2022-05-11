@@ -1,0 +1,21 @@
+#contact-profile-info-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contact-profile-info-container img {
+   width: 90%;
+   max-height: 300px;
+   object-fit: cover;
+   border-radius: 10px;
+}
+
+#contact-profile-info-container h2 {
+    margin: 15px 0;
+}
+
+#contact-profile-info-container p {
+    text-align: center;
+}
