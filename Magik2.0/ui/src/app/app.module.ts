@@ -34,6 +34,7 @@ import { ProfileShowComponent } from './main/profile/profile-contacts/profile-sh
 import { CardsComponent } from './main/projects-manager/project/cards/cards.component';
 import { CreateCardComponent } from './main/projects-manager/project/cards/create-card/create-card.component';
 import { EditCardComponent } from './main/projects-manager/project/cards/edit-card/edit-card.component';
+import { LearnCardsComponent } from './main/projects-manager/project/cards/learn-cards/learn-cards.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { EditCardComponent } from './main/projects-manager/project/cards/edit-ca
     ProfileShowComponent,
     CardsComponent,
     CreateCardComponent,
-    EditCardComponent
+    EditCardComponent,
+    LearnCardsComponent
   ],
   imports: [
     BrowserModule,

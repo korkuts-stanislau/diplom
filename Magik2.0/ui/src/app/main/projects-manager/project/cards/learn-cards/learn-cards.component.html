@@ -1,0 +1,22 @@
+<div class="modal-window">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p class="modal-title">Изучение карточек</p>
+            <button class="button cancel-button close-modal-button" (click)="modalService.closeChild()">✕</button>
+        </div>
+        <div class="modal-data">
+            <div id="current-card-question">
+                <label>Вопрос</label>
+                <p>{{currentCard!.question}}</p>
+            </div>
+            <div *ngIf="isAnswerShown" id="current-card-answer">
+                <label>Ответ</label>
+                <p>{{currentCard!.answer}}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="button" (click)="isAnswerShown = true">Показать ответ</button>
+            <button class="apply-button button" (click)="chooseRandomCard()">Следующая</button>
+        </div>
+    </div>
+</div>

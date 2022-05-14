@@ -1,0 +1,17 @@
+#current-card-question, #current-card-answer {
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#current-card-question {
+    background-color: rgba(175, 212, 255, 0.5);
+}
+
+#current-card-answer {
+    margin-top: 20px;
+    background-color: rgba(175, 255, 175, 0.5);
+}
+
+#current-card-question > p, #current-card-answer > p {
+    font-weight: bold;
+}

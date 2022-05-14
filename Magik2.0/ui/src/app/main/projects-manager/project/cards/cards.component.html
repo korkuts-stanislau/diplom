@@ -9,6 +9,9 @@
                 <p>Количество карточек: {{cards?.length}}</p>
             </div>
             <div id="cards-container">
+                <div class="card" id="add-new-card" (click)="createCardModal()">
+                    <p>Добавить новую</p>
+                </div>
                 <div class="card" [title]="card.question" *ngFor="let card of cards">
                     <p>{{card.question}}</p>
                     <div class="card-actions">
@@ -16,9 +19,9 @@
                         <button class="button action-button cancel-button" (click)="deleteCard(card)">✕</button>
                     </div>
                 </div>
-                <div class="card" id="add-new-card" (click)="createCardModal()">
-                    <p>Добавить новую</p>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="button" (click)="learnCardsModal()">Изучать</button>
             </div>
         </div>
     </div>
@@ -30,3 +33,6 @@
     *ngIf="modalService.isChildOpened('edit-card')"
     [cardToEdit]="cardToEdit"
     (cardEdited)="editCard($event)"></app-edit-card>
+<app-learn-cards
+    *ngIf="modalService.isChildOpened('learn-cards')"
+    [cards]="cards"></app-learn-cards>

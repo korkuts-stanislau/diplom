@@ -59,4 +59,8 @@ export class CardsComponent implements OnInit {
         }, err => console.log(err));
     }
   }
+
+  learnCardsModal() {
+    this.modalService.openChildModal("learn-cards");
+  }
 }
