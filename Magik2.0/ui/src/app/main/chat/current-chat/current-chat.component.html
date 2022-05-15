@@ -1,0 +1,21 @@
+<div id="current-chat-container">
+    <h2>Текущая группа</h2>
+    <div id="current-chat-area">
+        <div id="chat-output-field">
+            <div id="chat-user-data">
+                <img *ngIf="currentProfile" [src]="getPictureSource()">
+                <h3>{{currentProfile?.username}}</h3>
+                <h3 *ngIf="currentGroup">в группе {{currentGroup!.name}}</h3>
+                <h3 *ngIf="!currentGroup">не в группе</h3>
+            </div>
+        </div>
+        <div id="chat-input-field">
+            <div id="chat-input-field-actions">
+                <button class="button apply-button">Отправить</button>
+                <button class="button">Прикрепить</button>
+                <button class="button">Смайлик</button>
+            </div>
+            <textarea class="input"></textarea>
+        </div>
+    </div>
+</div>

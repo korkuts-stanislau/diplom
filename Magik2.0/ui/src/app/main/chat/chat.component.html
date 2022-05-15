@@ -1,1 +1,8 @@
-<p>chat works!</p>
+<div id="chat-container">
+    <app-groups 
+        [currentProfile]="currentProfile"
+        (currentGroupSelected)="selectGroup($event)"></app-groups>
+    <app-current-chat 
+        [currentProfile]="currentProfile"
+        [currentGroup]="currentGroup"></app-current-chat>
+</div>

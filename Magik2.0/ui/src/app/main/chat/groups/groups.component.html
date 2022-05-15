@@ -1,0 +1,29 @@
+<div id="groups-container">
+    <h2>Группы</h2>
+    <div id="groups-search">
+        <p>Поиск групп</p>
+        <div>
+            <input class="input"/>
+            <button class="button">Найти</button>
+        </div>
+    </div>
+    <div id="groups-create">
+        <p>Создание группы</p>
+        <div>
+            <input class="input"/>
+            <button class="button">Создать</button>
+        </div>
+    </div>
+    <div id="groups-header">
+        <h3>Список групп</h3>
+        <button class="button action-button" *ngIf="isGroupsShown" (click)="isGroupsShown = false">▲</button>
+        <button class="button action-button" *ngIf="!isGroupsShown" (click)="isGroupsShown = true">▼</button>
+    </div>
+    <div id="groups" *ngIf="isGroupsShown">
+        <p class="group" 
+            *ngFor="let group of groups"
+            (click)="selectGroup(group)">
+            {{group.name}}
+        </p>
+    </div>
+</div>

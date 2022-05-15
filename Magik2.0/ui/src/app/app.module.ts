@@ -35,6 +35,8 @@ import { CardsComponent } from './main/projects-manager/project/cards/cards.comp
 import { CreateCardComponent } from './main/projects-manager/project/cards/create-card/create-card.component';
 import { EditCardComponent } from './main/projects-manager/project/cards/edit-card/edit-card.component';
 import { LearnCardsComponent } from './main/projects-manager/project/cards/learn-cards/learn-cards.component';
+import { GroupsComponent } from './main/chat/groups/groups.component';
+import { CurrentChatComponent } from './main/chat/current-chat/current-chat.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { LearnCardsComponent } from './main/projects-manager/project/cards/learn
     CardsComponent,
     CreateCardComponent,
     EditCardComponent,
-    LearnCardsComponent
+    LearnCardsComponent,
+    GroupsComponent,
+    CurrentChatComponent
   ],
   imports: [
     BrowserModule,
