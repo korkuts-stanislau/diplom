@@ -30,6 +30,10 @@ export class GroupsComponent implements OnInit {
   }
 
   createGroup(groupName:string) {
+    if(groupName.length < 1) {
+      alert("Вы не можете создать группу с пустым названием");
+      return;
+    }
     let group = new Group(groupName);
     this.currentGroupSelected.emit(group);
   }

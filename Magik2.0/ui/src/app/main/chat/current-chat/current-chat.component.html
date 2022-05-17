@@ -3,19 +3,49 @@
     <div id="current-chat-area">
         <div id="chat-output-field">
             <div id="chat-user-data">
-                <img *ngIf="currentProfile" [src]="getPictureSource()">
+                <img *ngIf="currentProfile && currentProfile.icon" [src]="getPictureSource(currentProfile!.icon!)">
+                <img *ngIf="!(currentProfile && currentProfile.icon)" src="assets/empty-profile.png">
                 <h3>{{currentProfile?.username}}</h3>
                 <h3 *ngIf="currentGroup">в группе {{currentGroup!.name}}</h3>
                 <h3 *ngIf="!currentGroup">не в группе</h3>
             </div>
+            <div id="chat-messages" #chatMessages>
+                <div class="message-container" *ngFor="let message of currentGroupMessages">
+                    <div class="notify" *ngIf="isNotifyMessage(message)">
+                        <p>{{message}}</p>
+                    </div>
+                    <div [class]="getClassForMessage(message)" *ngIf="!isNotifyMessage(message)">
+                        <div class="message-header">
+                            <button *ngIf="getStrictMessage(message).profileId != currentProfile!.id" 
+                                class="button action-button" 
+                                (click)="openProfileModal(getStrictMessage(message).profileId)">!</button>
+                            <p>
+                                <span>{{getStrictMessage(message).username}}</span>
+                                -
+                                <span>{{getPrettyDate(getStrictMessage(message).date)}}</span>
+                            </p>
+                        </div>
+                        <div class="message-content">
+                            <p>{{getStrictMessage(message).text}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="chat-input-field">
             <div id="chat-input-field-actions">
-                <button class="button apply-button">Отправить</button>
+                <button class="button apply-button" (click)="sendMessage()">Отправить</button>
                 <button class="button">Прикрепить</button>
                 <button class="button">Смайлик</button>
+                <button class="button">Пригласить</button>
             </div>
-            <textarea class="input"></textarea>
+            <textarea [(ngModel)]="currentMessageText" 
+                class="input"
+                minlength="1"
+                (keydown)="inputKeyPressed($event)"></textarea>
         </div>
     </div>
 </div>
+<app-profile-show *ngIf="modalService.isModalOpened('show-profile')"
+    [profile]="openedProfile">
+</app-profile-show>

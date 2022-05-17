@@ -62,3 +62,64 @@
 #chat-input-field-actions > button {
     height: 100%;
 }
+
+#chat-messages {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 2px;
+    overflow: auto;
+    max-height: calc(100% - 60px);
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.notify {
+    padding: 5px;
+}
+
+.notify p {
+    text-align: center;
+    background-color: #23d52c30;
+    padding: 3px;
+    border-radius: 5px;
+}
+
+.message {
+    padding: 10px 10px 5px 10px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    width: 60%;
+    background-color: aliceblue;
+}
+
+.left-message {
+    align-self:flex-start;
+}
+
+.right-message {
+    align-self:flex-end;
+}
+
+.message-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.message-header button {
+    height: 30px;
+    width: 30px;
+}
+
+.message-content {
+    margin: 3px 0;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: white;
+}
