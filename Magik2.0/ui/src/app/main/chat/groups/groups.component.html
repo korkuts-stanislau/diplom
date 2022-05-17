@@ -10,8 +10,8 @@
     <div id="groups-create">
         <p>Создание группы</p>
         <div>
-            <input class="input"/>
-            <button class="button">Создать</button>
+            <input class="input" #groupName minlength="3"/>
+            <button class="button" (click)="createGroup(groupName.value)">Создать</button>
         </div>
     </div>
     <div id="groups-header">

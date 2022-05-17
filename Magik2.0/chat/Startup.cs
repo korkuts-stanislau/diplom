@@ -1,7 +1,6 @@
-using Chat.Data;
 using Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
+using SignalRApp;
 
 namespace Chat
 {
@@ -18,6 +17,7 @@ namespace Chat
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSignalR();
 
             var authOptions = Configuration.GetSection("Auth").Get<AuthOptions>();
 
@@ -26,9 +26,9 @@ namespace Chat
                 options.AddDefaultPolicy(builder =>
                 {
                     builder.WithOrigins("http://localhost:4200")
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
                 });
             });
 
@@ -50,11 +50,6 @@ namespace Chat
                         ValidateIssuerSigningKey = true
                     };
                 });
-            
-            services.AddDbContext<AppDbContext>(opts =>
-            {
-                opts.UseSqlServer(Configuration.GetConnectionString("Default"));
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,7 +68,7 @@ namespace Chat
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

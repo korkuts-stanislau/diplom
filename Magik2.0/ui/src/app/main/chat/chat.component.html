@@ -1,8 +1,10 @@
 <div id="chat-container">
-    <app-groups 
+    <app-groups
+        [hub]="hub"
         [currentProfile]="currentProfile"
-        (currentGroupSelected)="selectGroup($event)"></app-groups>
-    <app-current-chat 
+        (currentGroupSelected)="this.currentGroup = $event"></app-groups>
+    <app-current-chat
+        [hub]="hub"
         [currentProfile]="currentProfile"
         [currentGroup]="currentGroup"></app-current-chat>
 </div>

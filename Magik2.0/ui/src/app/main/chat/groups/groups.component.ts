@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Group } from 'src/models/chat/group';
+import * as signalR from "@microsoft/signalr";
 import { Profile } from 'src/models/resource/profile';
 
 @Component({
@@ -10,6 +11,7 @@ import { Profile } from 'src/models/resource/profile';
 export class GroupsComponent implements OnInit {
 
   @Input()currentProfile?:Profile;
+  @Input() hub?:signalR.HubConnection;
   @Output()currentGroupSelected:EventEmitter<Group> = new EventEmitter<Group>();
 
   public groups?:Group[];
@@ -18,19 +20,17 @@ export class GroupsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.searchGroups();
-    window.addEventListener('resize', (ev) => {
-      if(window.innerWidth > 700) this.isGroupsShown = true;
+    this.hub?.on("getGroups", (data) => {
+      this.groups = data.map((name: string) => new Group(name));
     });
   }
 
-  searchGroups() {
-    this.groups = [new Group("C#"), 
-                  new Group("Angular"), 
-                  new Group("Typescript")]
+  selectGroup(group:Group) {
+    this.currentGroupSelected.emit(group);
   }
 
-  selectGroup(group:Group) {
+  createGroup(groupName:string) {
+    let group = new Group(groupName);
     this.currentGroupSelected.emit(group);
   }
 }

@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Chat.Models
+﻿namespace Chat.Models
 {
     public class Message
     {
-        public int Id { get; set; }
-
-        [StringLength(24)]
-        public string FromAccountId { get; set; } = null!;
-
-        [StringLength(24)]
-        public string ToAccountId { get; set; } = null!;
-
-        public int MessageTypeId { get; set; }
-
-        [StringLength(2048)]
-        public string MessageData { get; set; } = null!;
-
-        public MessageType MessageType { get; set; } = null!;
+        public int ProfileId { get; set; }
+        public string Username { get; set; } = null!;
+        public string Icon { get; set; } = null!;
+        public DateTime Date { get; set; }
+        public string Text { get; set; } = null!;
     }
 }
+
+/*
+profileId:number,
+username:number,
+icon:string,
+date:Date,
+text:string
+*/
