@@ -85,6 +85,7 @@ namespace Resource
             services.AddScoped<StagesService>();
             services.AddScoped<AttachmentsService>();
             services.AddScoped<CardsService>();
+            services.AddScoped<StatisticService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

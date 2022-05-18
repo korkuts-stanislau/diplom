@@ -1,1 +1,15 @@
-<p>profile-statistic works!</p>
+<div id="profile-statistic-container">
+    <h2>Статистика</h2>
+    <div class="statistic-item">
+        <p>Количество областей: {{statistic?.fieldsQuantity}}</p>
+    </div>
+    <div class="statistic-item">
+        <p>Количество проектов: {{statistic?.projectsQuantity}}</p>
+    </div>
+    <div class="statistic-item">
+        <p>Количество стадий: {{statistic?.stagesQuantity}}</p>
+    </div>
+    <div class="statistic-item">
+        <p>Количество выполненных стадий: {{statistic?.completedStagesQuantity}}</p>
+    </div>
+</div>
